@@ -1,0 +1,398 @@
+/* 全体のスタイル */
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    min-width: 1200px;
+    color: #333;
+    line-height: 1.6;
+}
+
+h2 {
+    position: relative;
+    padding-left: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px; /* 高さを幅と同じにして正方形に */
+    background-color: #3200FF;
+}
+
+/* スムーズスクロール */
+html {
+    scroll-behavior: smooth;
+}
+
+/* バナー */
+.banner {
+    background-color: #3200FF;
+    color: white;
+    text-align: left;
+    padding: 15px 30px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.banner_title {
+    cursor: pointer;
+}
+
+.banner_title_phone {
+    display: none;
+}
+
+.back-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #3200FF;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #3200FF;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #3200FF;
+    color: white;
+}
+
+/* スクロールトップボタン */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    background-color: #ffffff; /* 背景色を白に変更 */
+    padding: 20px; /* コンテナ内の余白を保持 */
+    border-radius: 8px; /* 角を丸くする */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
+}
+
+.content {
+    margin-top: 80px; /* バナーの高さ分のマージン */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    background-color: transparent; /* 背景色を透明に */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    width: 0;
+    white-space: nowrap;
+}
+th, td {
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+}
+td {
+    padding: 6px;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+td:hover {
+    background-color: #f9f9f9;
+}
+
+.icon {
+    width: 45px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.table-container {
+    margin-top: 20px; /* バナーの高さ分のマージン */
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+img {
+    vertical-align: middle;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #3200FF;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.head::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background-color: #3200FF;
+    margin: 0 10px;
+}
+
+/* エール別アイドルリストのスタイル */
+.yell-category {
+    margin-top: 30px; /* 余白を増やして見た目を改善 */
+    padding: 20px; /* 内側の余白を増やす */
+    background-color: #f9f9f9; /* 背景色を保持 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    scroll-margin-top: 100px; /* スクロール位置を調整 */
+}
+
+.character-category {
+    scroll-margin-top: 70px; /* スクロール位置を調整してバナーとの被りを防ぐ */
+}
+
+.yell-category h3 {
+    font-size: 20px;
+    color: #3200FF;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3200FF;
+    padding-bottom: 5px;
+}
+
+.idol-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* ギャップを小さく調整 */
+    justify-content: flex-start;
+}
+
+.idol-item {
+    display: block; /* リンク要素として扱う */
+    text-decoration: none; /* リンクの下線を削除 */
+    padding: 8px; /* 内側の余白を減らす */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    width: 120px; /* 幅を小さく調整 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    color: inherit; /* テキストの色を継承 */
+}
+
+.idol-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0; /* ホバー時の背景色を追加 */
+}
+
+.idol-item img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 5px; /* 余白を減らす */
+}
+
+.idol-item span {
+    font-size: 12px; /* フォントサイズを小さく調整 */
+    color: #333;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px; /* 余白を減らす */
+}
+
+.idol-item p {
+    font-size: 10px; /* フォントサイズを小さく調整 */
+    color: #666;
+    margin: 0;
+}
+
+/* 目次ボタンのスタイル */
+.toc-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* ボタン間の間隔を広げる */
+    margin-top: 20px; /* 上部の余白を増やす */
+    justify-content: center; /* ボタンを中央揃え */
+}
+
+.toc-buttons button {
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 12px 20px; /* ボタンのサイズを大きくする */
+    border-radius: 10px; /* 丸みを強調 */
+    cursor: pointer;
+    font-size: 16px; /* フォントサイズを大きくする */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ボタンに影を追加 */
+}
+
+.toc-buttons button:hover {
+    background-color: #0000FF;
+    transform: scale(1.05); /* ホバー時に拡大 */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* ホバー時の影を強調 */
+}
+
+.toc-buttons button:active {
+    background-color: #1A1AFF;
+    transform: scale(1); /* クリック時に元のサイズに戻す */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* クリック時の影を調整 */
+}
+
+/* 目次のスタイル */
+.toc {
+    margin-top: 75px; /* バナーの高さ分の余白を追加 */
+}
+
+/* メディアクエリ */
+@media (max-width: 768px) {
+    body {
+        min-width: 100%;
+        font-size: 14px; /* スマホ用フォントサイズ */
+    }
+
+    .banner {
+        text-align: left;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .back-button {
+        display: none;
+    }
+
+    #scrollToTopBtn {
+        display: none;
+        bottom: 10px;
+        right: 10px;
+        padding: 5px 10px;
+    }
+
+    .banner_title {
+        display: none;
+    }
+
+    .banner_title_phone {
+        display: block;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 10px; /* スマホ用の余白を追加 */
+    }
+
+    .content {
+        margin-top: 60px; /* バナーの高さ分のマージンを調整 */
+        padding: 15px;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 0; /* スマホでの表示に対応 */
+    }
+
+    .idol-item {
+        width: 100px;
+    }
+
+    .idol-item span {
+        font-size: 12px;
+    }
+
+    .idol-item p {
+        font-size: 10px;
+    }
+
+    .toc {
+        margin-top: 55px; /* バナーの高さ分の余白を追加 */
+    }
+
+    .toc-buttons {
+        display: grid; /* グリッドレイアウトを使用 */
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* 横に複数並べる */
+        gap: 10px; /* ボタン間の間隔を調整 */
+        padding-top: 10px; /* 上部の余白を調整 */
+    }
+
+    .toc-buttons button {
+        font-size: 12px; /* フォントサイズを調整 */
+        padding: 8px 10px; /* ボタンのサイズを調整 */
+        border-radius: 5px; /* 丸みを少し減らす */
+    }
+
+    .idol-list {
+        justify-content: center; /* アイドルリストを中央揃え */
+        gap: 8px; /* ギャップを調整 */
+    }
+
+    .idol-item {
+        width: 90px; /* 幅をさらに小さく */
+        padding: 6px; /* 内側の余白を減らす */
+    }
+
+    .idol-item img {
+        margin-bottom: 3px; /* 画像下の余白を減らす */
+    }
+
+    .idol-item span {
+        font-size: 10px; /* フォントサイズをさらに小さく */
+    }
+
+    .idol-item p {
+        font-size: 8px; /* フォントサイズをさらに小さく */
+    }
+
+    .yell-category {
+        margin-top: 10px;
+    }
+
+    .yell-category h3 {
+        font-size: 20px;
+        color: #3200FF;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #3200FF;
+    }
+}
