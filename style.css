@@ -658,12 +658,17 @@ a:hover.idol_link {
     background-color: #1a0080;
 }
 
+#pc-hidden {
+    display: none;
+}
+
 /* ==========================
    メディアクエリ（レスポンシブ対応）
    ========================== */
-@media screen and (max-width: 768px) {
+   @media screen and (max-width: 768px) {
     body {
         min-width: 100%;
+        font-size: 14px; /* スマホ用フォントサイズを調整 */
     }
 
     .banner {
@@ -693,6 +698,7 @@ a:hover.idol_link {
         width: 100%;
         margin: 0px;
         padding: 10px;
+        font-size: 14px; /* スマホ用フィルタセクションのフォントサイズを調整 */
     }
 
     .table-container {
@@ -708,7 +714,7 @@ a:hover.idol_link {
     }
 
     th, td {
-        font-size: 11px;
+        font-size: 11px; /* スマホ用テーブルフォントサイズを調整 */
         padding: 3px;
     }
 
@@ -751,7 +757,7 @@ a:hover.idol_link {
 
     .search-bar-container {
         width: 98%; /* Increase width for mobile */
-        margin: 30px auto 0 auto; /* Center align for mobile */
+        margin: 0 auto 0 auto; /* Center align for mobile */
     }
 
     .yell_icon {
@@ -776,6 +782,44 @@ a:hover.idol_link {
 
     #phone-hidden {
         display: none;
+    }
+
+    #pc-hidden {
+        display: block;
+        padding: 0px; /* スマートフォン用のpaddingを追加 */
+        margin-left: 5px; /* スマートフォン用のmarginを追加 */
+        margin-right: auto;
+    }
+
+    #pc-hidden .birthday {
+        font-size: 20px; /* スマホ用フォントサイズを調整 */
+    }
+
+    #pc-hidden .item {
+        padding: 10px; /* スマホ用paddingを調整 */
+    }
+
+    #pc-hidden .news ,#pc-hidden .event {
+        margin-left: 0px;
+        max-height: 180px;
+    }
+
+
+
+    h1 {
+        font-size: 2em; /* スマホ用見出しサイズを調整 */
+    }
+
+    h2 {
+        font-size: 1.6em; /* スマホ用見出しサイズを調整 */
+    }
+
+    h3 {
+        font-size: 1.2em; /* スマホ用見出しサイズを調整 */
+    }
+
+    .filters button[type="button"] {
+        font-size: 13px; /* スマホ用ボタンのフォントサイズを調整 */
     }
 }
 
