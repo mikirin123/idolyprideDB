@@ -1,0 +1,362 @@
+/* 全体のスタイル */
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';
+    background-color: #f0f0f0;; /* 背景色を少し明るく変更 */
+    margin: 0;
+    padding: 0;
+    min-width: 1200px;
+    color: #333;
+    line-height: 1.6; /* 行間を広げて読みやすく */
+}
+
+/* バナー */
+.banner {
+    background-color: #3200FF;
+    color: white;
+    text-align: left;
+    padding: 15px 30px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を強調 */
+}
+
+.banner_title {
+    cursor: pointer;
+}
+
+.banner_title_phone {
+    display: none;
+}
+
+
+.back-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #3200FF;
+    padding: 8px 12px; /* ボタンを少し大きく */
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #3200FF;
+    font-size: 14px; /* フォントサイズを調整 */
+    transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+}
+
+.back-button:hover {
+    background-color: #3200FF;
+    color: white;
+}
+
+/* テーブル */
+table {
+    border-collapse: collapse;
+    font-size: 14px;
+    table-layout: fixed;
+    width: 100%;
+    position: relative;
+}
+
+th, td {
+    border: 2px solid #ddd;
+    padding: 8px;
+    word-wrap: break-word;
+}
+
+th {
+    color: white;
+    text-align: left;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+th.sortable {
+    cursor: pointer;
+}
+
+th.sortable::after {
+    content: ' ▼';
+    color: #ccc;
+}
+
+th.sortable.sorted::after {
+    color: #ff3576;
+}
+
+th.sortable.sorted-asc::after {
+    content: ' ▲';
+    color: #35b3ff;
+}
+
+/* その他のスタイル */
+.br-sp {
+    display: none;
+}
+
+
+.idol_names {
+    text-align: left !important;
+}
+
+.idol_img, .idol_names {
+    background-color: #def;
+}
+
+/* スクロールトップボタン */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 12px 15px; /* ボタンを少し大きく */
+    cursor: pointer;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影を追加 */
+    transition: background-color 0.3s; /* ホバー時のアニメーション */
+}
+
+/* ランキングページ全体 */
+.stats_list-sidebar-container {
+    display: flex;
+    margin-top: 60px;
+}
+
+/* サイドバー */
+.stats_list-sidebar {
+    width: 30%; /* サイドバーの幅を自動調整 */
+    background-color: #f0f0f0;; /* サイドバーの背景を白に */
+    padding: 20px; /* サイドバーの内側の余白を調整 */
+    border-right: 2px solid black; /* サイドバーの右側に境界線を追加 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* サイドバーに影を追加 */
+}
+
+.stats_list-sidebar h3 {
+    font-size: 18px; /* 見出しを大きく */
+    margin-bottom: 15px;
+    color: #444; /* 少し濃い色に */
+    padding-bottom: 5px;
+    text-align: center; /* 中央揃え */
+    background-color: white; /* テーブルの背景を白に */
+}
+
+.stats_list-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stats_list-sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.stats_list-sidebar ul img {
+    vertical-align: middle; /* アイコンを中央揃え */
+    width: 60px; /* アイコンのサイズを調整 */
+    margin-right: 10px;
+}
+
+.idol_names img {
+    vertical-align: middle; /* アイコンを中央揃え */
+    width: 60px; /* アイコンのサイズを調整 */
+    margin-right: 10px;
+}
+
+.stats_list-sidebar ul li a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s; /* ホバー時のアニメーション */
+    vertical-align: middle; /* アイコンを中央揃え */
+}
+
+.stats_list-sidebar ul li a:hover {
+    text-decoration: underline;
+    color: gray; /* ホバー時の色変更 */
+}
+
+/* ランキングテーブル */
+.stats_list-container {
+    width: 75%; /* テーブル部分を広げる */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.stats_list-table {
+    width: auto;
+    margin: 0 auto;
+    overflow: hidden; /* 角のはみ出しを防ぐ */
+}
+
+.stats_list-table th, .stats_list-table td {
+    padding: 9px 10px; /* セルのパディングを広げる */
+    text-align: center;
+    white-space: nowrap;
+}
+
+.stats_list-table th {
+    background-color: #ddd;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+.stats_list-table td {
+    background-color: #ffffff;
+    color: #333;
+}
+
+.stats_list-table tr:nth-child(even) td {
+    background-color: #f7f7f7; /* 偶数行の背景色を変更 */
+}
+
+td.status {
+    background-color: white;
+}
+
+.number {
+    display: none;
+}
+
+a.idol_link {
+    vertical-align: middle; /* アイコンを中央揃え */
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s; /* ホバー時のアニメーション */
+}
+
+a:hover.idol_link {
+    text-decoration: underline;
+    color: gray; /* ホバー時の色変更 */
+}
+
+/* 特定列のスタイル */
+.stats_list-table th:nth-child(3), /* ボーカル列 */
+.stats_list-sidebar h3:nth-of-type(1), /* スコアラーのボーカルTOP5 */
+.stats_list-sidebar h3:nth-of-type(2), /* バッファーのボーカルTOP5 */
+.stats_list-sidebar h3:nth-of-type(3)  /* サポーターのボーカルTOP5 */ {
+    color: #FF469D; /* ボーカルの色 */
+}
+
+.stats_list-table th:nth-child(4), /* ダンス列 */
+.stats_list-sidebar h3:nth-of-type(4), /* スコアラーのダンスTOP5 */
+.stats_list-sidebar h3:nth-of-type(5), /* バッファーのダンスTOP5 */
+.stats_list-sidebar h3:nth-of-type(6)  /* サポーターのダンスTOP5 */ {
+    color: #3ABAFF; /* ダンスの色 */
+}
+
+.stats_list-table th:nth-child(5), /* ビジュアル列 */
+.stats_list-sidebar h3:nth-of-type(7), /* スコアラーのビジュアルTOP5 */
+.stats_list-sidebar h3:nth-of-type(8), /* バッファーのビジュアルTOP5 */
+.stats_list-sidebar h3:nth-of-type(9)  /* サポーターのビジュアルTOP5 */ {
+    color: #FFA900; /* ビジュアルの色 */
+}
+
+.idol_type {
+    position: relative;
+    top: 3px;
+}
+
+/* メディアクエリ */
+@media (max-width: 768px) {
+    body {
+        min-width: 100%;
+    }
+
+    table {
+        display: block;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .idol_icon {
+        display: none;
+    }
+
+    th, td {
+        border: 1.8px solid #ddd;
+    }
+
+    .banner {
+        text-align: left; /* Change text alignment to left */
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .no_display {
+        display: block;
+    }
+
+    .back-button {
+        display: none;
+    }
+
+    #scrollToTopBtn {
+        display: none;
+        bottom: 10px;
+        right: 10px;
+        padding: 5px 10px;
+    }
+
+    .stats_list-table th {
+        padding: 5px 1px;
+    }
+
+    .stats_list-table td {
+        padding: 8px 1px;
+    }
+
+    .stats_list-container {
+        margin-top: 0px;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .stats_list-table {
+        width: fit-content;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden; /* 角のはみ出しを防ぐ */
+    }
+
+    .stats_list-sidebar {
+        display: none; /* サイドバーを非表示 */
+    }
+
+    .stats_list-table th:nth-child(6), /* パワー列のヘッダー */
+    .stats_list-table td:nth-child(6) /* パワー列のデータ */ {
+        display: none;
+    }
+
+    .idol_names img {
+        display: none; /* アイコンを非表示 */
+    }
+
+    .hidden {
+        display: none; /* 非表示にするクラス */
+    }
+
+    .banner_title {
+        display: none;
+    }
+
+    .banner_title_phone {
+        display: block;
+    }
+}

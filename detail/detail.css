@@ -1,0 +1,382 @@
+/* 基本設定 */
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    min-width: 1200px;
+    color: #333;
+}
+
+.head {
+    position: relative;
+    padding-left: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    color: #3200FF; /* 色を変更 */
+    font-weight: bold; /* 太字に変更 */
+    text-align: left; /* 左寄せに変更 */
+}
+
+.head::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px; /* 高さを幅と同じにして正方形に */
+    background-color: #3200FF;
+}
+
+/* バナー */
+.banner {
+    background-color: #3200FF;
+    color: white;
+    text-align: left;
+    padding: 15px 30px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を強調 */
+}
+
+.banner_title {
+    cursor: pointer;
+}
+
+.banner_title_phone {
+    display: none;
+}
+
+.back-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #3200FF;
+    padding: 8px 12px; /* ボタンを少し大きく */
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #3200FF;
+    font-size: 14px; /* フォントサイズを調整 */
+    transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+}
+
+.back-button:hover {
+    background-color: #3200FF;
+    color: white;
+}
+
+/* コンテナ */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-top: 70px; /* Adjusted for fixed banner */
+}
+
+.left-column {
+    flex: 1;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.right-column {
+    flex: 2;
+}
+
+.right-container {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: fit-content;
+}
+
+/* テーブル */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.basic-info-table,
+.status-table,
+.live-skill-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+th, td {
+    border: 2px solid #ddd;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table_details {
+    text-align: right;
+}
+
+
+/* 個人詳細 */
+.personal-details-table {
+    white-space: nowrap;
+    width: auto;
+    padding-right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 14px;
+    margin-top: 10px;
+    background-color: white;
+}
+
+.personal-details-table th {
+    text-align: center;
+}
+
+.personal-details-phone {
+    display: none;
+}
+
+/* その他のアイドル */
+.else-idols table {
+    white-space: nowrap;
+    width: auto;
+    padding-right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 14px;
+    margin-top: 10px;
+    background-color: #f8f8f8;
+}
+
+.else-idols th, td {
+    padding: 4px;
+}
+
+.else-idols table th {
+    border: none;
+    background-color: #f8f8f8;
+}
+
+.else-idols table td {
+    border: none;
+    text-align: left;
+}
+
+.else-idols-phone {
+    display: none;
+}
+
+/* 特定の色設定 */
+.t_vocal {
+    color: #FF469D;
+}
+
+.t_dance {
+    color: #3ABAFF;
+}
+
+.t_visual {
+    color: #FFA900;
+}
+
+tr:has(th:empty) {
+    display: none;
+}
+
+tr:has(td:empty) {
+    display: none;
+}
+
+.af_image {
+    width: 90%;
+    background-color: black;
+    padding: 30px 0px;
+}
+
+.bf_image {
+    width: 65%;
+    margin-top: 20px;
+    background-color: black;
+    padding: 0px 30px;
+}
+
+a.idol_link {
+    vertical-align: middle; /* アイコンを中央揃え */
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s; /* ホバー時のアニメーション */
+}
+
+a:hover.idol_link {
+    text-decoration: underline;
+    color: gray; /* ホバー時の色変更 */
+}
+
+.mokuji {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #3200FF;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mokuji::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background-color: #3200FF;
+    margin: 0 10px;
+}
+
+.table_details a {
+    text-decoration: none;
+    color: #3200FF;
+}
+
+.table_details a:hover {
+    text-decoration: underline;
+    color: #3200FF;
+}
+
+/* メディアクエリ */
+@media (max-width: 768px) {
+    body {
+        min-width: 100%;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 0px;
+        padding-top: 45px; /* Adjust padding to avoid overlap */
+    }
+
+    .left-column, .right-column {
+        flex: none;
+        width: 100%;
+    }
+
+    .left-column {
+        padding-right: 0;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .right-column {
+        margin: 0px;
+    }
+
+    .right-container {
+        padding: 10px;
+    }
+
+    table {
+        min-width: 100%;
+    }
+
+    th, td {
+        padding: 6px;
+        font-size: 0.8em;
+    }
+
+    .banner {
+        text-align: left; /* Change text alignment to left */
+        font-size: 1.2em;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .br-sp {
+        display: block;
+    }
+
+    h2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.3em;
+    }
+
+    .back-button {
+        display: none;
+    }
+
+    .skill-details {
+        font-size: 0.8em;
+    }
+
+    .table_details {
+        font-size: 0.8em;
+    }
+
+    .personal-details {
+        display: none;
+    }
+
+    .personal-details-phone {
+        display: block;
+    }
+
+    .personal-details-table th {
+        text-align: left;
+    }
+
+    .else-idols {
+        display: none;
+    }
+
+    .else-idols-phone {
+        display: block;
+    }
+
+    .else-idols-phone table {
+        white-space: nowrap;
+        width: auto;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .else-idols-phone th {
+        text-align: center;
+        padding-top: 2px;
+        padding-bottom: 0px;
+    }
+
+    .else-idols-phone td {
+        padding: 3px;
+    }
+
+    .bf_image {
+        display: none;
+    }
+
+    .af_image {
+        padding: 0px;
+        margin-bottom: 10px;
+    }
+
+    .banner_title {
+        display: none;
+    }
+
+    .banner_title_phone {
+        display: block;
+    }
+}

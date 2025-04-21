@@ -1,0 +1,373 @@
+/* 全体のスタイル */
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    min-width: 1200px;
+    color: #333;
+    line-height: 1.6;
+}
+
+h3 {
+    position: relative;
+    padding-left: 15px;
+}
+
+h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px; /* 高さを幅と同じにして正方形に */
+    background-color: #3200FF;
+}
+
+/* バナー */
+.banner {
+    background-color: #3200FF;
+    color: white;
+    text-align: left;
+    padding: 15px 30px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.banner_title {
+    cursor: pointer;
+}
+
+.banner_title_phone {
+    display: none;
+}
+
+.back-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #3200FF;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #3200FF;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #3200FF;
+    color: white;
+}
+
+/* スクロールトップボタン */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.container {
+    margin-top: 70px; /* バナーの高さ分のマージン */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    width: 0;
+    white-space: nowrap;
+    border: 1px solid #ccc; /* 外枠を追加 */
+    border-radius: 5px; /* 角を丸く */
+    overflow: hidden; /* 角丸を適用 */
+}
+th, td {
+    padding: 10px;
+    text-align: center; /* 中央揃え */
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #3200FF; /* ヘッダーの文字色を変更 */
+}
+td {
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+td:hover {
+    background-color: #f9f9f9;
+}
+
+/* リンクのスタイル */
+a {
+    color: #3200FF;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover {
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #3200FF;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.head::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background-color: #3200FF;
+    margin: 0 10px;
+}
+
+/* 必要経験値計算機 */
+.calculator {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calculator label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* 入力フィールドのスタイル */
+.calculator select, .calculator input[type="number"] {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: auto;
+    min-width: 100px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.calculator select:focus, .calculator input[type="number"]:focus {
+    border-color: #3200FF;
+    box-shadow: 0 0 5px rgba(50, 0, 255, 0.5);
+    outline: none;
+}
+
+/* ラベルのスタイル */
+.calculator label {
+    font-weight: bold;
+    margin-right: 10px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+/* 入力フィールドのコンテナ */
+.calculator .input-group {
+    margin-bottom: 15px;
+}
+
+/* ボタンのスタイル共通化 */
+button {
+    background-color: #3200FF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px; /* 上部に余白を追加 */
+}
+
+button:hover {
+    background-color: #0000FF;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #0000CC;
+}
+
+/* 計算結果のコンテナスタイル共通化 */
+.result-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #3200FF;
+    font-weight: bold;
+    margin-top: 20px;
+    animation: fadeInFromTop 0.5s ease-out;
+}
+
+.result-container h4 {
+    margin-bottom: 10px;
+    color: #3200FF;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.result-container .result-content {
+    font-weight: bold;
+    color: #3200FF;
+    text-align: left;
+}
+
+/* フェードインアニメーション */
+@keyframes fadeInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 計算結果のスタイル共通化 */
+.calculator .result, #compareResult {
+    margin-top: 10px;
+    padding: 20px; /* 20pxに統一 */
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    color: #3200FF;
+    text-align: left;
+}
+
+/* 比較結果のスタイル */
+#compareResult {
+    margin-top: 20px;
+}
+
+/* 過去の計算結果 */
+.past-results {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.past-results h3 {
+    margin-bottom: 10px;
+}
+
+.past-results div {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* メディアクエリ */
+@media (max-width: 768px) {
+    body {
+        min-width: 100%;
+    }
+
+    .banner {
+        text-align: left;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .back-button {
+        display: none;
+    }
+
+    #scrollToTopBtn {
+        display: none;
+        bottom: 10px;
+        right: 10px;
+        padding: 5px 10px;
+    }
+
+    .banner_title {
+        display: none;
+    }
+
+    .banner_title_phone {
+        display: block;
+    }
+
+    h2 {
+        font-size: 14px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 4px;
+        text-align: center; /* アイコンを中央揃え */
+        vertical-align: middle; /* 垂直方向も中央揃え */
+    }
+
+    table img.icon {
+        display: block; /* ブロック要素にして中央揃えを適用 */
+        margin: 0 auto; /* 左右中央揃え */
+    }
+
+    p {
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    table a {
+        display: none;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .calculator label {
+        display: block; /* ラベルをブロック要素に */
+        margin-bottom: 5px; /* 下部に余白を追加 */
+    }
+
+    .calculator input[type="number"] {
+        width: 100%; /* 入力フィールドを幅100%に */
+        margin-bottom: 10px; /* 下部に余白を追加 */
+    }
+
+    .result-container {
+        padding: 10px; /* パディングを調整 */
+    }
+}

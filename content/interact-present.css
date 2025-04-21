@@ -1,0 +1,269 @@
+/* 全体のスタイル */
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    min-width: 1200px;
+    color: #333;
+    line-height: 1.6;
+}
+
+h2 {
+    position: relative;
+    padding-left: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px; /* 高さを幅と同じにして正方形に */
+    background-color: #3200FF;
+}
+
+/* バナー */
+.banner {
+    background-color: #3200FF;
+    color: white;
+    text-align: left;
+    padding: 15px 30px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.banner_title {
+    cursor: pointer;
+}
+
+.banner_title_phone {
+    display: none;
+}
+
+.back-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #3200FF;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #3200FF;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #3200FF;
+    color: white;
+}
+
+/* スクロールトップボタン */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+.container {
+    margin-top: 70px; /* バナーの高さ分のマージン */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    width:0;
+    white-space:nowrap;
+
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+td {
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+td:hover {
+    background-color: #f9f9f9;
+}
+
+/* リンクのスタイル */
+a {
+    color: #3200FF;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover {
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+.icon {
+    width: 45px;
+}
+
+.table-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+img {
+    vertical-align: middle;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #3200FF;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.head::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background-color: #3200FF;
+    margin: 0 10px;
+}
+
+.save {
+    background-color: #3200FF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    position: relative; /* 親要素内で中央配置 */
+    left: 50%; /* 左端から50% */
+    transform: translateX(-50%); /* 自身の幅の半分だけ左に移動 */
+    margin-top: 20px; /* 上部に余白を追加 */
+    margin-bottom: 20px; /* 下部に余白を追加 */
+}
+
+/* メディアクエリ */
+@media (max-width: 768px) {
+    body {
+        min-width: 100%;
+    }
+
+    .banner {
+        text-align: left;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .back-button {
+        display: none;
+    }
+
+    #scrollToTopBtn {
+        display: none;
+        bottom: 10px;
+        right: 10px;
+        padding: 5px 10px;
+    }
+
+    .banner_title {
+        display: none;
+    }
+
+    .banner_title_phone {
+        display: block;
+    }
+
+    h2 {
+        font-size: 14px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 4px;
+        text-align: center; /* アイコンを中央揃え */
+        vertical-align: middle; /* 垂直方向も中央揃え */
+    }
+
+    table img.icon {
+        display: block; /* ブロック要素にして中央揃えを適用 */
+        margin: 0 auto; /* 左右中央揃え */
+    }
+
+    p {
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    .icon {
+        width: 30px;
+    }
+
+    table a {
+        display: none;
+    }
+
+    .save {
+        margin-top: 5px;
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,781 @@
+/* ==========================
+   基本設定
+   ========================== */
+body {
+    font-family: 'M PLUS\ 1p','Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue','sans-serif';
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    min-width: 1200px;
+    color: #333;
+}
+
+/* ==========================
+   見出しのスタイル
+   ========================== */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2em;
+    color: #3200FF;
+}
+
+h2, h3 {
+    color: #3200FF;
+}
+
+h3 {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+/* ==========================
+   バナーのスタイル
+   ========================== */
+.banner {
+    background-color: #3200FF;
+    color: white;
+    text-align: left;
+    padding: 15px 30px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.banner .menu {
+    position: absolute;
+    right: 60px; /* Adjusted from 30px to 50px */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.banner_title {
+    cursor: pointer;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    right: 65px;
+    top: 85%;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+.menu-content a {
+    display: block;
+    padding: 10px 20px 10px 15px;
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+}
+
+.menu-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 7px;
+}
+
+.menu-content {
+    border-top: 1px solid #ddd;
+    margin: 5px 0;
+}
+
+.separator {
+    border-top: 1px solid #ddd;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    padding-top: 10px;
+}
+
+/* ==========================
+   フィルタセクション
+   ========================== */
+.filters {
+    width: 20%;
+    padding: 5px 15px 15px 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-right: 20px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filters select,
+.filters input[type="text"],
+.filters input[type="checkbox"],
+.filters input[type="radio"] {
+    font-size: 14px;
+    width: auto;
+    accent-color: #3200FF;
+    vertical-align: middle;
+    margin: 5px 0;
+}
+
+.filters input[type="checkbox"],
+.filters input[type="radio"] {
+    margin-right: 3px;
+}
+
+.filters button[type="button"] {
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.filters button[type="button"]:hover {
+    background-color: #1a0080;
+}
+
+.filters button[type="button"].reset {
+    background-color: gray;
+    color: white;
+}
+
+.filters button[type="button"].reset:hover {
+    background-color: darkgray;
+}
+
+.filters .possession-filter {
+    margin-top: 10px;
+}
+
+.filters label[for="sort-id"] {
+    display: block;
+    margin-top: 10px;
+}
+
+.filters .sort-order {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.filters .sort-order label {
+    margin-right: 10px;
+}
+
+/* ==========================
+   テーブルセクション
+   ========================== */
+.table-container {
+    width: 75%;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    text-align: center;
+    font-family: 'M PLUS\ 1p','Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue','sans-serif';
+}
+
+th, td {
+    border: 2px solid #ddd;
+    padding: 8px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.hidden {
+    display: none;
+}
+
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: none;
+    border-radius: 5px;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #1a0080;
+}
+
+h2 {
+    position: relative;
+    padding-left: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 100%;
+    background-color: #3200FF;
+}
+
+/* ==========================
+   ポップアップ関連
+   ========================== */
+.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index: 2;
+    width: 500px;
+    max-height: 70%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding-bottom: 20px;
+    border-radius: 15px;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup::-webkit-scrollbar {
+    display: none;
+  }
+
+.popup-header {
+    background-color: #3200FF;
+    color: white;
+    padding: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.popup-content {
+    padding: 20px;
+    text-align: left;
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+}
+
+.popup-close {
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: sticky;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.popup-close:hover {
+    background-color: #1a0080;
+}
+
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.menuu-container {
+    display: flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 70px;
+    margin-bottom: 5px;
+}
+
+.item {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease; /* スムーズなアニメーション */
+}
+
+.item:hover {
+    background: #f9f9f9; /* 少しグレーに */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+.news {
+    flex: 1;
+    margin-left: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    display: grid;
+    max-height:250px
+}
+
+.menuu {
+    flex: 2;
+}
+
+.menuu-head::before {
+    display: none;
+}
+
+.menuu-head {
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    line-height: 1em;
+}
+.menuu-head::after {
+    display: inline-block;
+    height: 2px;
+    background: #3200FF;
+    content: " ";
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-left: 10px;
+}
+
+.menuu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.menuu-item {
+    all: unset; /* すべてのスタイルを無効化 */
+    cursor: pointer; /* マウスカーソルはリンクらしく */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.news p {
+    margin: 0px 10px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.news hr {
+    margin: 0px 10px;
+}
+
+.news li {
+    text-align: right;
+    font-size: 11px;
+    color: #999;
+    margin-right: 10px;
+    padding-top: 10px;
+}
+
+.news-head {
+    background-image: linear-gradient(-45deg, #fff 25%, #f8f8f8 25%, #f8f8f8 50%, #fff 50%, #fff 75%, #f8f8f8 75%, #f8f8f8);
+    border-bottom: 2px solid #ddd;
+    background-size: 8px 8px;
+    color: black;
+    padding: 7px 10px 7px 15px;
+    font-size: 14px;
+    text-align: left;
+    border-top-left-radius: 10px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.news-head::before {
+    display: none;
+}
+
+.news a {
+    text-decoration: none;
+    color: #3200FF;
+}
+
+.news a:hover {
+    text-decoration: underline;
+    color: #3200FF;
+}
+
+.event {
+    flex: 1;
+    margin-left: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    display: grid;
+    max-height:250px;
+}
+
+.event p {
+    margin: 0px 10px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.event-detail {
+    font-size: 10px;
+    color: #999;
+}
+
+.event hr {
+    margin: 0px 10px;
+}
+
+.event li {
+    text-align: right;
+    font-size: 11px;
+    color: #999;
+    margin-right: 10px;
+    padding-top: 10px;
+}
+
+.event-head {
+    background-image: linear-gradient(-45deg, #fff 25%, #f8f8f8 25%, #f8f8f8 50%, #fff 50%, #fff 75%, #f8f8f8 75%, #f8f8f8);
+    border-bottom: 2px solid #ddd;
+    background-size: 8px 8px;
+    color: black;
+    padding: 7px 10px 7px 15px;
+    font-size: 14px;
+    text-align: left;
+    border-top-left-radius: 10px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.event-head::before {
+    display: none;
+}
+
+.event a {
+    text-decoration: none;
+    color: #3200FF;
+}
+
+.event a:hover {
+    text-decoration: underline;
+    color: #3200FF;
+}
+
+.circle_icon {
+    width:50px;
+    vertical-align: middle; /* アイコンを中央揃え */
+}
+
+.birthday {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.menuu_icon {
+    width: 50px;
+    height: auto;
+    vertical-align: middle; /* アイコンを中央揃え */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.about_link {
+    text-decoration: none;
+    color: #3200FF;
+}
+
+.about_link:hover {
+    text-decoration: underline;
+    color: #3200FF;
+}
+
+#no_br {
+    display: inline-block;
+}
+
+.hint-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #3200FF;
+    color: white;
+    text-align: center;
+    line-height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.hint-popup {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    border-radius: 5px;
+    max-width: max-content;
+}
+
+a.idol_link {
+    vertical-align: middle; /* アイコンを中央揃え */
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s; /* ホバー時のアニメーション */
+}
+
+a:hover.idol_link {
+    text-decoration: underline;
+    color: gray; /* ホバー時の色変更 */
+}
+
+.search-bar-container {
+    position: relative;
+    width: calc(100% - 60px);
+    margin: 0px 30px 0 30px; /* Adjusted for fixed banner */
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px 10px 10px 35px; /* Adjusted for icon */
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: url('image/m_虫眼鏡.webp') no-repeat center center;
+    background-size: contain;
+}
+
+.trend-vocal {
+    color: #FF469D;
+}
+
+.trend-dance {
+    color: #3ABAFF;
+}
+
+.trend-visual {
+    color: #FFA900;
+}
+
+#possession-check, #possession-export, #possession-import {
+    display: none;
+}
+
+/* 傾向・タイプ表示のコントロール */
+.icon {
+    display: none;
+}
+
+.idol_image {
+    width: 60px;
+    height: auto;
+}
+
+.yell_icon {
+    width: 50px;
+    height: auto;
+}
+
+/* ==========================
+   「全て表示する」ボタンのスタイル
+   ========================== */
+#show-all-btn:hover {
+    background-color: #1a0080;
+}
+
+/* ==========================
+   メディアクエリ（レスポンシブ対応）
+   ========================== */
+@media screen and (max-width: 768px) {
+    body {
+        min-width: 100%;
+    }
+
+    .banner {
+        text-align: left; /* Change text alignment to left */
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .banner .menu {
+        right: 10px;
+    }
+
+    .menu {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        padding: 5px;
+        padding-top: 0px;
+    }
+
+    .filters {
+        width: 100%;
+        margin: 0px;
+        padding: 10px;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin: 0px;
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        font-size: 11px;
+        padding: 3px;
+    }
+
+    .possession-buttons {
+        right: 10px;
+        left: auto;
+        transform: none;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .possession-buttons button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #scrollToTopBtn {
+        display: none;
+        bottom: 10px;
+        right: 10px;
+        padding: 5px 10px;
+    }
+
+    .popup, .export-popup, .import-popup, .settings-popup {
+        width: 90%;
+        overflow-y: auto;
+        padding-bottom: 3%;
+    }
+
+    .popup-header {
+        position: sticky;
+        top: 0;
+        padding: 10px; 
+    }
+
+    .popup-close {
+        position: sticky;
+        bottom: 0;
+    }
+
+    .search-bar-container {
+        width: 98%; /* Increase width for mobile */
+        margin: 30px auto 0 auto; /* Center align for mobile */
+    }
+
+    .yell_icon {
+        width: 30px;
+        height: auto;
+    }
+
+    .idol_image {
+        width: 55px;
+        height: auto;
+    }
+
+    /* 傾向・タイプ表示のコントロール */
+    .text {
+        display: none;
+    }
+    .icon {
+        display: inline;
+        width: 28px;
+        height: auto;
+    }
+
+    #phone-hidden {
+        display: none;
+    }
+}
+

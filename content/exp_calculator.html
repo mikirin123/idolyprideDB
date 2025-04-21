@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レスピ計算機 - IDOLY PRIDE データベース M</title>
+    <link rel="stylesheet" href="exp_calculator.css">
+    <script src="exp_calculator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="shortcut icon" href="../image/icon.ico">
+    <link rel="icon" type="image/png" sizes="180x180" href="../image/icon.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
+    <link rel="mask-icon" href="../image/icon.svg">
+</head>
+<body>
+    <div class="banner">
+        <div class="banner_title">IDOLY PRIDE データベース M - レスピ計算機</div>
+        <div class="banner_title_phone">レスピ計算機</div>
+        <a href="../index.html" class="back-button">メインページに戻る</a>
+    </div>
+    <div class="container"></div>
+
+    <!-- レスピ計算 -->
+    <div class="calculator">
+        <h3>レスピ計算</h3>
+        <label for="currentLevel">開始レベルを入力:</label>
+        <input type="number" id="currentLevel" min="1" max="220" value="1">
+        <label for="targetLevel">目標レベルを入力:</label>
+        <input type="number" id="targetLevel" min="1" max="220" value="220">
+        <label for="idolCount">人数を入力:</label>
+        <input type="number" id="idolCount" min="1" value="1">
+        <button id="calculateBtn">必要レスピを計算</button>
+    </div>
+
+    <!-- レスピ計算の計算結果 -->
+    <div id="result" class="result-container" style="display: none;">
+        <h4>レスピ計算の結果</h4>
+        <div class="result-content"></div>
+        <button id="copyResultBtn">結果をコピー</button>
+    </div>
+
+    <!-- パターン比較 -->
+    <div class="calculator">
+        <h3>パターン比較</h3>
+        <h4>パターンA</h4>
+        <label for="currentLevel1">開始レベルを入力:</label>
+        <input type="number" id="currentLevel1" min="1" max="220" value="1">
+        <label for="targetLevel1">目標レベルを入力:</label>
+        <input type="number" id="targetLevel1" min="1" max="220" value="220">
+        <label for="idolCount1">人数を入力:</label>
+        <input type="number" id="idolCount1" min="1" value="5">
+
+        <h4>パターンB</h4>
+        <label for="currentLevel2">開始レベルを入力:</label>
+        <input type="number" id="currentLevel2" min="1" max="220" value="1">
+        <label for="targetLevel2">目標レベルを入力:</label>
+        <input type="number" id="targetLevel2" min="1" max="220" value="210">
+        <label for="idolCount2">人数を入力:</label>
+        <input type="number" id="idolCount2" min="1" value="5">
+        <button id="compareBtn">2つのパターンを比較</button>
+    </div>
+
+    <!-- パターン比較の計算結果 -->
+    <div id="compareResult" class="result-container" style="display: none;">
+        <h4>パターン比較の結果</h4>
+        <div class="result-content"></div>
+        <button id="copyCompareResultBtn">結果をコピー</button>
+    </div>
+
+    <!-- 過去の計算結果 -->
+    <div id="pastResults" class="past-results">
+        <h3>過去の計算結果</h3>
+        <div id="resultsContainer"></div>
+    </div>
+
+    <button id="scrollToTopBtn" onclick="scrollToTop()">ページの上部へ戻る</button>
+</body>
+</html>
