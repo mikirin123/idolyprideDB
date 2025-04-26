@@ -176,7 +176,7 @@ img {
 }
 
 /* エール別アイドルリストのスタイル */
-.yell-category {
+.character-category {
     margin-top: 30px; /* 余白を増やして見た目を改善 */
     padding: 20px; /* 内側の余白を増やす */
     background-color: #f9f9f9; /* 背景色を保持 */
@@ -189,7 +189,7 @@ img {
     scroll-margin-top: 70px; /* スクロール位置を調整してバナーとの被りを防ぐ */
 }
 
-.yell-category h3 {
+.character-category h3 {
     font-size: 20px;
     color: #3200FF;
     margin-bottom: 15px;
@@ -258,11 +258,13 @@ img {
     color: white;
     border: none;
     padding: 12px 20px; /* ボタンのサイズを大きくする */
-    border-radius: 10px; /* 丸みを強調 */
-    cursor: pointer;
-    font-size: 16px; /* フォントサイズを大きくする */
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ボタンに影を追加 */
+    border-radius: 50%; /* 円形にする */
+    width: 60px; /* 幅を調整 */
+    height: 60px; /* 高さを調整 */
+    padding: 0; /* 内側の余白を削除 */
+    text-align: center; /* テキストを中央揃え */
+    line-height: 60px; /* テキストをボタン中央に配置 */
+    font-size: 14px; /* フォントサイズを調整 */
 }
 
 .toc-buttons button:hover {
@@ -280,6 +282,8 @@ img {
 /* 目次のスタイル */
 .toc {
     margin-top: 75px; /* バナーの高さ分の余白を追加 */
+    padding-left: 100px; /* 左側の余白を追加 */
+    padding-right: 100px; /* 右側の余白を追加 */
 }
 
 /* メディアクエリ */
@@ -384,15 +388,62 @@ img {
         font-size: 8px; /* フォントサイズをさらに小さく */
     }
 
-    .yell-category {
+    .character-category {
         margin-top: 10px;
     }
 
-    .yell-category h3 {
+    .character-category h3 {
         font-size: 20px;
         color: #3200FF;
         margin-top: 0px;
         margin-bottom: 10px;
         border-bottom: 2px solid #3200FF;
     }
+}
+
+/* 所持キャラのスタイル */
+.idol-item.owned {
+    background-color: #d4edda; /* 所持キャラの背景色を緑に */
+    border-color: #c3e6cb; /* 枠線の色を変更 */
+    color: #155724; /* テキスト色を変更 */
+}
+
+/* チェック・解除ボタンのスタイル */
+.check-all, .uncheck-all {
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 5px;
+    transition: background-color 0.3s;
+}
+
+.check-all:hover, .uncheck-all:hover {
+    background-color: #0000FF;
+}
+
+.character-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* 目次アイドルアイコンのスタイル */
+.toc-buttons img.toc-icon {
+    width: 60px; /* アイコンの幅を調整 */
+    height: 60px; /* アイコンの高さを調整 */
+    border-radius: 50%; /* 丸い形状にする */
+    object-fit: cover; /* 画像をアイコン内に収める */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* 影を強調 */
+    transition: transform 0.2s, box-shadow 0.2s; /* ホバー時のアニメーションを調整 */
+    cursor: pointer;
+}
+
+.toc-buttons img.toc-icon:hover {
+    transform: scale(1.15); /* ホバー時にさらに拡大 */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* ホバー時の影を強調 */
 }

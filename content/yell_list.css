@@ -273,6 +273,17 @@ img {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* クリック時の影を調整 */
 }
 
+.toc-buttons img {
+    width: 50px; /* アイコンの幅を指定 */
+    height: 50px; /* アイコンの高さを指定 */
+    transition: transform 0.3s, box-shadow 0.3s; /* ホバー時のアニメーション */
+}
+
+.toc-buttons img:hover {
+    transform: scale(1.1); /* ホバー時に拡大 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ホバー時の影を追加 */
+}
+
 /* 目次のスタイル */
 .toc {
     margin-top: 75px; /* バナーの高さ分の余白を追加 */
