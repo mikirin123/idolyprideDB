@@ -354,6 +354,8 @@ img {
 
     .toc {
         margin-top: 55px; /* バナーの高さ分の余白を追加 */
+        padding-left: 10px; /* 左側の余白を追加 */
+        padding-right: 10px; /* 右側の余白を追加 */
     }
 
     .toc-buttons {
