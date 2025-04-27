@@ -94,6 +94,11 @@ function applyFilters() {
         const table = document.getElementById('character-table');
         rows.forEach(row => table.appendChild(row));
     }
+
+    // フィルタ状態をlocalStorageに保存
+    localStorage.setItem('filters', JSON.stringify(filters));
+    localStorage.setItem('sortOrder', sortOrder);
+    localStorage.setItem('keyword', keyword);
 }
 
 // ==========================
@@ -117,6 +122,11 @@ function resetFilters() {
 
     const table = document.getElementById('character-table');
     rows.forEach(row => table.appendChild(row));
+
+    // localStorageのフィルタ状態をクリア
+    localStorage.removeItem('filters');
+    localStorage.removeItem('sortOrder');
+    localStorage.removeItem('keyword');
 }
 
 // ==========================
@@ -314,6 +324,43 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('データの取得に失敗しました:', error));
     });
+
+    // localStorageからフィルタ状態を復元
+    const savedFilters = JSON.parse(localStorage.getItem('filters'));
+    const savedSortOrder = localStorage.getItem('sortOrder');
+    const savedKeyword = localStorage.getItem('keyword');
+
+    if (savedFilters) {
+        const form = document.getElementById('filter-form');
+        const formData = new FormData(form);
+
+        // フィルタフォームに復元
+        Object.keys(savedFilters).forEach(key => {
+            if (Array.isArray(savedFilters[key])) {
+                savedFilters[key].forEach(value => {
+                    const input = form.querySelector(`[name="${key}"][value="${value}"]`);
+                    if (input) input.checked = true;
+                });
+            } else {
+                const input = form.querySelector(`[name="${key}"]`);
+                if (input) input.value = savedFilters[key];
+            }
+        });
+
+        // 並び順を復元
+        if (savedSortOrder) {
+            const sortOrderInput = form.querySelector(`[name="sort-order"][value="${savedSortOrder}"]`);
+            if (sortOrderInput) sortOrderInput.checked = true;
+        }
+
+        // 検索キーワードを復元
+        if (savedKeyword) {
+            document.getElementById('search-bar').value = savedKeyword;
+        }
+
+        // フィルタを適用
+        applyFilters();
+    }
 });
 
 function scrollWithOffset(event) {
