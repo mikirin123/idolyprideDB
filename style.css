@@ -593,33 +593,6 @@ a:hover.idol_link {
     color: gray; /* ホバー時の色変更 */
 }
 
-.search-bar-container {
-    position: relative;
-    width: calc(100% - 60px);
-    margin: 0px 30px 0 30px; /* Adjusted for fixed banner */
-}
-
-.search-bar {
-    width: 100%;
-    padding: 10px 10px 10px 35px; /* Adjusted for icon */
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-.search-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    background: url('image/m_虫眼鏡.webp') no-repeat center center;
-    background-size: contain;
-}
-
 .trend-vocal {
     color: #FF469D;
 }

@@ -1,12 +1,208 @@
-/* 全体のスタイル */
-body {
-    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';
+/* ==========================
+   基本設定
+   ========================== */
+   body {
+    font-family: 'M PLUS\ 1p','Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue','sans-serif';
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
     min-width: 1200px;
     color: #333;
-    line-height: 1.6;
+}
+
+/* ==========================
+   見出しのスタイル
+   ========================== */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2em;
+    color: #3200FF;
+}
+
+h2, h3 {
+    color: #3200FF;
+}
+
+h3 {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+/* ==========================
+   バナーのスタイル
+   ========================== */
+.banner {
+    background-color: #3200FF;
+    color: white;
+    text-align: left;
+    padding: 15px 30px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.banner .menu {
+    position: absolute;
+    right: 60px; /* Adjusted from 30px to 50px */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.banner_title {
+    cursor: pointer;
+}
+
+.banner_title_phone {
+    display: none; /* スマホではバナーのタイトルを非表示に */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    padding-top: 0px;
+}
+
+/* ==========================
+   フィルタセクション
+   ========================== */
+.filters {
+    width: 20%;
+    padding: 5px 15px 15px 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-right: 20px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filters select,
+.filters input[type="text"],
+.filters input[type="checkbox"],
+.filters input[type="radio"] {
+    font-size: 14px;
+    width: auto;
+    accent-color: #3200FF;
+    vertical-align: middle;
+    margin: 5px 0;
+}
+
+.filters input[type="checkbox"],
+.filters input[type="radio"] {
+    margin-right: 3px;
+}
+
+.filters button[type="button"] {
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.filters button[type="button"]:hover {
+    background-color: #1a0080;
+}
+
+.filters button[type="button"].reset {
+    background-color: gray;
+    color: white;
+}
+
+.filters button[type="button"].reset:hover {
+    background-color: darkgray;
+}
+
+.filters .possession-filter {
+    margin-top: 10px;
+}
+
+.filters label[for="sort-id"] {
+    display: block;
+    margin-top: 10px;
+}
+
+.filters .sort-order {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.filters .sort-order label {
+    margin-right: 10px;
+}
+
+/* ==========================
+   テーブルセクション
+   ========================== */
+.table-container {
+    width: 75%;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    text-align: center;
+    font-family: 'M PLUS\ 1p','Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue','sans-serif';
+}
+
+th, td {
+    border: 2px solid #ddd;
+    padding: 8px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.hidden {
+    display: none;
+}
+
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: none;
+    border-radius: 5px;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #1a0080;
 }
 
 h2 {
@@ -24,283 +220,241 @@ h2::before {
     top: 50%;
     transform: translateY(-50%);
     width: 10px;
-    height: 10px; /* 高さを幅と同じにして正方形に */
+    height: 100%;
     background-color: #3200FF;
 }
 
-/* スムーズスクロール */
-html {
-    scroll-behavior: smooth;
-}
-
-/* バナー */
-.banner {
-    background-color: #3200FF;
-    color: white;
-    text-align: left;
-    padding: 15px 30px;
-    font-size: 18px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.banner_title {
-    cursor: pointer;
-}
-
-.banner_title_phone {
-    display: none;
-}
-
-.back-button {
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: white;
-    color: #3200FF;
-    padding: 8px 12px;
-    text-decoration: none;
-    border-radius: 5px;
-    border: 1px solid #3200FF;
-    font-size: 14px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.back-button:hover {
-    background-color: #3200FF;
-    color: white;
-}
-
-/* スクロールトップボタン */
-#scrollToTopBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #3200FF;
-    color: white;
-    border: none;
-    padding: 12px 15px;
-    cursor: pointer;
-    display: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
-}
-
-.container {
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    background-color: #ffffff; /* 背景色を白に変更 */
-    padding: 20px; /* コンテナ内の余白を保持 */
-    border-radius: 8px; /* 角を丸くする */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
-}
-
-.content {
-    margin-top: 80px; /* バナーの高さ分のマージン */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    background-color: transparent; /* 背景色を透明に */
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    width: 0;
-    white-space: nowrap;
-}
-th, td {
-    text-align: left;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-}
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    text-align: center;
-}
-td {
-    padding: 6px;
-    background-color: #fff;
-    transition: background-color 0.3s;
-}
-td:hover {
-    background-color: #f9f9f9;
-}
-
-.icon {
-    width: 45px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.table-container {
-    margin-top: 20px; /* バナーの高さ分のマージン */
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-img {
-    vertical-align: middle;
-}
-
-.head {
-    display: flex;
-    align-items: center;
-    position: relative;
-    color: #3200FF;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.head::after {
-    content: '';
-    flex-grow: 1;
-    height: 2px;
-    background-color: #3200FF;
-    margin: 0 10px;
-}
-
-/* エール別アイドルリストのスタイル */
-.character-category {
-    margin-top: 30px; /* 余白を増やして見た目を改善 */
-    padding: 20px; /* 内側の余白を増やす */
-    background-color: #f9f9f9; /* 背景色を保持 */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    scroll-margin-top: 100px; /* スクロール位置を調整 */
-}
-
-.character-category {
-    scroll-margin-top: 70px; /* スクロール位置を調整してバナーとの被りを防ぐ */
-}
-
-.character-category h3 {
-    font-size: 20px;
-    color: #3200FF;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #3200FF;
-    padding-bottom: 5px;
-}
-
-.idol-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; /* ギャップを小さく調整 */
-    justify-content: flex-start;
-}
-
-.idol-item {
-    display: block; /* リンク要素として扱う */
-    text-decoration: none; /* リンクの下線を削除 */
-    padding: 8px; /* 内側の余白を減らす */
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    width: 120px; /* 幅を小さく調整 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-    color: inherit; /* テキストの色を継承 */
-}
-
-.idol-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    background-color: #f0f0f0; /* ホバー時の背景色を追加 */
-}
-
-.idol-item img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 5px; /* 余白を減らす */
-}
-
-.idol-item span {
-    font-size: 12px; /* フォントサイズを小さく調整 */
-    color: #333;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 3px; /* 余白を減らす */
-}
-
-.idol-item p {
-    font-size: 10px; /* フォントサイズを小さく調整 */
-    color: #666;
+ul {
+    list-style-type: none;
+    padding: 0;
     margin: 0;
 }
 
-/* 目次ボタンのスタイル */
-.toc-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px; /* ボタン間の間隔を広げる */
-    margin-top: 20px; /* 上部の余白を増やす */
-    justify-content: center; /* ボタンを中央揃え */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-.toc-buttons button {
+#no_br {
+    display: inline-block;
+}
+
+.hint-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #3200FF;
+    color: white;
+    text-align: center;
+    line-height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.hint-popup {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    border-radius: 5px;
+    max-width: max-content;
+}
+
+a.idol_link {
+    vertical-align: middle; /* アイコンを中央揃え */
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s; /* ホバー時のアニメーション */
+}
+
+a:hover.idol_link {
+    text-decoration: underline;
+    color: gray; /* ホバー時の色変更 */
+}
+
+.search-bar-container {
+    position: relative;
+    width: 100%; /* 幅を調整 */
+    padding: 20px 30px; /* 上下左右に余白を追加 */
+    
+    box-sizing: border-box;
+    padding-top: 75px; /* バナーの高さ分だけ余白を追加 */
+}
+
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* ボタンと入力欄の間隔 */
+}
+
+.search-bar {
+    flex: 1; /* 入力欄を可能な限り広げる */
+    padding: 10px;
+}
+
+/* ==========================
+   ボタンのスタイル
+   ========================== */
+#search-button {
     background-color: #3200FF;
     color: white;
     border: none;
-    padding: 12px 20px; /* ボタンのサイズを大きくする */
-    border-radius: 50%; /* 円形にする */
-    width: 60px; /* 幅を調整 */
-    height: 60px; /* 高さを調整 */
-    padding: 0; /* 内側の余白を削除 */
-    text-align: center; /* テキストを中央揃え */
-    line-height: 60px; /* テキストをボタン中央に配置 */
-    font-size: 14px; /* フォントサイズを調整 */
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+    display: none; /* 初期状態では非表示 */
 }
 
-.toc-buttons button:hover {
-    background-color: #0000FF;
-    transform: scale(1.05); /* ホバー時に拡大 */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* ホバー時の影を強調 */
+#search-button:hover {
+    background-color: #1a0080;
 }
 
-.toc-buttons button:active {
-    background-color: #1A1AFF;
-    transform: scale(1); /* クリック時に元のサイズに戻す */
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* クリック時の影を調整 */
+#trend-vocal {
+    color: #FF469D;
 }
 
-/* 目次のスタイル */
-.toc {
-    margin-top: 75px; /* バナーの高さ分の余白を追加 */
-    padding-left: 100px; /* 左側の余白を追加 */
-    padding-right: 100px; /* 右側の余白を追加 */
+#trend-dance {
+    color: #3ABAFF;
 }
 
-/* メディアクエリ */
-@media (max-width: 768px) {
+#trend-visual {
+    color: #FFA900;
+}
+
+#possession-check, #possession-export, #possession-import {
+    display: none;
+}
+
+/* 傾向・タイプ表示のコントロール */
+.icon {
+    display: none;
+}
+
+.idol_image {
+    width: 60px;
+    height: auto;
+}
+
+.yell_icon {
+    width: 50px;
+    height: auto;
+}
+
+/* ==========================
+   「全て表示する」ボタンのスタイル
+   ========================== */
+#show-all-btn:hover {
+    background-color: #1a0080;
+}
+
+#pc-hidden {
+    display: none;
+}
+
+.trend-vocal {
+    color: #FF469D;
+}
+
+.trend-dance {
+    color: #3ABAFF;
+}
+
+.trend-visual {
+    color: #FFA900;
+}
+
+#search-button {
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+#search-button:hover {
+    background-color: #1a0080;
+}
+
+/* ==========================
+   メディアクエリ（レスポンシブ対応）
+   ========================== */
+   @media screen and (max-width: 768px) {
     body {
         min-width: 100%;
-        font-size: 14px; /* スマホ用フォントサイズ */
+        font-size: 14px; /* スマホ用フォントサイズを調整 */
     }
 
     .banner {
-        text-align: left;
+        text-align: left; /* Change text alignment to left */
         padding-top: 10px;
         padding-bottom: 10px;
     }
 
-    .back-button {
-        display: none;
+    .banner .menu {
+        right: 10px;
+    }
+
+    .menu {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        padding: 5px;
+        padding-top: 0px;
+    }
+
+    .filters {
+        width: 100%;
+        margin: 0px;
+        padding: 10px;
+        font-size: 14px; /* スマホ用フィルタセクションのフォントサイズを調整 */
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin: 0px;
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        font-size: 11px; /* スマホ用テーブルフォントサイズを調整 */
+        padding: 3px;
+    }
+
+    .possession-buttons {
+        right: 10px;
+        left: auto;
+        transform: none;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .possession-buttons button {
+        width: 100%;
+        padding: 10px;
     }
 
     #scrollToTopBtn {
@@ -310,142 +464,79 @@ img {
         padding: 5px 10px;
     }
 
-    .banner_title {
+    .search-bar-container {
+        width: 98%; /* Increase width for mobile */
+        margin: 0 auto 0 auto; /* Center align for mobile */
+    }
+
+    .yell_icon {
+        width: 30px;
+        height: auto;
+    }
+
+    .idol_image {
+        width: 55px;
+        height: auto;
+    }
+
+    /* 傾向・タイプ表示のコントロール */
+    .text {
+        display: none;
+    }
+    .icon {
+        display: inline;
+        width: 28px;
+        height: auto;
+    }
+
+    #phone-hidden {
         display: none;
     }
 
-    .banner_title_phone {
+    #pc-hidden {
         display: block;
+        padding: 0px; /* スマートフォン用のpaddingを追加 */
+        margin-left: 5px; /* スマートフォン用のmarginを追加 */
+        margin-right: auto;
     }
 
-    .container {
-        width: 100%;
-        padding: 0 10px; /* スマホ用の余白を追加 */
+    h1 {
+        font-size: 2em; /* スマホ用見出しサイズを調整 */
     }
 
-    .content {
-        margin-top: 60px; /* バナーの高さ分のマージンを調整 */
-        padding: 15px;
+    h2 {
+        font-size: 1.6em; /* スマホ用見出しサイズを調整 */
     }
 
-    .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+    h3 {
+        font-size: 1.2em; /* スマホ用見出しサイズを調整 */
     }
 
-    table {
-        min-width: 0; /* スマホでの表示に対応 */
+    .filters button[type="button"] {
+        font-size: 13px; /* スマホ用ボタンのフォントサイズを調整 */
     }
 
-    .idol-item {
-        width: 100px;
+    .banner_title {
+        display: none; /* スマホではバナーのタイトルを非表示に */
+    }
+    .banner_title_phone {
+        display: block; /* スマホではバナーのタイトルを表示 */
     }
 
-    .idol-item span {
-        font-size: 12px;
+    .search-bar {
+        width: 100%; /* スマホ用に幅を調整 */
+        font-size: 14px; /* フォントサイズを調整 */
+        padding: 8px; /* 余白を調整 */
     }
 
-    .idol-item p {
-        font-size: 10px;
+    .search-bar-wrapper {
+        flex-direction: column; /* スマホ用に縦並びに変更 */
+        gap: 5px; /* 要素間の間隔を調整 */
     }
 
-    .toc {
-        margin-top: 55px; /* バナーの高さ分の余白を追加 */
-        padding-left: 10px; /* 左側の余白を追加 */
-        padding-right: 10px; /* 右側の余白を追加 */
-    }
-
-    .toc-buttons {
-        display: grid; /* グリッドレイアウトを使用 */
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* 横に複数並べる */
-        gap: 10px; /* ボタン間の間隔を調整 */
-        padding-top: 10px; /* 上部の余白を調整 */
-    }
-
-    .toc-buttons button {
-        font-size: 12px; /* フォントサイズを調整 */
-        padding: 8px 10px; /* ボタンのサイズを調整 */
-        border-radius: 5px; /* 丸みを少し減らす */
-    }
-
-    .idol-list {
-        justify-content: center; /* アイドルリストを中央揃え */
-        gap: 8px; /* ギャップを調整 */
-    }
-
-    .idol-item {
-        width: 90px; /* 幅をさらに小さく */
-        padding: 6px; /* 内側の余白を減らす */
-    }
-
-    .idol-item img {
-        margin-bottom: 3px; /* 画像下の余白を減らす */
-    }
-
-    .idol-item span {
-        font-size: 10px; /* フォントサイズをさらに小さく */
-    }
-
-    .idol-item p {
-        font-size: 8px; /* フォントサイズをさらに小さく */
-    }
-
-    .character-category {
-        margin-top: 10px;
-    }
-
-    .character-category h3 {
-        font-size: 20px;
-        color: #3200FF;
-        margin-top: 0px;
-        margin-bottom: 10px;
-        border-bottom: 2px solid #3200FF;
+    #search-button {
+        width: 100%; /* ボタンを幅いっぱいに */
+        margin-left: 0; /* 左余白をリセット */
     }
 }
 
-/* 所持キャラのスタイル */
-.idol-item.owned {
-    background-color: #d4edda; /* 所持キャラの背景色を緑に */
-    border-color: #c3e6cb; /* 枠線の色を変更 */
-    color: #155724; /* テキスト色を変更 */
-}
-
-/* チェック・解除ボタンのスタイル */
-.check-all, .uncheck-all {
-    background-color: #3200FF;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    margin-left: 5px;
-    transition: background-color 0.3s;
-}
-
-.check-all:hover, .uncheck-all:hover {
-    background-color: #0000FF;
-}
-
-.character-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-/* 目次アイドルアイコンのスタイル */
-.toc-buttons img.toc-icon {
-    width: 60px; /* アイコンの幅を調整 */
-    height: 60px; /* アイコンの高さを調整 */
-    border-radius: 50%; /* 丸い形状にする */
-    object-fit: cover; /* 画像をアイコン内に収める */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* 影を強調 */
-    transition: transform 0.2s, box-shadow 0.2s; /* ホバー時のアニメーションを調整 */
-    cursor: pointer;
-}
-
-.toc-buttons img.toc-icon:hover {
-    transform: scale(1.15); /* ホバー時にさらに拡大 */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* ホバー時の影を強調 */
-}

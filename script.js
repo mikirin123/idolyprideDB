@@ -99,7 +99,6 @@ function applyFilters() {
     localStorage.setItem('filters', JSON.stringify(filters));
     localStorage.setItem('sortOrder', sortOrder);
     localStorage.setItem('keyword', keyword);
-    localStorage.setItem('showAll', 'false'); // 「全て表示する」状態をリセット
 }
 
 // ==========================
@@ -128,7 +127,6 @@ function resetFilters() {
     localStorage.removeItem('filters');
     localStorage.removeItem('sortOrder');
     localStorage.removeItem('keyword');
-    localStorage.setItem('showAll', 'false'); // 「全て表示する」状態をリセット
 }
 
 // ==========================
@@ -241,117 +239,6 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
-
-    // 検索バーの設定
-    const searchBarContainer = document.createElement('div');
-    searchBarContainer.className = 'search-bar-container';
-
-    const searchIcon = document.createElement('span');
-    searchIcon.className = 'search-icon';
-
-    const searchBar = document.createElement('input');
-    searchBar.type = 'text';
-    searchBar.id = 'search-bar';
-    searchBar.className = 'search-bar';
-    searchBar.placeholder = 'アイドル名、衣装・髪型、スキル名・効果で検索';
-
-    searchBarContainer.appendChild(searchIcon);
-    searchBarContainer.appendChild(searchBar);
-    document.body.insertBefore(searchBarContainer, document.querySelector('.container'));
-
-    searchBar.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            const keyword = searchBar.value.toLowerCase();
-            const rows = Array.from(document.querySelectorAll('#character-table tr:not(:first-child)'));
-            rows.forEach(row => {
-                const cells = row.getElementsByTagName('td');
-                const character = {
-                    card_name: cells[2].innerText,
-                    costume: cells[7].innerText,
-                    live_skill1_name: cells[12].innerText,
-                    live_skill1_effect: cells[13].innerText,
-                    live_skill2_name: cells[14].innerText,
-                    live_skill2_effect: cells[15].innerText,
-                    live_skill3_name: cells[16].innerText,
-                    live_skill3_effect: cells[17].innerText,
-                    awakening_costume: cells[20].innerText,
-                    awakening_skill_name: cells[21].innerText,
-                    awakening_skill_effect: cells[22].innerText
-                };
-                let show = (
-                    character.card_name.toLowerCase().includes(keyword) ||
-                    character.costume.toLowerCase().includes(keyword) ||
-                    character.live_skill1_name.toLowerCase().includes(keyword) ||
-                    character.live_skill1_effect.toLowerCase().includes(keyword) ||
-                    character.live_skill2_name.toLowerCase().includes(keyword) ||
-                    character.live_skill2_effect.toLowerCase().includes(keyword) ||
-                    character.live_skill3_name.toLowerCase().includes(keyword) ||
-                    character.live_skill3_effect.toLowerCase().includes(keyword) ||
-                    character.awakening_costume.toLowerCase().includes(keyword) ||
-                    character.awakening_skill_name.toLowerCase().includes(keyword) ||
-                    character.awakening_skill_effect.toLowerCase().includes(keyword)
-                );
-                row.style.display = show ? '' : 'none';
-            });
-        }
-    });
-
-    // 初期表示で最初の5体のみを表示
-    const table = document.getElementById('character-table');
-    const initialData = JSON.parse(document.getElementById('initial-data').textContent);
-
-    initialData.forEach(rowData => {
-        const row = table.insertRow();
-        rowData.forEach(cellData => {
-            const cell = row.insertCell();
-            cell.outerHTML = cellData; // HTML構造をそのまま挿入
-        });
-    });
-
-    // localStorageから「全て表示する」状態を復元
-    const showAll = localStorage.getItem('showAll') === 'true';
-    if (showAll) {
-        const showAllButton = document.getElementById('show-all-btn');
-        showAllButton.click(); // 「全て表示する」ボタンをクリック
-    }
-
-    // localStorageからフィルタ状態を復元
-    const savedFilters = JSON.parse(localStorage.getItem('filters'));
-    const savedSortOrder = localStorage.getItem('sortOrder');
-    const savedKeyword = localStorage.getItem('keyword');
-
-    if (savedFilters) {
-        const form = document.getElementById('filter-form');
-        const formData = new FormData(form);
-
-        // フィルタフォームに復元
-        Object.keys(savedFilters).forEach(key => {
-            if (Array.isArray(savedFilters[key])) {
-                savedFilters[key].forEach(value => {
-                    const input = form.querySelector(`[name="${key}"][value="${value}"]`);
-                    if (input) input.checked = true;
-                });
-            } else {
-                const input = form.querySelector(`[name="${key}"]`);
-                if (input) input.value = savedFilters[key];
-            }
-        });
-
-        // 並び順を復元
-        if (savedSortOrder) {
-            const sortOrderInput = form.querySelector(`[name="sort-order"][value="${savedSortOrder}"]`);
-            if (sortOrderInput) sortOrderInput.checked = true;
-        }
-
-        // 検索キーワードを復元
-        if (savedKeyword) {
-            document.getElementById('search-bar').value = savedKeyword;
-        }
-
-        // フィルタを適用
-        applyFilters();
-    }
 });
 
 function scrollWithOffset(event) {
