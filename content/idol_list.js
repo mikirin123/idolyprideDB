@@ -124,6 +124,22 @@ document.getElementById('scrollToTopBtn').addEventListener('click', function() {
 });
 
 // ==========================
+// 画像キャッシュの確認と適用
+// ==========================
+function optimizeImageLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+        if (img.complete && img.naturalHeight !== 0) {
+            img.classList.add('cached'); // キャッシュ済みの場合は即座に表示
+        } else {
+            img.addEventListener('load', () => {
+                img.style.opacity = '1'; // 遅延ロード後に表示
+            });
+        }
+    });
+}
+
+// ==========================
 // ページ読み込み時の初期化処理
 // ==========================
 document.addEventListener('DOMContentLoaded', function() {
