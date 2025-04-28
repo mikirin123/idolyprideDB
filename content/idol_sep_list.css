@@ -156,17 +156,6 @@ td:hover {
 
 img {
     vertical-align: middle;
-    opacity: 0; /* 初期状態で透明 */
-    transition: opacity 0.3s ease-in-out; /* フェードイン効果 */
-    will-change: opacity; /* パフォーマンス最適化 */
-}
-
-img[loading="lazy"] {
-    opacity: 1; /* 遅延ロード後に表示 */
-}
-
-img.cached {
-    opacity: 1; /* キャッシュ済み画像は即座に表示 */
 }
 
 .head {

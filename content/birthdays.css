@@ -1,6 +1,6 @@
 /* 全体のスタイル */
 body {
-    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';
+    font-family: 'M PLUS 1p', sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
@@ -18,13 +18,8 @@ h2 {
 }
 
 h2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
     width: 10px;
-    height: 10px; /* 高さを幅と同じにして正方形に */
+    height: 10px;
     background-color: #3200FF;
 }
 
@@ -34,11 +29,9 @@ h2::before {
     color: white;
     text-align: left;
     padding: 15px 30px;
-    font-size: 18px;
     position: fixed;
     width: 100%;
     top: 0;
-    left: 0;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -219,81 +212,21 @@ img {
 @media (max-width: 768px) {
     body {
         min-width: 100%;
-        font-size: 14px; /* スマホ用フォントサイズ */
+        font-size: 14px;
     }
-
-    .banner {
-        text-align: left;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    .back-button {
-        display: none;
-    }
-
-    #scrollToTopBtn {
-        display: none;
-        bottom: 10px;
-        right: 10px;
-        padding: 5px 10px;
-    }
-
-    .banner_title {
-        display: none;
-    }
-
-    .banner_title_phone {
-        display: block;
-    }
-
     .container {
-        width: 100%;
-        padding: 0 10px; /* スマホ用の余白を追加 */
+        padding: 0 10px;
     }
-
     .content {
-        margin-top: 60px; /* バナーの高さ分のマージンを調整 */
+        margin-top: 60px;
         padding: 15px;
     }
-
-    .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    table {
-        min-width: 0; /* スマホでの表示に対応 */
-    }
-
-    .save {
-        font-size: 12px; /* ボタンのフォントサイズを調整 */
-        padding: 8px 16px;
-    }
-
-    .icon {
-        width: 40px; /* アイコンの幅を調整 */
-        margin-left: 10px; /* 左右の余白を調整 */
-        margin-right: 10px;
-    }
-
     th, td {
-        font-size: 12px; /* セルの文字サイズを調整 */
+        font-size: 12px;
+        padding: 5px;
     }
-
-    th.set {
-        min-width: 70px; /* セルの最小幅を設定 */
-    }
-
-    td {
-        padding: 5px; /* セルのパディングを調整 */
-    }
-
-    .phone {
-        display: block; /* スマホでは表示する */
-    }
-
-    .pc {
-        display: none; /* PCでは非表示 */
+    .icon {
+        width: 40px;
+        margin: 0 10px;
     }
 }
