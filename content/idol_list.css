@@ -388,6 +388,26 @@ a:hover.idol_link {
     background-color: #1a0080;
 }
 
+.back-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #3200FF;
+    padding: 8px 12px; /* ボタンを少し大きく */
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #3200FF;
+    font-size: 14px; /* フォントサイズを調整 */
+    transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+}
+
+.back-button:hover {
+    background-color: #3200FF;
+    color: white;
+}
+
 /* ==========================
    メディアクエリ（レスポンシブ対応）
    ========================== */
@@ -537,6 +557,10 @@ a:hover.idol_link {
     #search-button {
         width: 100%; /* ボタンを幅いっぱいに */
         margin-left: 0; /* 左余白をリセット */
+    }
+
+    .back-button {
+        display: none;
     }
 }
 
