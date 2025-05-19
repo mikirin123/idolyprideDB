@@ -375,7 +375,7 @@ img {
 
     .container {
         width: 100%;
-        padding: 0 10px; /* スマホ用の余白を追加 */
+        padding: 0 0px; /* スマホ用の余白を追加 */
     }
 
     .content {
