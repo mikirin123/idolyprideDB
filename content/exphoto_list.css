@@ -243,17 +243,25 @@ td:hover { background: #f9f9f9; }
     padding: 10px 12px;
 }
 .skill-detail-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: block;
     margin-bottom: 5px;
+    position: relative;
+}
+.skill-detail-main {
+    width: 100%;
+    position: relative;
 }
 .skill-detail-level {
     font-size: 13px;
     color: #3200FF;
     font-weight: bold;
-    margin-left: 16px;
+    margin-left: 0;
     white-space: nowrap;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    z-index: 1;
 }
 
 /* --- その他 --- */
