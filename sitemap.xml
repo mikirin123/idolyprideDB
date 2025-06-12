@@ -1,55 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset 
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+
   <url>
     <loc>https://mikirin123.github.io/idolyprideDB/</loc>
     <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://mikirin123.github.io/idolyprideDB/#/idol</loc>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/idol_list.html</loc>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://mikirin123.github.io/idolyprideDB/#/ranking</loc>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/stats_list.html</loc>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://mikirin123.github.io/idolyprideDB/#/cheer</loc>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/idol_sep_list.html</loc>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://mikirin123.github.io/idolyprideDB/#/calc</loc>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/yell_sep_list.html</loc>
     <priority>0.7</priority>
   </url>
-
   <url>
-    <loc>https://mikirin123.github.io/idolyprideDB/#/colors</loc>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/exp_calculator.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/exphoto_list.html</loc>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://mikirin123.github.io/idolyprideDB/#/birthdays</loc>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/colors.html</loc>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://mikirin123.github.io/idolyprideDB/#/presents</loc>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/birthdays.html</loc>
     <priority>0.6</priority>
   </url>
-
+  <url>
+    <loc>https://mikirin123.github.io/idolyprideDB/content/interact-present.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mikirin123.github.io/idolyprideDB/sitemap.html</loc>
+    <priority>0.3</priority>
+  </url>
   <url>
     <loc>https://mikirin123.github.io/idolyprideDB/#/update</loc>
     <priority>0.5</priority>
   </url>
-
   <url>
     <loc>https://mikirin123.github.io/idolyprideDB/#/events</loc>
     <priority>0.5</priority>
   </url>
-
 </urlset>
