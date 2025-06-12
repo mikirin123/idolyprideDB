@@ -1,4 +1,46 @@
 // ==========================
+// 並び替え機能
+// ==========================
+function sortTable() {
+    const sortKey = document.querySelector('input[name="sort"]:checked').value;
+    const sortOrder = document.querySelector('input[name="sort-order"]:checked').value;
+    const table = document.getElementById('character-table');
+    const rows = Array.from(table.querySelectorAll('tr:not(:first-child)'));
+
+    // カラムインデックスの対応
+    const colIndexMap = {
+        id: 0,
+        "ボーカル": 8,
+        "ダンス": 9,
+        "ビジュアル": 10,
+        "スタミナ": 11
+    };
+    const colIndex = colIndexMap[sortKey] ?? 0;
+
+    rows.sort((a, b) => {
+        let aVal = a.getElementsByTagName('td')[colIndex].innerText;
+        let bVal = b.getElementsByTagName('td')[colIndex].innerText;
+        // 数値比較
+        if (["id", "ボーカル", "ダンス", "ビジュアル", "スタミナ"].includes(sortKey)) {
+            aVal = parseInt(aVal) || 0;
+            bVal = parseInt(bVal) || 0;
+        }
+        if (aVal < bVal) return sortOrder === 'asc' ? -1 : 1;
+        if (aVal > bVal) return sortOrder === 'asc' ? 1 : -1;
+        return 0;
+    });
+
+    rows.forEach(row => table.appendChild(row));
+}
+
+// 並び替えラジオボタンのイベントリスナー
+document.querySelectorAll('input[name="sort"], input[name="sort-order"]').forEach(input => {
+    input.addEventListener('change', function() {
+        sortTable();
+    });
+});
+
+// ==========================
 // キーワード検索機能
 // ==========================
 function performSearchAndFilter() {
@@ -65,6 +107,8 @@ function performSearchAndFilter() {
         // 両方の条件を満たす場合のみ表示
         row.style.display = matchesSearch && matchesFilter ? '' : 'none';
     });
+    // 検索・フィルタ後にも並び替えを適用
+    sortTable();
 }
 
 // ==========================
@@ -188,6 +232,11 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('検索バーが見つかりません');
     }
+
+    // デフォルトで実装順降順に並び替え
+    document.getElementById('sort-id').checked = true;
+    document.querySelector('input[name="sort-order"][value="desc"]').checked = true;
+    sortTable();
 
     // localStorageから「全て表示する」状態を復元
     const showAll = localStorage.getItem('showAll') === 'true';
