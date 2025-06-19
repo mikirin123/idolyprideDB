@@ -11,16 +11,21 @@
     <link rel="mask-icon" href="../image/icon.svg">
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <style>
-        .tweet-embed-list { display: flex; flex-wrap: wrap; gap: 24px 10px; }
+        .tweet-embed-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px 10px;
+        }
         .tweet-embed-item {
-            width: 320px;
-            min-width: 220px;
+            width: 19.2%;
+            min-width: 200px;
             max-width: 100%;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(50,0,255,0.06);
             padding: 6px 6px 2px 6px;
             margin-bottom: 6px;
+            box-sizing: border-box;
         }
         .tweet-embed-caption {
             font-size: 14px;
@@ -28,6 +33,9 @@
             color: #3200FF;
             margin-bottom: 4px;
             word-break: break-all;
+        }
+        @media (max-width: 1200px) {
+            .tweet-embed-item { width: 24.5%; }
         }
         @media (max-width: 900px) {
             .tweet-embed-list { flex-direction: column; gap: 14px 0; }
@@ -90,359 +98,483 @@
         <div class="banner">
             <div class="banner_title">おしながき・告知ツイート一覧</div>
             <div class="banner_title_phone">おしながき・告知ツイート一覧</div>
-            <a href="circlelist.html" class="back-button">サークル一覧に戻る</a>
+            <a href="../../index.html" class="back-button">トップに戻る</a>
         </div>
     </header>
     <main>
         <div class="container">
             <nav class="toc"><div class="toc-buttons"><div class="toc-btn-wrap" onclick="location.href='#star1_10'"><span class="toc-label">星01～10</span></div><div class="toc-btn-wrap" onclick="location.href='#star11_20'"><span class="toc-label">星11～20</span></div><div class="toc-btn-wrap" onclick="location.href='#star21_34'"><span class="toc-label">星21～34</span></div><div class="toc-btn-wrap" onclick="location.href='#mi1_10'"><span class="toc-label">見01～10</span></div><div class="toc-btn-wrap" onclick="location.href='#mi11_20'"><span class="toc-label">見11～20</span></div><div class="toc-btn-wrap" onclick="location.href='#mi21_26'"><span class="toc-label">見21～26</span></div><div class="toc-btn-wrap" onclick="location.href='#shi1_10'"><span class="toc-label">市01～10</span></div><div class="toc-btn-wrap" onclick="location.href='#shi11_20'"><span class="toc-label">市11～20</span></div><div class="toc-btn-wrap" onclick="location.href='#shi21_26'"><span class="toc-label">市21～26</span></div></div></nav>
-            <h2>おしながき・告知ツイート埋め込み一覧</h2>
+            <div style="margin-bottom:18px;">
+                <a href="circlelist.html" class="circle-link-btn" style="font-size:16px;">サークル一覧はこちら</a>
+                <a href="https://kiyoshimo.wixsite.com/idolypride/%E8%A4%87%E8%A3%BD-%E3%82%B5%E3%83%BC%E3%82%AF%E3%83%AB%E9%85%8D%E7%BD%AE" class="circle-link-btn" style="font-size:16px;">サークルカット・配置図(公式ページ)はこちら</a>
+            </div>
+            <h2>おしながき・告知ツイート一覧</h2>
+            <div id="random-pickup" class="tweet-embed-group-title" style="margin-top:18px;">ランダムピックアップ</div>
+            <div id="random-pickup-list" class="tweet-embed-list"></div>
 <div id="star1_10" class="tweet-embed-group-title">星01～10</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星04 おしるこチップス（もなか）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星03" style="color:#3200FF;text-decoration:underline;" target="_blank">星03 りんつ</a>（りんつ）
+                </div>
+                <blockquote class="twitter-tweet">
+                    <a href="https://twitter.com/i/status/1935303047716188211"></a>
+                </blockquote>
+            </div>
+        
+            <div class="tweet-embed-item">
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星04" style="color:#3200FF;text-decoration:underline;" target="_blank">星04 おしるこチップス</a>（もなか）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934239909495374008"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星05 Front Runner（ブライアン）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星05" style="color:#3200FF;text-decoration:underline;" target="_blank">星05 Front Runner</a>（ブライアン）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1932056812146372884"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星06 秘密結社ザンザンザザザン（ZN）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星06" style="color:#3200FF;text-decoration:underline;" target="_blank">星06 秘密結社ザンザンザザザン</a>（ZN）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1931844537955324166"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星07 ＃SMH（まかろん）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星07" style="color:#3200FF;text-decoration:underline;" target="_blank">星07 ＃SMH</a>（まかろん）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933811870890377481"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星08 ぐい飲みセット（園田まー）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星07" style="color:#3200FF;text-decoration:underline;" target="_blank">星07 ＃SMH</a>（めかうなぎ）
+                </div>
+                <blockquote class="twitter-tweet">
+                    <a href="https://twitter.com/i/status/1933826131867959511"></a>
+                </blockquote>
+            </div>
+        
+            <div class="tweet-embed-item">
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星08" style="color:#3200FF;text-decoration:underline;" target="_blank">星08 ぐい飲みセット</a>（園田まー）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1931910758956421471"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星10 Hydrangea（じゃ〜き〜）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星10" style="color:#3200FF;text-decoration:underline;" target="_blank">星10 Hydrangea</a>（じゃ〜き〜）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1932021591690674481"></a>
                 </blockquote>
             </div>
         </div><div id="star11_20" class="tweet-embed-group-title">星11～20</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星11 L'étoile polaire（Konwel）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星11" style="color:#3200FF;text-decoration:underline;" target="_blank">星11 L'étoile polaire</a>（Konwel）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934123254454911118"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星12 おしるこどーなつ！（ゆにほるん）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星12" style="color:#3200FF;text-decoration:underline;" target="_blank">星12 おしるこどーなつ！</a>（ゆにほるん）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1931853581956853833"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星13 うわおたくだβ版（彩希）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星13" style="color:#3200FF;text-decoration:underline;" target="_blank">星13 うわおたくだβ版</a>（彩希）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933854567051211050"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星15 eclipse（IDOLY PRIDEまとめ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星15" style="color:#3200FF;text-decoration:underline;" target="_blank">星15 eclipse</a>（IDOLY PRIDEまとめ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933160187701215570"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星17 つゆじ（せっけん）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星17" style="color:#3200FF;text-decoration:underline;" target="_blank">星17 つゆじ</a>（せっけん）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1932033943249076617"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星18 揚げ浜しお（もち米ユウタ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星18" style="color:#3200FF;text-decoration:underline;" target="_blank">星18 揚げ浜しお</a>（もち米ユウタ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933142612812444072"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星19 えすぴよスタジオ（えすぴよ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星19" style="color:#3200FF;text-decoration:underline;" target="_blank">星19 えすぴよスタジオ</a>（えすぴよ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1927716533314199959"></a>
                 </blockquote>
             </div>
         </div><div id="star21_34" class="tweet-embed-group-title">星21～34</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星21 たいやき屋さん（たいやき屋さん）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星21" style="color:#3200FF;text-decoration:underline;" target="_blank">星21 たいやき屋さん</a>（たいやき屋さん）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1897131298269061181"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星25 星見検車区（レイワ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星25" style="color:#3200FF;text-decoration:underline;" target="_blank">星25 星見検車区</a>（レイワ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934768896994889889"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星27 たけのこみるく庭（四葉しょこら）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星27" style="color:#3200FF;text-decoration:underline;" target="_blank">星27 たけのこみるく庭</a>（四葉しょこら）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1932708907199439326"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">星30 うな重工（めかうなぎ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-星30" style="color:#3200FF;text-decoration:underline;" target="_blank">星30 うな重工</a>（めかうなぎ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1891841324862644621"></a>
                 </blockquote>
             </div>
         </div><div id="mi1_10" class="tweet-embed-group-title">見01～10</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見01 かまんべーる（ちたら）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見01" style="color:#3200FF;text-decoration:underline;" target="_blank">見01 かまんべーる</a>（ちたら）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1884233029742440637"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見03 DAIMONZI-X（大鋼 断）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見03" style="color:#3200FF;text-decoration:underline;" target="_blank">見03 DAIMONZI-X</a>（大鋼 断）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1931755392385847359"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見04 煙菌両用（nomomok）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見04" style="color:#3200FF;text-decoration:underline;" target="_blank">見04 煙菌両用</a>（nomomok）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1895670326400266677"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見05 葉牡丹（円）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見05" style="color:#3200FF;text-decoration:underline;" target="_blank">見05 葉牡丹</a>（円）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934250786030231931"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見06 ろあしょっぷ！（ろあ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見06" style="color:#3200FF;text-decoration:underline;" target="_blank">見06 ろあしょっぷ！</a>（ろあ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1930896663360725355"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見07 コノハナファクトリー（咲耶）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見07" style="color:#3200FF;text-decoration:underline;" target="_blank">見07 コノハナファクトリー</a>（咲耶）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1935256961853047185"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見08 Ixia（せやな）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見08" style="color:#3200FF;text-decoration:underline;" target="_blank">見08 Ixia</a>（せやな）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933105399928066433"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見08 Ixia（もちぼっと）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見08" style="color:#3200FF;text-decoration:underline;" target="_blank">見08 Ixia</a>（もちぼっと）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933085535805071478"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見09 死灰復燃（葉科）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見09" style="color:#3200FF;text-decoration:underline;" target="_blank">見09 死灰復燃</a>（葉科）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1931923462509174973"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見10 雨宿り（れいん）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見10" style="color:#3200FF;text-decoration:underline;" target="_blank">見10 雨宿り</a>（れいん）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934558041023959099"></a>
                 </blockquote>
             </div>
         </div><div id="mi11_20" class="tweet-embed-group-title">見11～20</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見11 サンタさんは本当にいるの？（瑠璃）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見11" style="color:#3200FF;text-decoration:underline;" target="_blank">見11 サンタさんは本当にいるの？</a>（瑠璃）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934152749761040420"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見11 サンタさんは本当にいるの？（さなぎねこ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見11" style="color:#3200FF;text-decoration:underline;" target="_blank">見11 サンタさんは本当にいるの？</a>（さなぎねこ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934259597415690498"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見11 サンタさんは本当にいるの？（華畑茶素）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見11" style="color:#3200FF;text-decoration:underline;" target="_blank">見11 サンタさんは本当にいるの？</a>（華畑茶素）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934151636097921519"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見13 寝不足シネマ（むいむい）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見13" style="color:#3200FF;text-decoration:underline;" target="_blank">見13 寝不足シネマ</a>（むいむい）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933823373450281419"></a>
                 </blockquote>
             </div>
         </div><div id="mi21_26" class="tweet-embed-group-title">見21～26</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見21 東京十七番街（いちなな）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見21" style="color:#3200FF;text-decoration:underline;" target="_blank">見21 東京十七番街</a>（いちなな）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1911033427090178406"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見24 謎猫SISTERS（謎猫）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見24" style="color:#3200FF;text-decoration:underline;" target="_blank">見24 謎猫SISTERS</a>（謎猫）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1929068846851449246"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見25 星見の愉快なあみぐるみ（しょぼにゃん）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見25" style="color:#3200FF;text-decoration:underline;" target="_blank">見25 星見の愉快なあみぐるみ</a>（しょぼにゃん）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1926618792982991011"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">見26 さん亭（さん亭）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-見26" style="color:#3200FF;text-decoration:underline;" target="_blank">見26 さん亭</a>（さん亭）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933729904438489562"></a>
                 </blockquote>
             </div>
         </div><div id="shi1_10" class="tweet-embed-group-title">市01～10</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市01 おひさまりぼん（💟ྀི）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市01" style="color:#3200FF;text-decoration:underline;" target="_blank">市01 おひさまりぼん</a>（💟ྀི）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934986854459420973"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市02 Hot coffee（えぬ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市02" style="color:#3200FF;text-decoration:underline;" target="_blank">市02 Hot coffee</a>（えぬ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1932021281224065217"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市03 埼玉より愛をこめて（きつき）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市03" style="color:#3200FF;text-decoration:underline;" target="_blank">市03 埼玉より愛をこめて</a>（きつき）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934229483151933454"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市05 moonMalus（びーつき）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市05" style="color:#3200FF;text-decoration:underline;" target="_blank">市05 moonMalus</a>（びーつき）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1935255171426304212"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市08 Slow MOON（クレドと）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市08" style="color:#3200FF;text-decoration:underline;" target="_blank">市08 Slow MOON</a>（クレドと）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934196039952773304"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市09 すずフェス運営委員（ばわ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市09" style="color:#3200FF;text-decoration:underline;" target="_blank">市09 すずフェス運営委員</a>（ばわ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933501374207308180"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市09 すずフェス運営委員（ロモツヨシ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市09" style="color:#3200FF;text-decoration:underline;" target="_blank">市09 すずフェス運営委員</a>（ロモツヨシ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934195244637249681"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市10 StarryMiracle（みちゃん）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市10" style="color:#3200FF;text-decoration:underline;" target="_blank">市10 StarryMiracle</a>（みちゃん）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933546423628562777"></a>
                 </blockquote>
             </div>
         </div><div id="shi11_20" class="tweet-embed-group-title">市11～20</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市11 ColorfulLife（てと。）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市11" style="color:#3200FF;text-decoration:underline;" target="_blank">市11 ColorfulLife</a>（てと。）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1893633664409272545"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市12 夢を想う詩（ふーぎ）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市12" style="color:#3200FF;text-decoration:underline;" target="_blank">市12 夢を想う詩</a>（ふーぎ）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1932457962720866662"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市15 familie（Yui）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市15" style="color:#3200FF;text-decoration:underline;" target="_blank">市15 familie</a>（Yui）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1932354704539058372"></a>
                 </blockquote>
             </div>
         </div><div id="shi21_26" class="tweet-embed-group-title">市21～26</div><div class="tweet-embed-list">
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市22 七回目ナイトリップ（7770P）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市22" style="color:#3200FF;text-decoration:underline;" target="_blank">市22 七回目ナイトリップ</a>（7770P）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1933143648692326726"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市24 カプ厨バイキング（なお）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市24" style="color:#3200FF;text-decoration:underline;" target="_blank">市24 カプ厨バイキング</a>（なお）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934922929961357739"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市25 々やさん（々(まる)）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市25" style="color:#3200FF;text-decoration:underline;" target="_blank">市25 々やさん</a>（々(まる)）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1935321878241100279"></a>
                 </blockquote>
             </div>
         
             <div class="tweet-embed-item">
-                <div class="tweet-embed-caption">市26 ツツうらうら（うらかた）</div>
+                <div class="tweet-embed-caption">
+                    <a href="circlelist.html#circle-市26" style="color:#3200FF;text-decoration:underline;" target="_blank">市26 ツツうらうら</a>（うらかた）
+                </div>
                 <blockquote class="twitter-tweet">
                     <a href="https://twitter.com/i/status/1934066693724401801"></a>
                 </blockquote>
@@ -453,5 +585,9 @@
             </p>
         </div>
     </main>
+    <script>
+        window.ALL_TWEET_ITEMS = [{"name": "りんつ", "tw_name": "りんつ", "place": "星03", "tweet_id": "1935303047716188211", "tweet_url": "https://x.com/_Lindt_/status/1935303047716188211"}, {"name": "おしるこチップス", "tw_name": "もなか", "place": "星04", "tweet_id": "1934239909495374008", "tweet_url": "https://x.com/trial_mnk/status/1934239909495374008"}, {"name": "Front Runner", "tw_name": "ブライアン", "place": "星05", "tweet_id": "1932056812146372884", "tweet_url": "https://x.com/56nQCMe7yOP5q3u/status/1932056812146372884"}, {"name": "秘密結社ザンザンザザザン", "tw_name": "ZN", "place": "星06", "tweet_id": "1931844537955324166", "tweet_url": "https://x.com/ihcamARNEZ/status/1931844537955324166"}, {"name": "＃SMH", "tw_name": "まかろん", "place": "星07", "tweet_id": "1933811870890377481", "tweet_url": "https://x.com/macaroooooon22/status/1933811870890377481"}, {"name": "＃SMH", "tw_name": "めかうなぎ", "place": "星07", "tweet_id": "1933826131867959511", "tweet_url": "https://x.com/Mechaunagi/status/1933826131867959511/photo/1"}, {"name": "ぐい飲みセット", "tw_name": "園田まー", "place": "星08", "tweet_id": "1931910758956421471", "tweet_url": "https://x.com/sono_maa27/status/1931910758956421471"}, {"name": "Hydrangea", "tw_name": "じゃ〜き〜", "place": "星10", "tweet_id": "1932021591690674481", "tweet_url": "https://x.com/925Senno/status/1932021591690674481"}, {"name": "L'étoile polaire", "tw_name": "Konwel", "place": "星11", "tweet_id": "1934123254454911118", "tweet_url": "https://x.com/Kon_wel72/status/1934123254454911118"}, {"name": "おしるこどーなつ！", "tw_name": "ゆにほるん", "place": "星12", "tweet_id": "1931853581956853833", "tweet_url": "https://x.com/CzuP4/status/1931853581956853833"}, {"name": "うわおたくだβ版", "tw_name": "彩希", "place": "星13", "tweet_id": "1933854567051211050", "tweet_url": "https://x.com/aki__pic/status/1933854567051211050"}, {"name": "eclipse", "tw_name": "IDOLY PRIDEまとめ", "place": "星15", "tweet_id": "1933160187701215570", "tweet_url": "https://x.com/IP_eclipse/status/1933160187701215570"}, {"name": "つゆじ", "tw_name": "せっけん", "place": "星17", "tweet_id": "1932033943249076617", "tweet_url": "https://x.com/sekken_mgame/status/1932033943249076617"}, {"name": "揚げ浜しお", "tw_name": "もち米ユウタ", "place": "星18", "tweet_id": "1933142612812444072", "tweet_url": "https://x.com/mochi0410_yuuta/status/1933142612812444072"}, {"name": "えすぴよスタジオ", "tw_name": "えすぴよ", "place": "星19", "tweet_id": "1927716533314199959", "tweet_url": "https://x.com/gyoeeeeeeeeee06/status/1927716533314199959"}, {"name": "たいやき屋さん", "tw_name": "たいやき屋さん", "place": "星21", "tweet_id": "1897131298269061181", "tweet_url": "https://x.com/W3STBAG/status/1897131298269061181"}, {"name": "星見検車区", "tw_name": "レイワ", "place": "星25", "tweet_id": "1934768896994889889", "tweet_url": "https://x.com/Reiwapride2/status/1934768896994889889"}, {"name": "たけのこみるく庭", "tw_name": "四葉しょこら", "place": "星27", "tweet_id": "1932708907199439326", "tweet_url": "https://x.com/E_mangaC/status/1932708907199439326"}, {"name": "うな重工", "tw_name": "めかうなぎ", "place": "星30", "tweet_id": "1891841324862644621", "tweet_url": "https://x.com/Mechaunagi/status/1891841324862644621"}, {"name": "かまんべーる", "tw_name": "ちたら", "place": "見01", "tweet_id": "1884233029742440637", "tweet_url": "https://x.com/cheetara68/status/1884233029742440637"}, {"name": "DAIMONZI-X", "tw_name": "大鋼 断", "place": "見03", "tweet_id": "1931755392385847359", "tweet_url": "https://x.com/daimonzi_x/status/1931755392385847359"}, {"name": "煙菌両用", "tw_name": "nomomok", "place": "見04", "tweet_id": "1895670326400266677", "tweet_url": "https://x.com/noMOMok_2/status/1895670326400266677"}, {"name": "葉牡丹", "tw_name": "円", "place": "見05", "tweet_id": "1934250786030231931", "tweet_url": "https://x.com/en_mdk1/status/1934250786030231931"}, {"name": "ろあしょっぷ！", "tw_name": "ろあ", "place": "見06", "tweet_id": "1930896663360725355", "tweet_url": "https://x.com/roa_eaka/status/1930896663360725355"}, {"name": "コノハナファクトリー", "tw_name": "咲耶", "place": "見07", "tweet_id": "1935256961853047185", "tweet_url": "https://x.com/chiho_0802oruga/status/1935256961853047185"}, {"name": "Ixia", "tw_name": "せやな", "place": "見08", "tweet_id": "1933105399928066433", "tweet_url": "https://x.com/seyanachang/status/1933105399928066433"}, {"name": "Ixia", "tw_name": "もちぼっと", "place": "見08", "tweet_id": "1933085535805071478", "tweet_url": "https://x.com/dynam_xox/status/1933085535805071478"}, {"name": "死灰復燃", "tw_name": "葉科", "place": "見09", "tweet_id": "1931923462509174973", "tweet_url": "https://x.com/skifknn/status/1931923462509174973"}, {"name": "雨宿り", "tw_name": "れいん", "place": "見10", "tweet_id": "1934558041023959099", "tweet_url": "https://x.com/_iamReiN/status/1934558041023959099"}, {"name": "サンタさんは本当にいるの？", "tw_name": "瑠璃", "place": "見11", "tweet_id": "1934152749761040420", "tweet_url": "https://x.com/ruri_tacoske/status/1934152749761040420"}, {"name": "サンタさんは本当にいるの？", "tw_name": "さなぎねこ", "place": "見11", "tweet_id": "1934259597415690498", "tweet_url": "https://x.com/sanaginagisa_00/status/1934259597415690498"}, {"name": "サンタさんは本当にいるの？", "tw_name": "華畑茶素", "place": "見11", "tweet_id": "1934151636097921519", "tweet_url": "https://x.com/Hana_mrrn/status/1934151636097921519"}, {"name": "寝不足シネマ", "tw_name": "むいむい", "place": "見13", "tweet_id": "1933823373450281419", "tweet_url": "https://x.com/_o0O0o_2323/status/1933823373450281419"}, {"name": "東京十七番街", "tw_name": "いちなな", "place": "見21", "tweet_id": "1911033427090178406", "tweet_url": "https://x.com/17_1pan7th/status/1911033427090178406"}, {"name": "謎猫SISTERS", "tw_name": "謎猫", "place": "見24", "tweet_id": "1929068846851449246", "tweet_url": "https://x.com/Z9XS54ZS/status/1929068846851449246"}, {"name": "星見の愉快なあみぐるみ", "tw_name": "しょぼにゃん", "place": "見25", "tweet_id": "1926618792982991011", "tweet_url": "https://x.com/syobonyan_s2/status/1926618792982991011"}, {"name": "さん亭", "tw_name": "さん亭", "place": "見26", "tweet_id": "1933729904438489562", "tweet_url": "https://x.com/sandii4886/status/1933729904438489562"}, {"name": "おひさまりぼん", "tw_name": "💟ྀི", "place": "市01", "tweet_id": "1934986854459420973", "tweet_url": "https://x.com/mememe_peace/status/1934986854459420973"}, {"name": "Hot coffee", "tw_name": "えぬ", "place": "市02", "tweet_id": "1932021281224065217", "tweet_url": "https://x.com/enu_illustip/status/1932021281224065217"}, {"name": "埼玉より愛をこめて", "tw_name": "きつき", "place": "市03", "tweet_id": "1934229483151933454", "tweet_url": "https://x.com/omochi8825/status/1934229483151933454"}, {"name": "moonMalus", "tw_name": "びーつき", "place": "市05", "tweet_id": "1935255171426304212", "tweet_url": "https://x.com/b_tsuki_/status/1935255171426304212"}, {"name": "Slow MOON", "tw_name": "クレドと", "place": "市08", "tweet_id": "1934196039952773304", "tweet_url": "https://x.com/new_wind0103/status/1934196039952773304"}, {"name": "すずフェス運営委員", "tw_name": "ばわ", "place": "市09", "tweet_id": "1933501374207308180", "tweet_url": "https://x.com/Thankyousushi/status/1933501374207308180"}, {"name": "すずフェス運営委員", "tw_name": "ロモツヨシ", "place": "市09", "tweet_id": "1934195244637249681", "tweet_url": "https://x.com/romostuyoshi/status/1934195244637249681"}, {"name": "StarryMiracle", "tw_name": "みちゃん", "place": "市10", "tweet_id": "1933546423628562777", "tweet_url": "https://x.com/st_michan/status/1933546423628562777"}, {"name": "ColorfulLife", "tw_name": "てと。", "place": "市11", "tweet_id": "1893633664409272545", "tweet_url": "https://x.com/tetoon_/status/1893633664409272545"}, {"name": "夢を想う詩", "tw_name": "ふーぎ", "place": "市12", "tweet_id": "1932457962720866662", "tweet_url": "https://x.com/fugi_IP/status/1932457962720866662"}, {"name": "familie", "tw_name": "Yui", "place": "市15", "tweet_id": "1932354704539058372", "tweet_url": "https://x.com/Yui_ip_hayasaka/status/1932354704539058372"}, {"name": "七回目ナイトリップ", "tw_name": "7770P", "place": "市22", "tweet_id": "1933143648692326726", "tweet_url": "https://x.com/7Yuk0/status/1933143648692326726"}, {"name": "カプ厨バイキング", "tw_name": "なお", "place": "市24", "tweet_id": "1934922929961357739", "tweet_url": "https://x.com/NARUMIYA_KOUHEI/status/1934922929961357739"}, {"name": "々やさん", "tw_name": "々(まる)", "place": "市25", "tweet_id": "1935321878241100279", "tweet_url": "https://x.com/__scgg__/status/1935321878241100279"}, {"name": "ツツうらうら", "tw_name": "うらかた", "place": "市26", "tweet_id": "1934066693724401801", "tweet_url": "https://x.com/urakata_illust/status/1934066693724401801"}];
+    </script>
+    <script src="random_pickup.js"></script>
 </body>
 </html>
