@@ -24,6 +24,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // --- 評価ボタンの状態をlocalStorageで保存・復元 ---
+    function setEvalStorage(data) {
+        localStorage.setItem('circleEval', JSON.stringify(data));
+    }
+    function getEvalStorage() {
+        try {
+            return JSON.parse(localStorage.getItem('circleEval')) || {};
+        } catch (e) {
+            return {};
+        }
+    }
+    // 初期化: localStorageから状態を復元
+    const evalStates = getEvalStorage();
+    document.querySelectorAll('.eval-btn').forEach(btn => {
+        const key = btn.closest('tr')?.id || '';
+        if (evalStates[key]) {
+            btn.setAttribute('data-state', evalStates[key]);
+            btn.textContent = evalStates[key];
+        }
+    });
+
     // コピー用ボタンのイベント
     document.body.addEventListener('click', function(e) {
         // コピー
@@ -48,6 +69,15 @@ document.addEventListener('DOMContentLoaded', function() {
             idx = (idx + 1) % states.length;
             btn.setAttribute('data-state', states[idx]);
             btn.textContent = states[idx];
+            // localStorageに保存
+            const key = btn.closest('tr')?.id || '';
+            const evalStates = getEvalStorage();
+            if (states[idx] === '-') {
+                delete evalStates[key];
+            } else {
+                evalStates[key] = states[idx];
+            }
+            setEvalStorage(evalStates);
         }
     });
 });
