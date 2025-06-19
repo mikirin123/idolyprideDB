@@ -12,14 +12,7 @@ body {
     line-height: 1.6;
 }
 @media (max-width: 600px) {
-    body {
-        min-width: 100vw;
-        padding: 0;
-        margin: 0;
-        background: #f8f8f8;
-        font-size: 14px; /* 文字サイズをやや小さく */
-        line-height: 1.5;
-    }
+    body { min-width: 100%; }
 }
 
 .container {
@@ -31,13 +24,7 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 @media (max-width: 600px) {
-    .container {
-        padding: 6px 2vw 10px 2vw; /* 横余白をvwで確保 */
-        margin: 60px 0 0 0;
-        width: 100vw;
-        border-radius: 0;
-        box-shadow: none;
-    }
+    .container { margin-top: 65px; }
 }
 
 /* --- バナー・ヘッダー --- */
@@ -131,7 +118,7 @@ body {
     }
     .toc-btn-wrap { width: 100%; max-width: 60px; } /* ボタン幅を自動調整＋最大幅指定 */
     .toc-btn-wrap img.toc-icon, .toc-other-btn { width: 44px; height: 44px; }
-    .toc-label { font-size: 10px; padding: 0 2px; }
+    .toc-label { font-size: 11px; }
 }
 .toc-btn-wrap {
     display: flex;
@@ -211,11 +198,6 @@ body {
     color: #3200FF;
     letter-spacing: 0.03em;
 }
-@media (max-width: 600px) {
-    .char-header-title {
-        font-size: 16px;
-    }
-}
 
 /* --- テーブル --- */
 .char-table-box { margin-bottom: 32px; }
@@ -245,21 +227,6 @@ td {
     transition: background-color 0.3s;
 }
 td:hover { background: #f9f9f9; }
-@media (max-width: 600px) {
-    .circle-table-scroll {
-        width: 100vw;
-        overflow-x: auto;
-        padding-bottom: 4px;
-    }
-    .circle-table {
-        min-width: 600px;
-        font-size: 13px;
-    }
-    .circle-table th, .circle-table td {
-        padding: 6px 4px;
-        font-size: 12px;
-    }
-}
 
 /* --- スキル詳細 --- */
 .skill-name.clickable {
@@ -296,15 +263,6 @@ td:hover { background: #f9f9f9; }
     background: none;
     z-index: 1;
 }
-@media (max-width: 600px) {
-    .skill-detail-row td {
-        font-size: 12px;
-        padding: 6px 6px;
-    }
-    .skill-detail-level {
-        font-size: 11px;
-    }
-}
 
 /* --- その他 --- */
 img { vertical-align: middle; }
@@ -340,18 +298,6 @@ img { vertical-align: middle; }
     margin-right: auto;
     width: auto;
     background: transparent;
-}
-@media (max-width: 600px) {
-    .head {
-        font-size: 15px;
-    }
-    .head::after {
-        margin: 0 4px;
-    }
-    .table-container, .content {
-        padding: 8px;
-        margin-top: 10px;
-    }
 }
 
 /* --- 所持キャラ --- */
@@ -432,24 +378,7 @@ img { vertical-align: middle; }
     color: #666;
     margin: 0;
 }
-@media (max-width: 600px) {
-    .idol-item {
-        width: 90px;
-        padding: 5px;
-        font-size: 11px;
-    }
-    .idol-item img {
-        margin-bottom: 2px;
-    }
-    .idol-item span {
-        font-size: 10px;
-    }
-    .idol-item p {
-        font-size: 9px;
-    }
-}
 
-/* --- アコーディオン --- */
 .accordion-content {
     background-color: #f9f9f9;
     padding: 10px;
@@ -547,6 +476,19 @@ summary {
     .tweet-embed-item { width: 98vw; min-width: 0; }
 }
 @media (max-width: 600px) {
+    body {
+        min-width: 100vw;
+        padding: 0;
+        margin: 0;
+        background: #f8f8f8;
+    }
+    .container {
+        padding: 6px 2px 10px 2px;
+        margin: 60px 0 0 0;
+        width: 100vw;
+        border-radius: 0;
+        box-shadow: none;
+    }
     .tweet-embed-list {
         gap: 8px 0;
         padding: 0;
@@ -565,7 +507,6 @@ summary {
         margin-bottom: 2px;
         padding-left: 2px;
         padding-right: 2px;
-        word-break: break-all;
     }
     .tweet-embed-group-title {
         font-size: 16px;
@@ -576,4 +517,44 @@ summary {
         font-size: 16px;
         margin-top: 8px;
     }
+}
+.tweet-embed-group-title {
+    font-size: 18px;
+    color: #3200FF;
+    font-weight: bold;
+    margin: 30px 0 8px 0;
+    scroll-margin-top: 90px;
+}
+
+/* --- Python内style属性の外部化 --- */
+.circlelist-link-group {
+    margin-bottom: 18px;
+    /* 追加: デフォルトは横並び */
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+    .circlelist-link-group {
+        flex-direction: column;
+        gap: 6px;
+        align-items: stretch;
+    }
+    .circlelist-link-group .circle-link-btn {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 15px !important;
+    }
+}
+.circlelist-section-anchor {
+    scroll-margin-top: 90px;
+}
+.circlelist-row-anchor {
+    scroll-margin-top: 90px;
+}
+/* サークル名リンクの色・下線 */
+.tweet-embed-caption a {
+    color: #3200FF;
+    text-decoration: underline;
 }
