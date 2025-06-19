@@ -196,6 +196,45 @@ body {
     font-weight: bold;
 }
 
+/* コピー用ボタン */
+.copy-info-btn {
+    background: #fff;
+    color: #3200FF;
+    border: 1px solid #3200FF;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    margin: 0 2px;
+}
+.copy-info-btn:hover {
+    background: #3200FF;
+    color: #fff;
+}
+
+.eval-btn {
+    background: #eee;
+    color: #3200FF;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 4px;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.eval-btn[data-state="予"] {
+    background: #fffbe6;
+    color: #e6a700;
+    border: 1px solid #e6a700;
+}
+.eval-btn[data-state="済"] {
+    background: #e6ffe6;
+    color: #009900;
+    border: 1px solid #009900;
+}
+
 .circle-link-btn {
     display: inline-block;
     background: #3200FF;
