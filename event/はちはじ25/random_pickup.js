@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     selected.forEach(item => {
         const div = document.createElement('div');
         div.className = 'tweet-embed-item';
-        const captionHtml = `<a href="circlelist.html#circle-${item.place}" style="color:#3200FF;text-decoration:underline;" target="_blank">${item.place} ${item.name}</a>（${item.tw_name}）`;
+        const captionHtml = `<a href="circle-list.html#circle-${item.place}" style="color:#3200FF;text-decoration:underline;" target="_blank">${item.place} ${item.name}</a>（${item.tw_name}）`;
         div.innerHTML = `
             <div class="tweet-embed-caption">${captionHtml}</div>
             <blockquote class="twitter-tweet">
