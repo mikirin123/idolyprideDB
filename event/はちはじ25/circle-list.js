@@ -9,33 +9,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // スクロールトップボタンの追加
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            scrollToTopBtn.style.display = 'block';
-        } else {
-            scrollToTopBtn.style.display = 'none';
-        }
+    window.addEventListener('scroll', () => {
+        scrollToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+    // localStorage操作
+    const storageKey = 'circleEval';
+    const getEvalStorage = () => {
+        try { return JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { return {}; }
+    };
+    const setEvalStorage = data => localStorage.setItem(storageKey, JSON.stringify(data));
 
-    // --- 評価ボタンの状態をlocalStorageで保存・復元 ---
-    function setEvalStorage(data) {
-        localStorage.setItem('circleEval', JSON.stringify(data));
-    }
-    function getEvalStorage() {
-        try {
-            return JSON.parse(localStorage.getItem('circleEval')) || {};
-        } catch (e) {
-            return {};
-        }
-    }
-    // 初期化: localStorageから状態を復元
+    // 評価ボタン初期化
     const evalStates = getEvalStorage();
     document.querySelectorAll('.eval-btn').forEach(btn => {
         const key = btn.closest('tr')?.id || '';
@@ -45,9 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // コピー用ボタンのイベント
-    document.body.addEventListener('click', function(e) {
-        // コピー
+    // コピー・評価イベント委譲
+    document.body.addEventListener('click', e => {
         if (e.target.classList.contains('copy-info-btn')) {
             const btn = e.target;
             const name = btn.getAttribute('data-name') || '';
@@ -60,23 +47,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => { btn.textContent = 'コピー'; }, 1200);
             });
         }
-        // 評価
         if (e.target.classList.contains('eval-btn')) {
             const btn = e.target;
             const states = ['-', '予', '済'];
-            let current = btn.getAttribute('data-state') || '-';
-            let idx = states.indexOf(current);
-            idx = (idx + 1) % states.length;
+            let idx = (states.indexOf(btn.getAttribute('data-state') || '-') + 1) % states.length;
             btn.setAttribute('data-state', states[idx]);
             btn.textContent = states[idx];
-            // localStorageに保存
             const key = btn.closest('tr')?.id || '';
             const evalStates = getEvalStorage();
-            if (states[idx] === '-') {
-                delete evalStates[key];
-            } else {
-                evalStates[key] = states[idx];
-            }
+            if (states[idx] === '-') delete evalStates[key];
+            else evalStates[key] = states[idx];
             setEvalStorage(evalStates);
         }
     });

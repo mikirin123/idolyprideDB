@@ -141,7 +141,8 @@ body {
     transition: transform 0.15s;
 }
 .toc-btn-wrap:hover { transform: translateY(-4px) scale(1.07); }
-.toc-btn-wrap img.toc-icon {
+.toc-btn-wrap img.toc-icon,
+.toc-other-btn {
     width: 54px;
     height: 54px;
     border-radius: 50%;
@@ -151,9 +152,12 @@ body {
     background: #fff;
     transition: box-shadow 0.2s, border 0.2s;
 }
-.toc-btn-wrap:hover img.toc-icon {
+.toc-btn-wrap:hover img.toc-icon,
+.toc-other-btn:hover {
     box-shadow: 0 4px 12px rgba(50,0,255,0.18);
     border: 2.5px solid #0000FF;
+    background: #0000FF;
+    color: #fff;
 }
 .toc-label {
     font-size: 13px;
@@ -168,24 +172,6 @@ body {
     letter-spacing: 0.02em;
 }
 .toc-btn-wrap .toc-label { margin-bottom: 2px; }
-.toc-other-btn {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: #3200FF;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    box-shadow: 0 2px 6px rgba(50,0,255,0.10);
-    transition: background 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-}
-.toc-other-btn:hover {
-    background: #0000FF;
-    box-shadow: 0 4px 12px rgba(50,0,255,0.18);
-}
 
 /* --- サークル紹介テーブル --- */
 .circle-table {
@@ -216,15 +202,17 @@ body {
 }
 
 /* --- コピー・評価・リンクボタン --- */
+.copy-info-btn, .eval-btn, .circle-link-btn {
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
 .copy-info-btn {
     background: #fff;
     color: #3200FF;
     border: 1px solid #3200FF;
-    border-radius: 4px;
     padding: 2px 8px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
     margin: 0 2px;
 }
 .copy-info-btn:hover {
@@ -235,12 +223,8 @@ body {
     background: #eee;
     color: #3200FF;
     border: 1px solid #bbb;
-    border-radius: 4px;
     padding: 2px 8px;
-    font-size: 12px;
-    cursor: pointer;
     margin-left: 4px;
-    transition: background 0.2s, color 0.2s, border 0.2s;
 }
 .eval-btn[data-state="予"] {
     background: #fffbe6;
@@ -257,11 +241,10 @@ body {
     background: #3200FF;
     color: #fff;
     padding: 4px 10px;
-    border-radius: 4px;
+    border: none;
+    margin: 0 2px;
     text-decoration: none;
     font-size: 13px;
-    margin: 0 2px;
-    transition: background 0.2s;
 }
 .circle-link-btn:hover {
     background: #0000FF;

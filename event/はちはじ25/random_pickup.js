@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const allItems = window.ALL_TWEET_ITEMS || [];
     const pickupNum = Math.min(5, allItems.length);
-    const shuffled = allItems.slice().sort(() => Math.random() - 0.5);
+    // Fisher-Yatesシャッフルで高速化
+    const shuffled = allItems.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     const selected = shuffled.slice(0, pickupNum);
 
     const list = document.getElementById('random-pickup-list');
@@ -20,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Twitter埋め込み再描画
-    if (window.twttr && window.twttr.widgets && window.twttr.widgets.load) {
+    if (window.twttr?.widgets?.load) {
         window.twttr.widgets.load(list);
     }
 });

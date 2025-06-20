@@ -1,40 +1,38 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Twitter widgets.jsがなければロード
+document.addEventListener('DOMContentLoaded', () => {
     if (!window.twttr) {
-        var s = document.createElement('script');
+        const s = document.createElement('script');
         s.src = "https://platform.twitter.com/widgets.js";
         s.async = true;
         document.head.appendChild(s);
     }
 
-    function embedTweet(el) {
+    const embedTweet = el => {
         if (el.dataset.loaded) return;
         el.dataset.loaded = "1";
-        var tweetId = el.getAttribute('data-tweet-id');
+        const tweetId = el.dataset.tweetId;
         if (!tweetId) return;
-        // 埋め込み
-        if (window.twttr && window.twttr.widgets) {
-            window.twttr.widgets.createTweet(tweetId, el, { align: "center" });
-        } else {
-            // widgets.js未ロード時は後で再試行
-            setTimeout(function() { embedTweet(el); }, 500);
-        }
-    }
+        const tryEmbed = () => {
+            if (window.twttr?.widgets) {
+                window.twttr.widgets.createTweet(tweetId, el, { align: "center" });
+            } else {
+                setTimeout(tryEmbed, 500);
+            }
+        };
+        tryEmbed();
+    };
 
+    const tweetNodes = document.querySelectorAll('.tweet-lazy-embed');
     if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function(entries, obs) {
-            entries.forEach(function(entry) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     embedTweet(entry.target);
                     obs.unobserve(entry.target);
                 }
             });
         }, { rootMargin: "200px" });
-        document.querySelectorAll('.tweet-lazy-embed').forEach(function(el) {
-            observer.observe(el);
-        });
+        tweetNodes.forEach(el => observer.observe(el));
     } else {
-        // Fallback: 全部埋め込む
-        document.querySelectorAll('.tweet-lazy-embed').forEach(embedTweet);
+        tweetNodes.forEach(embedTweet);
     }
 });
