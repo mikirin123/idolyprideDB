@@ -77,6 +77,9 @@ def _parse_characters(content):
             # '#' 始まりのセルは「ここで読み込みを終了する」という
             # 意図的な終端マーカーなので break のままにする。
             break
+        if len(row) > 3 and not row[3].strip():
+            # カード名が空 = まだ未入力の行なので、それ以降は続きがないとみなして終了する。
+            break
         if date_limit and len(row) > 24 and row[24]:
             for fmt in ('%Y/%m/%d', '%Y-%m-%d'):
                 try:
