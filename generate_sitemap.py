@@ -2,7 +2,7 @@ from pathlib import Path
 from urllib.parse import quote, urlparse
 
 from generate import NAV_SECTIONS, EVENT_NAV_SECTIONS, load_page_visibility, load_setting
-from utils import write_if_changed
+from utils import write_if_changed, write_page
 
 ROOT = Path(__file__).resolve().parent
 
@@ -98,7 +98,7 @@ def generate_sitemap_html(root_path):
 {sections_html}</body>
 </html>
 '''
-    write_if_changed('sitemap.html', html)
+    write_page('sitemap.html', html)
 
 
 if __name__ == "__main__":

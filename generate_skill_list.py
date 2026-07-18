@@ -1,4 +1,4 @@
-from utils import write_if_changed, esc, esc_rich
+from utils import write_page, esc, esc_rich
 import os
 import re
 from db import load_characters
@@ -169,7 +169,7 @@ def generate_html():
 </html>'''
 
     os.makedirs('content', exist_ok=True)
-    write_if_changed('content/skill_list.html', html_content)
+    write_page('content/skill_list.html', html_content)
 
 if __name__ == '__main__':
     generate_html()

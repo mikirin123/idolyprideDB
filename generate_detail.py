@@ -2,7 +2,7 @@ import os
 import json
 from urllib.parse import quote
 from db import load_characters
-from utils import write_if_changed, esc, esc_rich, DEFAULT_PROFILE
+from utils import write_page, esc, esc_rich, DEFAULT_PROFILE
 
 def load_profiles():
     with open('data/profiles.json', 'r', encoding='utf-8') as f:
@@ -157,7 +157,7 @@ def generate_detail_pages(characters, profiles):
 
         os.makedirs('detail', exist_ok=True)
         filename = f'detail/{character[2]} {character[3]}.html'.replace('\n', '')
-        write_if_changed(filename, detail_content)
+        write_page(filename, detail_content)
 
 if __name__ == "__main__":
     generate_html()

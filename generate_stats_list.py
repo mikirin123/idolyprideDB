@@ -1,4 +1,4 @@
-from utils import write_if_changed, build_char_options_html, esc
+from utils import write_page, build_char_options_html, esc
 import os
 from db import load_characters
 
@@ -157,7 +157,7 @@ def generate_html():
 
         # ファイル書き込み
         os.makedirs('content', exist_ok=True)
-        write_if_changed('content/stats_list.html', html_content)
+        write_page('content/stats_list.html', html_content)
         print("HTMLファイルが生成されました: ステータスランキング")
 
     except Exception as e:

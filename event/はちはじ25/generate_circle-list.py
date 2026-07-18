@@ -5,6 +5,9 @@ from collections import defaultdict
 from datetime import datetime
 
 
+WEEKDAYS_JA = ['月', '火', '水', '木', '金', '土', '日']
+
+
 def esc(value):
     """CSV由来の文字列をHTMLに埋め込む前にエスケープする。"""
     return html_lib.escape(str(value), quote=True)
@@ -202,6 +205,8 @@ if gohdo_grouped:
     tables_html += make_gohdo_table(gohdo_grouped, gohdo_places_sorted)
 
 last_updated = datetime.now().strftime('%Y-%m-%d %H:%M')
+_now = datetime.now()
+footer_updated = f"{_now.year}/{_now.month}/{_now.day}({WEEKDAYS_JA[_now.weekday()]}) {_now.strftime('%H:%M')}"
 
 html_content = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -251,6 +256,7 @@ html_content = f"""<!DOCTYPE html>
         </div>
     </main>
     <button id="scrollToTopBtn">ページ上部へ</button>
+    <footer class="site-footer">最終更新: {footer_updated}</footer>
 </body>
 </html>
 """

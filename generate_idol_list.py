@@ -1,4 +1,4 @@
-from utils import write_if_changed, build_char_options_html, esc
+from utils import write_page, build_char_options_html, esc
 import os
 import json
 import pickle
@@ -223,7 +223,7 @@ def generate_html():
     </html>
     '''
 
-    write_if_changed('content/idol_list.html', html_content)
+    write_page('content/idol_list.html', html_content)
 
 if __name__ == "__main__":
     generate_html()

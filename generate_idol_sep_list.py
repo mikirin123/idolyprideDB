@@ -1,4 +1,4 @@
-from utils import write_if_changed, esc
+from utils import write_page, esc
 from db import load_characters
 
 character_order = [
@@ -103,7 +103,7 @@ def generate_html():
 </html>
 """
 
-    write_if_changed('content/idol_sep_list.html', html_content)
+    write_page('content/idol_sep_list.html', html_content)
     print("HTMLファイルが生成されました: キャラ別リスト")
 
 

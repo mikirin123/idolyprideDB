@@ -1,4 +1,4 @@
-from utils import write_if_changed, build_char_options_html, esc
+from utils import write_page, build_char_options_html, esc
 import os
 from db import load_characters
 from collections import defaultdict
@@ -195,7 +195,7 @@ def generate_html():
 </html>'''
 
     os.makedirs('content', exist_ok=True)
-    write_if_changed('content/timeline.html', html_content)
+    write_page('content/timeline.html', html_content)
     print('HTMLファイルが生成されました: リリース履歴')
 
 if __name__ == '__main__':

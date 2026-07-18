@@ -1,7 +1,7 @@
 import csv
 import json
 import os
-from utils import write_if_changed, esc, DEFAULT_PROFILE
+from utils import write_page, esc, DEFAULT_PROFILE
 from db import load_characters
 
 PROFILE_FIELDS = [
@@ -160,7 +160,7 @@ def generate_html():
     <script src="chara_list.js"></script>
 </body>
 </html>'''
-    write_if_changed('content/chara_list.html', list_html)
+    write_page('content/chara_list.html', list_html)
 
     os.makedirs('character', exist_ok=True)
     for name in char_names:
@@ -243,7 +243,7 @@ def generate_html():
     <script src="character.js"></script>
 </body>
 </html>'''
-        write_if_changed(f'character/{name}.html', char_html)
+        write_page(f'character/{name}.html', char_html)
 
 
 if __name__ == '__main__':

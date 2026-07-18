@@ -5,6 +5,9 @@ import json
 from datetime import datetime
 
 
+WEEKDAYS_JA = ['月', '火', '水', '木', '金', '土', '日']
+
+
 def esc(value):
     """CSV由来の文字列をHTMLに埋め込む前にエスケープする。"""
     return html_lib.escape(str(value), quote=True)
@@ -102,6 +105,8 @@ if gohdo_grouped:
 toc_html += '</div></nav>'
 
 last_updated = datetime.now().strftime('%Y-%m-%d %H:%M')
+_now = datetime.now()
+footer_updated = f"{_now.year}/{_now.month}/{_now.day}({WEEKDAYS_JA[_now.weekday()]}) {_now.strftime('%H:%M')}"
 
 html_content = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -191,6 +196,7 @@ html_content += """
     </script>
     <script src="random_pickup.js"></script>
     <script src="tweet_lazyload.js"></script>
+    <footer class="site-footer">最終更新: """ + footer_updated + """</footer>
 </body>
 </html>
 """

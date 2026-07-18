@@ -1,4 +1,4 @@
-from utils import write_if_changed
+from utils import write_page
 import os
 import json
 from db import load_characters
@@ -106,7 +106,7 @@ def generate_html():
 </html>'''
 
     os.makedirs('content', exist_ok=True)
-    write_if_changed('content/compare.html', html_content)
+    write_page('content/compare.html', html_content)
 
 if __name__ == '__main__':
     generate_html()

@@ -5,7 +5,7 @@ import io
 import re
 import urllib.request
 import os
-from utils import write_if_changed, esc, esc_rich
+from utils import write_page, esc, esc_rich
 
 birthdays = [
     {"name": "長瀬琴乃", "birthday": "12-25"},
@@ -517,7 +517,7 @@ def generate_html(update_rows, admin_posts, events_rows):
 <script src="script.js"></script>{tweet_lazyload_script}
 </html>
 '''
-    write_if_changed('index.html', html_content)
+    write_page('index.html', html_content)
 
 
 if __name__ == "__main__":

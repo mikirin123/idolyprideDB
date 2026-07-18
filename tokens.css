@@ -23,3 +23,11 @@
     --space-page-x-mobile: 10px;
     --gap-md: 20px;
 }
+
+/* 各ページ共通のフッター(最終更新日時) */
+.site-footer {
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    padding: 16px 10px 80px;
+}

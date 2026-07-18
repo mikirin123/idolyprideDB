@@ -1,5 +1,5 @@
 import csv
-from utils import write_if_changed, esc
+from utils import write_page, esc
 
 
 def load_songs():
@@ -95,7 +95,7 @@ def generate_html():
 </body>
 </html>'''
 
-    write_if_changed('content/cd_list.html', html_content)
+    write_page('content/cd_list.html', html_content)
 
 
 if __name__ == '__main__':

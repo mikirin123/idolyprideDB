@@ -1,6 +1,6 @@
 import csv
 import os
-from utils import write_if_changed, esc
+from utils import write_page, esc
 
 
 def load_groups():
@@ -81,7 +81,7 @@ def generate_html():
     <script src="group_list.js"></script>
 </body>
 </html>'''
-    write_if_changed('content/group_list.html', list_html)
+    write_page('content/group_list.html', list_html)
 
     os.makedirs('group', exist_ok=True)
     for name, members in groups:
@@ -135,7 +135,7 @@ def generate_html():
     <script src="group.js"></script>
 </body>
 </html>'''
-        write_if_changed(f'group/{name}.html', group_html)
+        write_page(f'group/{name}.html', group_html)
 
 
 if __name__ == '__main__':

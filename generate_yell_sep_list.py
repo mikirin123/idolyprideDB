@@ -1,4 +1,4 @@
-from utils import write_if_changed, esc
+from utils import write_page, esc
 from db import load_characters
 
 # CSVからエール別アイドル情報を取得
@@ -93,7 +93,7 @@ def main():
     """
 
     output_path = "content/yell_sep_list.html"
-    write_if_changed(output_path, html_content)
+    write_page(output_path, html_content)
 
     print("HTMLファイルが生成されました: エール別リスト")
 

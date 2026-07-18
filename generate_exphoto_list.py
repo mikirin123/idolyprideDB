@@ -1,4 +1,4 @@
-from utils import write_if_changed, esc
+from utils import write_page, esc
 import csv
 from collections import defaultdict
 
@@ -120,7 +120,7 @@ def generate_html():
 </html>
 """
 
-    write_if_changed('content/exphoto_list.html', html_content)
+    write_page('content/exphoto_list.html', html_content)
     print("HTMLファイルが生成されました: 専用フォト")
 
 
