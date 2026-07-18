@@ -1,3 +1,14 @@
+function escHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, ch => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]
+    ));
+}
+
+function escHtmlRich(value) {
+    // サークル名など、記入者が<br>改行だけを使っている場合に備えたエスケープ
+    return escHtml(value).replace(/&lt;br&gt;/g, '<br>');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const allItems = window.ALL_TWEET_ITEMS || [];
     const pickupNum = Math.min(5, allItems.length);
@@ -14,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
     selected.forEach(item => {
         const div = document.createElement('div');
         div.className = 'tweet-embed-item';
-        const captionHtml = `<a href="circle-list.html#circle-${item.place}" style="color:#3200FF;text-decoration:underline;" target="_blank">${item.place} ${item.name}</a>（${item.tw_name}）`;
+        const captionHtml = `<a href="circle-list.html#circle-${escHtml(item.place)}" style="color:#3200FF;text-decoration:underline;" target="_blank">${escHtml(item.place)} ${escHtmlRich(item.name)}</a>（${escHtml(item.tw_name)}）`;
         div.innerHTML = `
             <div class="tweet-embed-caption">${captionHtml}</div>
             <blockquote class="twitter-tweet">
-                <a href="https://twitter.com/i/status/${item.tweet_id}"></a>
+                <a href="https://twitter.com/i/status/${escHtml(item.tweet_id)}"></a>
             </blockquote>
         `;
         list.appendChild(div);

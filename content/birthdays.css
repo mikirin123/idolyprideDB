@@ -1,10 +1,11 @@
+@import url('../tokens.css');
+
 /* 全体のスタイル */
 body {
     font-family: 'M PLUS 1p', sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    min-width: 1200px;
     color: #333;
     line-height: 1.6;
 }
@@ -28,20 +29,32 @@ h2::before {
     background-color: #3200FF;
     color: white;
     text-align: left;
-    padding: 15px 30px;
+    padding: 0 var(--space-page-x);
+    height: 56px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-sm);
 }
 
 .banner_title {
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
 }
 
 .banner_title_phone {
     display: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 75%;
 }
 
 .back-button {
@@ -53,7 +66,7 @@ h2::before {
     color: #3200FF;
     padding: 8px 12px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     border: 1px solid #3200FF;
     font-size: 14px;
     transition: background-color 0.3s, color 0.3s;
@@ -75,23 +88,23 @@ h2::before {
     padding: 12px 15px;
     cursor: pointer;
     display: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
     transition: background-color 0.3s;
 }
 
 .content {
-    margin-top: 80px; /* バナーの高さ分のマージン */
     padding: 20px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
     margin-left: auto;
     margin-right: auto;
     width: auto;
 }
 
 .container {
+    margin-top: 76px;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
@@ -103,7 +116,8 @@ table {
     margin-top: 20px;
     width: 0;
     white-space: nowrap;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* テーブルに影を追加 */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     overflow: hidden; /* ボーダー内に収める */
 }
 th {
@@ -149,8 +163,8 @@ a:hover {
     margin-top: 20px; /* バナーの高さ分のマージン */
     padding: 20px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
 
 img {
@@ -178,7 +192,7 @@ img {
     background-color: #3200FF;
     color: white;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -197,7 +211,20 @@ img {
     margin-top: 20px;
     padding: 10px;
     background-color: #f0f0f0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+.birthday-today {
+    font-size: 22px;
+    color: #3200FF;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .birthday-today {
+        font-size: 16px;
+    }
 }
 
 .phone {
@@ -212,21 +239,25 @@ img {
 @media (max-width: 768px) {
     body {
         min-width: 100%;
-        font-size: 14px;
+    font-size: 14px;
+    }
+    .banner {
+        padding: 0 15px;
+        height: 44px;
     }
     .container {
+        margin-top: 60px;
         padding: 0 10px;
     }
     .content {
-        margin-top: 60px;
-        padding: 15px;
+    padding: 15px;
     }
     th, td {
         font-size: 12px;
-        padding: 5px;
+    padding: 5px;
     }
     .icon {
         width: 40px;
-        margin: 0 10px;
+    margin: 0 10px;
     }
 }

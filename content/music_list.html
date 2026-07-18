@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IDOLY PRIDEの楽曲一覧です。グループや歌唱メンバー、作詞作曲編曲でキーワード検索できます。">
+    <meta name="keywords" content="IDOLY PRIDE, 楽曲情報, 曲一覧, データベース">
+    <title>楽曲情報 - IDOLY PRIDE データベース M</title>
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="music_list.css">
+    <link rel="shortcut icon" href="../image/icon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="../image/icon.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
+    <link rel="mask-icon" href="../image/icon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="banner">
+        <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - 楽曲情報</div>
+        <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">楽曲情報</div>
+        <a href="javascript:history.back()" class="back-button">戻る</a>
+    </div>
+    <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span>楽曲情報</nav>
+    <div class="search-bar-container">
+        <div class="search-row">
+            <input type="text" id="search-bar" class="search-bar" placeholder="曲名・作詞・作曲・編曲でキーワード検索">
+        </div>
+        <div id="result-count" class="result-count"></div>
+    </div>
+    <div class="container">
+        <div class="filters">
+            <h2>フィルタ</h2>
+            <div class="filter-section">
+                <h3>グループ</h3>
+                <select id="filter-group">
+                    <option value="">すべて</option>
+
+                </select>
+            </div>
+            <div class="filter-section">
+                <h3>歌唱メンバー</h3>
+                <select id="filter-member">
+                    <option value="">すべて</option>
+
+                </select>
+            </div>
+            <button type="button" class="reset" onclick="resetFilters()">リセット</button>
+        </div>
+        <div class="table-container">
+            <table id="music-table">
+                <thead>
+                    <tr>
+                        <th>表紙</th>
+                        <th>曲名</th>
+                        <th>グループ</th>
+                        <th>歌唱メンバー</th>
+                        <th>作詞</th>
+                        <th>作曲</th>
+                        <th>編曲</th>
+                        <th>リリース日</th>
+                        <th>収録CD</th>
+                        <th>MV</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button id="scrollToTopBtn">ページ上部へ</button>
+    <script src="music_list.js"></script>
+</body>
+</html>

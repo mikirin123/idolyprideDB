@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
+@import url('tokens.css');
+
+/* ===== 共通スタイル ===== */
+
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* バナー */
+.banner {
+    background-color: #3200FF;
+    color: white;
+    text-align: left;
+    padding: 0 30px;
+    height: 56px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.banner_title {
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
+
+.banner_title_phone {
+    display: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 75%;
+}
+
+.back-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #3200FF;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    border: 1px solid #3200FF;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #3200FF;
+    color: white;
+}
+
+/* スクロールトップボタン */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3200FF;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    display: none;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.3s;
+}
+
+#scrollToTopBtn:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* パンくずナビ */
+.breadcrumb {
+    font-size: 12px;
+    color: #888;
+    padding: 8px 16px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    margin-top: 60px;
+}
+.breadcrumb a {
+    color: #3200FF;
+    text-decoration: none;
+}
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 4px; color: #bbb; }
+
+@media (max-width: 768px) {
+    .breadcrumb { margin-top: 48px; font-size: 11px; padding: 6px 12px; }
+}
+
+/* フィルタ中インジケーター */
+.filter-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px var(--space-page-x) 0;
+    padding: 8px 14px;
+    background: #fff8e1;
+    border: 1px solid #ffc107;
+    border-radius: var(--radius-sm);
+    color: #7a5800;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.filter-status-reset {
+    margin-left: auto;
+    background: none;
+    border: 1px solid #cc9900;
+    color: #7a5800;
+    border-radius: var(--radius-sm);
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filter-status-reset:hover {
+    background: #ffc107;
+    color: #4a3600;
+}
+
+/* モバイル共通 */
+@media (max-width: 768px) {
+    .banner {
+        padding: 0 15px;
+        height: 44px;
+        font-size: 14px;
+    }
+
+    .banner_title {
+        display: none;
+    }
+
+    .banner_title_phone {
+        display: block;
+    }
+
+    .back-button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}

@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const bannerTitle = document.querySelector('.banner_title');
     bannerTitle.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        location.href = '../index.html';
     });
 
     // スクロールトップボタンの追加
@@ -138,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const calculateTotalExp = (currentLevel, targetLevel, idolCount) => {
                     let totalExp = 0;
                     for (let i = currentLevel; i < targetLevel; i++) {
-                        const row = rows[i - 1]; // レベルに対応する行を取得 (インデックスは0ベース)
+                        const row = rows[i]; // レベルに対応する行を取得 (インデックスは0ベース)
                         if (row) {
                             const exp = parseInt(row.split(',')[1], 10); // 必要経験値を取得
                             if (!isNaN(exp)) {

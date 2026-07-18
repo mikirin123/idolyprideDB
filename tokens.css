@@ -1,0 +1,25 @@
+/* ===== 共通デザイントークン =====
+   全ページで角丸・余白・影の基準値を統一するための変数。
+   値を変える場合はこのファイルだけ直せば全ページに反映される。 */
+:root {
+    --color-primary: #3200FF;
+    --color-primary-dark: #1a0080;
+    --color-text: #333;
+    --color-bg: #f0f0f0;
+    --color-border: #ddd;
+
+    /* 角丸: 小要素(ボタン/入力/バッジ) / 大要素(カード/パネル/テーブル/ポップアップ) / 円形 */
+    --radius-sm: 6px;
+    --radius-lg: 10px;
+    --radius-full: 50%;
+
+    /* 影 */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    /* 余白 */
+    --space-page-x: 30px;
+    --space-page-x-mobile: 10px;
+    --gap-md: 20px;
+}

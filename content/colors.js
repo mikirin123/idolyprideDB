@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
     bannerTitle.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        location.href = '../index.html';
     });
 
     window.addEventListener('scroll', () => {

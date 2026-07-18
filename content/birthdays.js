@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const bannerTitle = document.querySelector('.banner_title');
-    bannerTitle.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    bannerTitle.addEventListener('click', () => { location.href = '../index.html'; });
 
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     window.addEventListener('scroll', () => {

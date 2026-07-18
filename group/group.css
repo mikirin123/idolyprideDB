@@ -1,0 +1,107 @@
+@import url('../tokens.css');
+
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px var(--space-page-x-mobile) 30px;
+}
+
+.group-name {
+    color: #3200FF;
+    font-size: 24px;
+    text-align: center;
+    margin: 10px 0 20px;
+}
+
+.char-section {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+.mokuji {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #3200FF;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 12px;
+}
+.mokuji::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background-color: #3200FF;
+    margin-left: 10px;
+}
+
+.idol-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.idol-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90px;
+    padding: 8px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: #3200FF;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.idol-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+.idol-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--radius-full);
+    margin-bottom: 4px;
+    border: 2px solid #3200FF;
+    background: #fff;
+}
+.idol-item span {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.song-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.song-list li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 14px;
+}
+.song-list li:last-child { border-bottom: none; }
+.song-list a {
+    color: #3200FF;
+    text-decoration: none;
+}
+.song-list a:hover { text-decoration: underline; }
+
+@media screen and (max-width: 768px) {
+    .container { padding: 16px 10px 20px; }
+    .char-section { padding: 14px; }
+    .idol-item { width: 76px; }
+    .idol-item img { width: 50px; height: 50px; }
+}

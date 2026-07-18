@@ -130,8 +130,12 @@ function resetFilters() {
 }
 
 // ==========================
-// スクロールトップボタンの表示制御
+// スクロールトップボタン
 // ==========================
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 window.onscroll = function() {
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -142,16 +146,6 @@ window.onscroll = function() {
         scrollToTopBtn.style.display = "none";
     }
 };
-
-// ==========================
-// スクロールトップボタンのクリックイベント
-// ==========================
-document.getElementById('scrollToTopBtn').addEventListener('click', function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
 
 // ==========================
 // ページ読み込み時の初期化処理
@@ -182,13 +176,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.menu-content a').forEach(item => {
         item.addEventListener('click', function() {
-            const menuName = this.innerText;
+            const menuName = this.innerText.trim();
             popupHeader.innerText = menuName; // ポップアップのヘッダーにタイトルを設定
             if (menuName === '') {
                 popupContent.innerHTML = '';
                 popup.style.display = 'block';
                 popupOverlay.style.display = 'block';
-            } else if (menuName === ' このサイトについて') {
+            } else if (menuName === 'このサイトについて') {
                 popupContent.innerHTML = '● 作成者<br>miki<br><br>● 推薦環境<br>chrome(最新版)<br>Safari (Mac・iOS最新版)<br>Firefox (最新版)<br><br>改善要望・不具合報告は<br><a href="https://x.com/miki_aipr" class="about_link">twitter</a>または<a href="https://forms.gle/gM8HjG6Hzq4YxCmh9" class="about_link">Googleフォーム</a>までお願いします。';
                 popup.style.display = 'block';
                 popupOverlay.style.display = 'block';
@@ -197,9 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ポップアップの設定
-    const popupOverlay = document.createElement('div');
-    popupOverlay.classList.add('popup-overlay');
-    document.body.appendChild(popupOverlay);
+    const popupOverlay = document.querySelector('.popup-overlay');
 
     function closePopup() {
         popup.style.animation = 'fadeOut 0.3s ease-in-out';

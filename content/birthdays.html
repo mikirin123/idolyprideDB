@@ -51,7 +51,15 @@
 
                     const today = new Date();
                     const currentYear = today.getFullYear();
-                    const todayString = today.toISOString().slice(5, 10);
+                    const pad = n => String(n).padStart(2, '0');
+                    const todayString = `${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+                    const todayBirthday = birthdays.find(b => b.date === todayString);
+                    if (todayBirthday) {
+                        const celebrationText = `<a href="../character/${todayBirthday.name}.html"><span class="birthday-today">今日は${todayBirthday.name}の誕生日</span><br><img src="../image/circle_icon/${todayBirthday.name}.webp" class="icon" alt="${todayBirthday.name}"></a>`;
+                        document.getElementById("upcomingBirthday").innerHTML = celebrationText;
+                        return;
+                    }
 
                     birthdays.forEach(b => {
                         b.fullDate = new Date(`${currentYear}-${b.date}`);
@@ -63,7 +71,7 @@
                     birthdays.sort((a, b) => a.fullDate - b.fullDate);
 
                     const upcoming = birthdays[0];
-                    const upcomingText = `次の誕生日<br><img src="../image/circle_icon/${upcoming.name}.webp" class="icon"> ${upcoming.name} ${parseInt(upcoming.date.split('-')[0])}月${parseInt(upcoming.date.split('-')[1])}日`;
+                    const upcomingText = `次の誕生日<br><a href="../character/${upcoming.name}.html"><img src="../image/circle_icon/${upcoming.name}.webp" class="icon" alt="${upcoming.name}"> ${upcoming.name} ${parseInt(upcoming.date.split('-')[0])}月${parseInt(upcoming.date.split('-')[1])}日</a>`;
                     document.getElementById("upcomingBirthday").innerHTML = upcomingText;
                 }
 
@@ -74,48 +82,48 @@
                     <table id="birthday_table_p">
                         <tr>
                             <th class="set">1月<br><span style="font-size: 12px; font-weight: normal;">January</span></th>
-                            <td><img src="../image/circle_icon/佐伯遙子.webp" class="icon"><br>3日<br><span style="font-size: 12px;">山羊座</span></td>
-                            <td><img src="../image/circle_icon/miho.webp" class="icon"><br>25日<br><span style="font-size: 12px;">水瓶座</span></td>
+                            <td><a href="../character/佐伯遙子.html"><img src="../image/circle_icon/佐伯遙子.webp" class="icon" alt="佐伯遙子"></a><br>3日<br><span style="font-size: 12px;">山羊座</span></td>
+                            <td><a href="../character/miho.html"><img src="../image/circle_icon/miho.webp" class="icon" alt="miho"></a><br>25日<br><span style="font-size: 12px;">水瓶座</span></td>
                             <th class="set">7月<br><span style="font-size: 12px; font-weight: normal;">July</span></th>
-                            <td colspan="2"><img src="../image/circle_icon/早坂芽衣.webp" class="icon"><br>7日<br><span style="font-size: 12px;">蟹座</span></td>
+                            <td colspan="2"><a href="../character/早坂芽衣.html"><img src="../image/circle_icon/早坂芽衣.webp" class="icon" alt="早坂芽衣"></a><br>7日<br><span style="font-size: 12px;">蟹座</span></td>
                         </tr>
                         <tr>
                             <th>2月<br><span style="font-size: 12px; font-weight: normal;">February</span></th>
-                            <td><img src="../image/circle_icon/小美山愛.webp" class="icon"><br>9日<br><span style="font-size: 12px;">水瓶座</span></td>
-                            <td><img src="../image/circle_icon/鈴村優.webp" class="icon"><br>27日<br><span style="font-size: 12px;">魚座</span></td>
+                            <td><a href="../character/小美山愛.html"><img src="../image/circle_icon/小美山愛.webp" class="icon" alt="小美山愛"></a><br>9日<br><span style="font-size: 12px;">水瓶座</span></td>
+                            <td><a href="../character/鈴村優.html"><img src="../image/circle_icon/鈴村優.webp" class="icon" alt="鈴村優"></a><br>27日<br><span style="font-size: 12px;">魚座</span></td>
                             <th>8月<br><span style="font-size: 12px; font-weight: normal;">August</span></th>
-                            <td><img src="../image/circle_icon/伊吹渚.webp" class="icon"><br>3日<br><span style="font-size: 12px;">獅子座</span></td>
-                            <td><img src="../image/circle_icon/神崎莉央.webp" class="icon"><br>28日<br><span style="font-size: 12px;">乙女座</span></td>
+                            <td><a href="../character/伊吹渚.html"><img src="../image/circle_icon/伊吹渚.webp" class="icon" alt="伊吹渚"></a><br>3日<br><span style="font-size: 12px;">獅子座</span></td>
+                            <td><a href="../character/神崎莉央.html"><img src="../image/circle_icon/神崎莉央.webp" class="icon" alt="神崎莉央"></a><br>28日<br><span style="font-size: 12px;">乙女座</span></td>
                         </tr>
                         <tr>
                             <th>3月<br><span style="font-size: 12px; font-weight: normal;">March</span></th>
-                            <td colspan="2"><img src="../image/circle_icon/一ノ瀬怜.webp" class="icon"><br>8日<br><span style="font-size: 12px;">魚座</span></td>
+                            <td colspan="2"><a href="../character/一ノ瀬怜.html"><img src="../image/circle_icon/一ノ瀬怜.webp" class="icon" alt="一ノ瀬怜"></a><br>8日<br><span style="font-size: 12px;">魚座</span></td>
                             <th>9月<br><span style="font-size: 12px; font-weight: normal;">September</span></th>
-                            <td><img src="../image/circle_icon/成宮すず.webp" class="icon"><br>13日<br><span style="font-size: 12px;">乙女座</span></td>
-                            <td><img src="../image/circle_icon/白石沙季.webp" class="icon"><br>26日<br><span style="font-size: 12px;">天秤座</span></td>
+                            <td><a href="../character/成宮すず.html"><img src="../image/circle_icon/成宮すず.webp" class="icon" alt="成宮すず"></a><br>13日<br><span style="font-size: 12px;">乙女座</span></td>
+                            <td><a href="../character/白石沙季.html"><img src="../image/circle_icon/白石沙季.webp" class="icon" alt="白石沙季"></a><br>26日<br><span style="font-size: 12px;">天秤座</span></td>
                         </tr>
                         <tr>
                             <th>4月<br><span style="font-size: 12px; font-weight: normal;">April</span></th>
-                            <td><img src="../image/circle_icon/川咲さくら.webp" class="icon"><br>3日<br><span style="font-size: 12px;">牡羊座</span></td>
-                            <td><img src="../image/circle_icon/kana.webp" class="icon"><br>10日<br><span style="font-size: 12px;">牡羊座</span></td>
+                            <td><a href="../character/川咲さくら.html"><img src="../image/circle_icon/川咲さくら.webp" class="icon" alt="川咲さくら"></a><br>3日<br><span style="font-size: 12px;">牡羊座</span></td>
+                            <td><a href="../character/kana.html"><img src="../image/circle_icon/kana.webp" class="icon" alt="kana"></a><br>10日<br><span style="font-size: 12px;">牡羊座</span></td>
                             <th>10月<br><span style="font-size: 12px; font-weight: normal;">October</span></th>
-                            <td><img src="../image/circle_icon/長瀬麻奈.webp" class="icon"><br>9日<br><span style="font-size: 12px;">天秤座</span></td>
-                            <td><img src="../image/circle_icon/兵藤雫.webp" class="icon"><br>15日<br><span style="font-size: 12px;">天秤座</span></td>
+                            <td><a href="../character/長瀬麻奈.html"><img src="../image/circle_icon/長瀬麻奈.webp" class="icon" alt="長瀬麻奈"></a><br>9日<br><span style="font-size: 12px;">天秤座</span></td>
+                            <td><a href="../character/兵藤雫.html"><img src="../image/circle_icon/兵藤雫.webp" class="icon" alt="兵藤雫"></a><br>15日<br><span style="font-size: 12px;">天秤座</span></td>
                         </tr>
                         <tr>
                             <th>5月<br><span style="font-size: 12px; font-weight: normal;">May</span></th>
-                            <td colspan="2"><img src="../image/circle_icon/奥山すみれ.webp" class="icon"><br>5日<br><span style="font-size: 12px;">牡牛座</span></td>
+                            <td colspan="2"><a href="../character/奥山すみれ.html"><img src="../image/circle_icon/奥山すみれ.webp" class="icon" alt="奥山すみれ"></a><br>5日<br><span style="font-size: 12px;">牡牛座</span></td>
                             <th>11月<br><span style="font-size: 12px; font-weight: normal;">November</span></th>
-                            <td><img src="../image/circle_icon/天動瑠依.webp" class="icon"><br>11日<br><span style="font-size: 12px;">蠍座</span></td>
-                            <td><img src="../image/circle_icon/白石千紗.webp" class="icon"><br>22日<br><span style="font-size: 12px;">射手座</span></td>
+                            <td><a href="../character/天動瑠依.html"><img src="../image/circle_icon/天動瑠依.webp" class="icon" alt="天動瑠依"></a><br>11日<br><span style="font-size: 12px;">蠍座</span></td>
+                            <td><a href="../character/白石千紗.html"><img src="../image/circle_icon/白石千紗.webp" class="icon" alt="白石千紗"></a><br>22日<br><span style="font-size: 12px;">射手座</span></td>
                         </tr>
                         <tr>
                             <th>6月<br><span style="font-size: 12px; font-weight: normal;">June</span></th>
-                            <td><img src="../image/circle_icon/fran.webp" class="icon"><br>11日<br><span style="font-size: 12px;">双子座</span></td>
-                            <td><img src="../image/circle_icon/井川葵.webp" class="icon"><br>19日<br><span style="font-size: 12px;">双子座</span></td>
+                            <td><a href="../character/fran.html"><img src="../image/circle_icon/fran.webp" class="icon" alt="fran"></a><br>11日<br><span style="font-size: 12px;">双子座</span></td>
+                            <td><a href="../character/井川葵.html"><img src="../image/circle_icon/井川葵.webp" class="icon" alt="井川葵"></a><br>19日<br><span style="font-size: 12px;">双子座</span></td>
                             <th>12月<br><span style="font-size: 12px; font-weight: normal;">December</span></th>
-                            <td><img src="../image/circle_icon/赤崎こころ.webp" class="icon"><br>6日<br><span style="font-size: 12px;">射手座</span></td>
-                            <td><img src="../image/circle_icon/長瀬琴乃.webp" class="icon"><br>25日<br><span style="font-size: 12px;">山羊座</span></td>
+                            <td><a href="../character/赤崎こころ.html"><img src="../image/circle_icon/赤崎こころ.webp" class="icon" alt="赤崎こころ"></a><br>6日<br><span style="font-size: 12px;">射手座</span></td>
+                            <td><a href="../character/長瀬琴乃.html"><img src="../image/circle_icon/長瀬琴乃.webp" class="icon" alt="長瀬琴乃"></a><br>25日<br><span style="font-size: 12px;">山羊座</span></td>
                         </tr>
                     </table>
                     <button onclick="saveTableAsImage('birthday_table_p')" class="save">画像として保存</button>
@@ -128,15 +136,15 @@
                             <th class="set" colspan="2">2月<br><span style="font-size: 12px; font-weight: normal;">February</span></th>
                             <th class="set" colspan="2">3月<br><span style="font-size: 12px; font-weight: normal;">March</span></th>
                             <th class="set" colspan="2">4月<br><span style="font-size: 12px; font-weight: normal;">April</span></th>
-                        </th>
+                        </tr>
                         <tr>
-                            <td><img src="../image/circle_icon/佐伯遙子.webp" class="icon"><br>3日<br><span style="font-size: 12px;">山羊座</span></td>
-                            <td><img src="../image/circle_icon/miho.webp" class="icon"><br>25日<br><span style="font-size: 12px;">水瓶座</span></td>
-                            <td><img src="../image/circle_icon/小美山愛.webp" class="icon"><br>9日<br><span style="font-size: 12px;">水瓶座</span></td>
-                            <td><img src="../image/circle_icon/鈴村優.webp" class="icon"><br>27日<br><span style="font-size: 12px;">魚座</span></td>
-                            <td colspan="2"><img src="../image/circle_icon/一ノ瀬怜.webp" class="icon"><br>8日<br><span style="font-size: 12px;">魚座</span></td>
-                            <td><img src="../image/circle_icon/川咲さくら.webp" class="icon"><br>3日<br><span style="font-size: 12px;">牡羊座</span></td>
-                            <td><img src="../image/circle_icon/kana.webp" class="icon"><br>10日<br><span style="font-size: 12px;">牡羊座</span></td>
+                            <td><a href="../character/佐伯遙子.html"><img src="../image/circle_icon/佐伯遙子.webp" class="icon" alt="佐伯遙子"></a><br>3日<br><span style="font-size: 12px;">山羊座</span></td>
+                            <td><a href="../character/miho.html"><img src="../image/circle_icon/miho.webp" class="icon" alt="miho"></a><br>25日<br><span style="font-size: 12px;">水瓶座</span></td>
+                            <td><a href="../character/小美山愛.html"><img src="../image/circle_icon/小美山愛.webp" class="icon" alt="小美山愛"></a><br>9日<br><span style="font-size: 12px;">水瓶座</span></td>
+                            <td><a href="../character/鈴村優.html"><img src="../image/circle_icon/鈴村優.webp" class="icon" alt="鈴村優"></a><br>27日<br><span style="font-size: 12px;">魚座</span></td>
+                            <td colspan="2"><a href="../character/一ノ瀬怜.html"><img src="../image/circle_icon/一ノ瀬怜.webp" class="icon" alt="一ノ瀬怜"></a><br>8日<br><span style="font-size: 12px;">魚座</span></td>
+                            <td><a href="../character/川咲さくら.html"><img src="../image/circle_icon/川咲さくら.webp" class="icon" alt="川咲さくら"></a><br>3日<br><span style="font-size: 12px;">牡羊座</span></td>
+                            <td><a href="../character/kana.html"><img src="../image/circle_icon/kana.webp" class="icon" alt="kana"></a><br>10日<br><span style="font-size: 12px;">牡羊座</span></td>
                         </tr>
                         <tr>
                             <th class="set" colspan="2">5月<br><span style="font-size: 12px; font-weight: normal;">May</span></th>
@@ -145,12 +153,12 @@
                             <th class="set" colspan="2">8月<br><span style="font-size: 12px; font-weight: normal;">August</span></th>
                         </tr>
                         <tr>
-                            <td colspan="2"><img src="../image/circle_icon/奥山すみれ.webp" class="icon"><br>5日<br><span style="font-size: 12px;">牡牛座</span></td>
-                            <td><img src="../image/circle_icon/fran.webp" class="icon"><br>11日<br><span style="font-size: 12px;">双子座</span></td>
-                            <td><img src="../image/circle_icon/井川葵.webp" class="icon"><br>19日<br><span style="font-size: 12px;">双子座</span></td>
-                            <td colspan="2"><img src="../image/circle_icon/早坂芽衣.webp" class="icon"><br>7日<br><span style="font-size: 12px;">蟹座</span></td>
-                            <td><img src="../image/circle_icon/伊吹渚.webp" class="icon"><br>3日<br><span style="font-size: 12px;">獅子座</span></td>
-                            <td><img src="../image/circle_icon/神崎莉央.webp" class="icon"><br>28日<br><span style="font-size: 12px;">乙女座</span></td>
+                            <td colspan="2"><a href="../character/奥山すみれ.html"><img src="../image/circle_icon/奥山すみれ.webp" class="icon" alt="奥山すみれ"></a><br>5日<br><span style="font-size: 12px;">牡牛座</span></td>
+                            <td><a href="../character/fran.html"><img src="../image/circle_icon/fran.webp" class="icon" alt="fran"></a><br>11日<br><span style="font-size: 12px;">双子座</span></td>
+                            <td><a href="../character/井川葵.html"><img src="../image/circle_icon/井川葵.webp" class="icon" alt="井川葵"></a><br>19日<br><span style="font-size: 12px;">双子座</span></td>
+                            <td colspan="2"><a href="../character/早坂芽衣.html"><img src="../image/circle_icon/早坂芽衣.webp" class="icon" alt="早坂芽衣"></a><br>7日<br><span style="font-size: 12px;">蟹座</span></td>
+                            <td><a href="../character/伊吹渚.html"><img src="../image/circle_icon/伊吹渚.webp" class="icon" alt="伊吹渚"></a><br>3日<br><span style="font-size: 12px;">獅子座</span></td>
+                            <td><a href="../character/神崎莉央.html"><img src="../image/circle_icon/神崎莉央.webp" class="icon" alt="神崎莉央"></a><br>28日<br><span style="font-size: 12px;">乙女座</span></td>
 
                         </tr>
                         <tr>
@@ -160,20 +168,20 @@
                             <th class="set" colspan="2">12月<br><span style="font-size: 12px; font-weight: normal;">December</span></th>
                         </tr>
                         <tr>
-                            <td><img src="../image/circle_icon/成宮すず.webp" class="icon"><br>13日<br><span style="font-size: 12px;">乙女座</span></td>
-                            <td><img src="../image/circle_icon/白石沙季.webp" class="icon"><br>26日<br><span style="font-size: 12px;">天秤座</span></td>
-                            <td><img src="../image/circle_icon/長瀬麻奈.webp" class="icon"><br>9日<br><span style="font-size: 12px;">天秤座</span></td>
-                            <td><img src="../image/circle_icon/兵藤雫.webp" class="icon"><br>15日<br><span style="font-size: 12px;">天秤座</span></td>
-                            <td><img src="../image/circle_icon/天動瑠依.webp" class="icon"><br>11日<br><span style="font-size: 12px;">蠍座</span></td>
-                            <td><img src="../image/circle_icon/白石千紗.webp" class="icon"><br>22日<br><span style="font-size: 12px;">射手座</span></td>
-                            <td><img src="../image/circle_icon/赤崎こころ.webp" class="icon"><br>6日<br><span style="font-size: 12px;">射手座</span></td>
-                            <td><img src="../image/circle_icon/長瀬琴乃.webp" class="icon"><br>25日<br><span style="font-size: 12px;">山羊座</span></td>
+                            <td><a href="../character/成宮すず.html"><img src="../image/circle_icon/成宮すず.webp" class="icon" alt="成宮すず"></a><br>13日<br><span style="font-size: 12px;">乙女座</span></td>
+                            <td><a href="../character/白石沙季.html"><img src="../image/circle_icon/白石沙季.webp" class="icon" alt="白石沙季"></a><br>26日<br><span style="font-size: 12px;">天秤座</span></td>
+                            <td><a href="../character/長瀬麻奈.html"><img src="../image/circle_icon/長瀬麻奈.webp" class="icon" alt="長瀬麻奈"></a><br>9日<br><span style="font-size: 12px;">天秤座</span></td>
+                            <td><a href="../character/兵藤雫.html"><img src="../image/circle_icon/兵藤雫.webp" class="icon" alt="兵藤雫"></a><br>15日<br><span style="font-size: 12px;">天秤座</span></td>
+                            <td><a href="../character/天動瑠依.html"><img src="../image/circle_icon/天動瑠依.webp" class="icon" alt="天動瑠依"></a><br>11日<br><span style="font-size: 12px;">蠍座</span></td>
+                            <td><a href="../character/白石千紗.html"><img src="../image/circle_icon/白石千紗.webp" class="icon" alt="白石千紗"></a><br>22日<br><span style="font-size: 12px;">射手座</span></td>
+                            <td><a href="../character/赤崎こころ.html"><img src="../image/circle_icon/赤崎こころ.webp" class="icon" alt="赤崎こころ"></a><br>6日<br><span style="font-size: 12px;">射手座</span></td>
+                            <td><a href="../character/長瀬琴乃.html"><img src="../image/circle_icon/長瀬琴乃.webp" class="icon" alt="長瀬琴乃"></a><br>25日<br><span style="font-size: 12px;">山羊座</span></td>
                         </tr>
                     </table>       
                     <button onclick="saveTableAsImage('birthday_table')" class="save">画像として保存</button>              
                 </div>
         </div>
     </div>
-    <button id="scrollToTopBtn" onclick="scrollToTop()">ページ上部へ</button>
+    <button id="scrollToTopBtn">ページ上部へ</button>
 </body>
 </html>

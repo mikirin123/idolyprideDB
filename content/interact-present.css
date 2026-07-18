@@ -1,10 +1,11 @@
+@import url('../tokens.css');
+
 /* 全体のスタイル */
 body {
     font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    min-width: 1200px;
     color: #333;
     line-height: 1.6;
 }
@@ -33,22 +34,34 @@ h2::before {
     background-color: #3200FF;
     color: white;
     text-align: left;
-    padding: 15px 30px;
+    padding: 0 var(--space-page-x);
+    height: 56px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
     font-size: 18px;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-sm);
 }
 
 .banner_title {
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
 }
 
 .banner_title_phone {
     display: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 75%;
 }
 
 .back-button {
@@ -60,7 +73,7 @@ h2::before {
     color: #3200FF;
     padding: 8px 12px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     border: 1px solid #3200FF;
     font-size: 14px;
     transition: background-color 0.3s, color 0.3s;
@@ -82,23 +95,23 @@ h2::before {
     padding: 12px 15px;
     cursor: pointer;
     display: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
     transition: background-color 0.3s;
 }
 
 .content {
     padding: 20px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
     margin-left: auto;
     margin-right: auto;
     width: auto;
 }
 
 .container {
-    margin-top: 70px; /* バナーの高さ分のマージン */
+    margin-top: 76px;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
@@ -149,8 +162,8 @@ a:hover {
 .table-container {
     padding: 20px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
 
 img {
@@ -178,7 +191,7 @@ img {
     background-color: #3200FF;
     color: white;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -198,8 +211,11 @@ img {
 
     .banner {
         text-align: left;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        height: 44px;
+    }
+
+    .container {
+        margin-top: 60px;
     }
 
     .back-button {
@@ -208,9 +224,9 @@ img {
 
     #scrollToTopBtn {
         display: none;
-        bottom: 10px;
-        right: 10px;
-        padding: 5px 10px;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 10px;
     }
 
     .banner_title {
@@ -223,19 +239,19 @@ img {
 
     h2 {
         font-size: 14px;
-        margin-top: 5px;
-        margin-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     }
 
     table {
         width: 100%;
-        margin-top: 5px;
+    margin-top: 5px;
     }
 
     th, td {
         font-size: 12px;
-        padding: 4px;
-        text-align: center; /* アイコンを中央揃え */
+    padding: 4px;
+    text-align: center; /* アイコンを中央揃え */
         vertical-align: middle; /* 垂直方向も中央揃え */
     }
 
@@ -246,7 +262,7 @@ img {
 
     p {
         font-size: 12px;
-        margin: 5px 0;
+    margin: 5px 0;
     }
 
     .icon {
@@ -259,8 +275,8 @@ img {
 
     .save {
         margin-top: 5px;
-        font-size: 10px;
-        padding: 5px 10px;
+    font-size: 10px;
+    padding: 5px 10px;
     }
 
     .content {

@@ -1,0 +1,90 @@
+@import url('../tokens.css');
+
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    padding: 20px var(--space-page-x) 30px;
+}
+
+.cd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--gap-md);
+}
+
+.cd-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    scroll-margin-top: 90px;
+}
+
+.cd-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    background: #f0f0f0;
+}
+
+.cd-body {
+    padding: 14px 16px;
+}
+
+.cd-name {
+    margin: 0 0 6px;
+    font-size: 16px;
+    color: #3200FF;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.cd-type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+    background-color: #7ac96a;
+    color: #fff;
+}
+.cd-type-アルバム { background-color: #3ABAFF; }
+.cd-type-シングル { background-color: #FF469D; }
+
+.cd-comment {
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+.cd-tracklist {
+    list-style: decimal;
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+}
+.cd-tracklist li { padding: 2px 0; }
+.cd-tracklist a {
+    color: #3200FF;
+    text-decoration: none;
+}
+.cd-tracklist a:hover { text-decoration: underline; }
+
+@media screen and (max-width: 768px) {
+    .container { padding: 16px var(--space-page-x-mobile) 20px; }
+    .cd-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .cd-body { padding: 10px 12px; }
+    .cd-name { font-size: 14px; }
+}

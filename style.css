@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
+@import url('tokens.css');
+
 /* ==========================
    基本設定
    ========================== */
@@ -6,7 +9,6 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    min-width: 1200px;
     color: #333;
 }
 
@@ -37,14 +39,18 @@ h3 {
     background-color: #3200FF;
     color: white;
     text-align: left;
-    padding: 15px 30px;
+    padding: 0 var(--space-page-x);
+    height: 56px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
     font-size: 18px;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
 }
 
 .banner .menu {
@@ -58,11 +64,15 @@ h3 {
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
 }
 
 .banner_title {
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
 }
 
 .menu-content {
@@ -74,151 +84,28 @@ h3 {
     color: black;
     border: 1px solid #ddd;
     z-index: 1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
     font-size: 15px;
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: var(--radius-sm);
 }
 
 .menu-content a {
     display: block;
     padding: 10px 20px 10px 15px;
     text-decoration: none;
-    color: black;
+    color: #3200FF;
     font-size: 1em;
 }
 
 .menu-content a:hover {
     background-color: #f1f1f1;
-    border-radius: 7px;
+    border-radius: var(--radius-sm);
 }
 
 .menu-content {
     border-top: 1px solid #ddd;
     margin: 5px 0;
-}
-
-.separator {
-    border-top: 1px solid #ddd;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 30px;
-    padding-top: 10px;
-}
-
-/* ==========================
-   フィルタセクション
-   ========================== */
-.filters {
-    width: 20%;
-    padding: 5px 15px 15px 15px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    margin-right: 20px;
-    font-size: 14px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.filters select,
-.filters input[type="text"],
-.filters input[type="checkbox"],
-.filters input[type="radio"] {
-    font-size: 14px;
-    width: auto;
-    accent-color: #3200FF;
-    vertical-align: middle;
-    margin: 5px 0;
-}
-
-.filters input[type="checkbox"],
-.filters input[type="radio"] {
-    margin-right: 3px;
-}
-
-.filters button[type="button"] {
-    background-color: #3200FF;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 1em;
-    border-radius: 5px;
-}
-
-.filters button[type="button"]:hover {
-    background-color: #1a0080;
-}
-
-.filters button[type="button"].reset {
-    background-color: gray;
-    color: white;
-}
-
-.filters button[type="button"].reset:hover {
-    background-color: darkgray;
-}
-
-.filters .possession-filter {
-    margin-top: 10px;
-}
-
-.filters label[for="sort-id"] {
-    display: block;
-    margin-top: 10px;
-}
-
-.filters .sort-order {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.filters .sort-order label {
-    margin-right: 10px;
-}
-
-/* ==========================
-   テーブルセクション
-   ========================== */
-.table-container {
-    width: 75%;
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    text-align: center;
-    font-family: 'M PLUS\ 1p','Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue','sans-serif';
-}
-
-th, td {
-    border: 2px solid #ddd;
-    padding: 8px;
-    white-space: nowrap;
-    font-size: 14px;
-}
-
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.hidden {
-    display: none;
 }
 
 #scrollToTopBtn {
@@ -231,11 +118,11 @@ tr:nth-child(even) {
     padding: 10px 20px;
     cursor: pointer;
     display: none;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
 }
 
 #scrollToTopBtn:hover {
-    background-color: #1a0080;
+    background-color: var(--color-primary-dark);
 }
 
 h2 {
@@ -267,12 +154,12 @@ h2::before {
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    z-index: 2;
+    z-index: 1002;
     width: 500px;
     max-height: 70%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-lg);
     padding-bottom: 20px;
-    border-radius: 15px;
+    border-radius: var(--radius-lg);
     overflow-y: auto;
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -287,10 +174,10 @@ h2::before {
     padding: 20px;
     font-size: 1.5em;
     text-align: center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
 }
 
 .popup-content {
@@ -311,13 +198,13 @@ h2::before {
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     font-size: 1em;
     transition: background-color 0.3s ease;
 }
 
 .popup-close:hover {
-    background-color: #1a0080;
+    background-color: var(--color-primary-dark);
 }
 
 .popup-overlay {
@@ -327,24 +214,25 @@ h2::before {
     left: 0;
     width: 100%;
     height: 100%;
+    height: 100dvh;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1;
+    z-index: 1001;
     animation: fadeIn 0.3s ease-in-out;
 }
 
 .menuu-container {
     display: flex;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-top: 70px;
+    padding-left: var(--space-page-x);
+    padding-right: var(--space-page-x);
+    margin-top: 76px;
     margin-bottom: 5px;
 }
 
 .item {
     background: white;
     padding: 18px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     transition: all 0.3s ease; /* スムーズなアニメーション */
 }
 
@@ -354,15 +242,21 @@ h2::before {
 }
 
 
-.news {
+.sidebar {
     flex: 1;
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.news {
     background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     overflow-y: auto;
     display: grid;
-    max-height:250px
+    max-height: 250px;
 }
 
 .menuu {
@@ -419,12 +313,74 @@ ul {
     margin: 0px 10px;
 }
 
-.news li {
+.news li:not(.admin-post-item):not(.event-li) {
     text-align: right;
     font-size: 11px;
     color: #999;
     margin-right: 10px;
     padding-top: 10px;
+}
+
+.event-item {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.event-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.event-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.event-badge-regular { background-color: #888; }
+.event-badge-gacha { background-color: #ff6b9d; }
+.event-badge-event { background-color: #3200FF; }
+.event-badge-mission { background-color: #4caf50; }
+.event-badge-job { background-color: #FFA900; }
+.event-badge-other { background-color: #607d8b; }
+
+.event-period {
+    font-size: 11px;
+    color: #999;
+    white-space: nowrap;
+}
+
+.event-name {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+    text-align: left;
+}
+
+.event-desc {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #777;
+    text-align: left;
+    margin-top: 2px;
+}
+
+.event-empty {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    padding: 14px 10px;
 }
 
 .news-head {
@@ -435,9 +391,12 @@ ul {
     padding: 7px 10px 7px 15px;
     font-size: 14px;
     text-align: left;
-    border-top-left-radius: 10px;
+    border-top-left-radius: var(--radius-lg);
     font-weight: bold;
     margin-top: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .news-head::before {
@@ -454,66 +413,69 @@ ul {
     color: #3200FF;
 }
 
-.event {
-    flex: 1;
-    margin-left: 20px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    overflow-y: auto;
-    display: grid;
-    max-height:250px;
+.admin-post-item {
+    padding: 7px 10px;
+    border-bottom: 1px solid #f5f5f5;
 }
 
-.event p {
-    margin: 0px 10px;
-    padding: 10px;
-    font-size: 14px;
-    line-height: 1.5;
+.admin-post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.event-detail {
-    font-size: 10px;
-    color: #999;
+.admin-posts-news {
+    max-height: 560px;
 }
 
-.event hr {
-    margin: 0px 10px;
+.admin-post-tweet .admin-post-header {
+    margin-bottom: 6px;
 }
 
-.event li {
-    text-align: right;
+.admin-post-tweet .tweet-lazy-embed {
+    max-width: 100%;
+    min-height: 120px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.admin-post-tweet .tweet-lazy-embed iframe {
+    max-width: 100% !important;
+}
+
+.admin-post-date {
     font-size: 11px;
     color: #999;
-    margin-right: 10px;
-    padding-top: 10px;
+    white-space: nowrap;
+    margin-right: 8px;
 }
 
-.event-head {
-    background-image: linear-gradient(-45deg, #fff 25%, #f8f8f8 25%, #f8f8f8 50%, #fff 50%, #fff 75%, #f8f8f8 75%, #f8f8f8);
-    border-bottom: 2px solid #ddd;
-    background-size: 8px 8px;
-    color: black;
-    padding: 7px 10px 7px 15px;
-    font-size: 14px;
-    text-align: left;
-    border-top-left-radius: 10px;
-    font-weight: bold;
-    margin-top: 0;
-}
-
-.event-head::before {
-    display: none;
-}
-
-.event a {
+.admin-post-link {
+    color: #1DA1F2;
     text-decoration: none;
-    color: #3200FF;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
-.event a:hover {
+.admin-post-link:hover {
     text-decoration: underline;
-    color: #3200FF;
+}
+
+.show-more-btn {
+    display: block;
+    margin: 8px auto 4px;
+    padding: 6px 20px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.show-more-btn:hover {
+    background: #e0e0e0;
 }
 
 .circle_icon {
@@ -527,10 +489,19 @@ ul {
     padding: 10px;
 }
 
-.menuu_icon {
-    width: 50px;
-    height: auto;
-    vertical-align: middle; /* アイコンを中央揃え */
+.birthday-countdown {
+    font-size: 18px;
+    color: #3200FF;
+    font-weight: bold;
+    display: block;
+    margin-top: 2px;
+}
+
+.birthday-today {
+    font-size: 20px;
+    color: #3200FF;
+    font-weight: bold;
+    display: inline-block;
 }
 
 @keyframes fadeIn {
@@ -552,102 +523,17 @@ ul {
     color: #3200FF;
 }
 
-#no_br {
-    display: inline-block;
-}
-
-.hint-icon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-color: #3200FF;
-    color: white;
-    text-align: center;
-    line-height: 16px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 5px;
-}
-
-.hint-popup {
-    display: none;
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 3;
-    border-radius: 5px;
-    max-width: max-content;
-}
-
-a.idol_link {
-    vertical-align: middle; /* アイコンを中央揃え */
-    text-decoration: none;
-    color: black;
-    transition: color 0.3s; /* ホバー時のアニメーション */
-}
-
-a:hover.idol_link {
-    text-decoration: underline;
-    color: gray; /* ホバー時の色変更 */
-}
-
-.trend-vocal {
-    color: #FF469D;
-}
-
-.trend-dance {
-    color: #3ABAFF;
-}
-
-.trend-visual {
-    color: #FFA900;
-}
-
-#possession-check, #possession-export, #possession-import {
-    display: none;
-}
-
-/* 傾向・タイプ表示のコントロール */
-.icon {
-    display: none;
-}
-
-.idol_image {
-    width: 60px;
-    height: auto;
-}
-
-.yell_icon {
-    width: 50px;
-    height: auto;
-}
-
-/* ==========================
-   「全て表示する」ボタンのスタイル
-   ========================== */
-#show-all-btn:hover {
-    background-color: #1a0080;
-}
-
-#pc-hidden {
-    display: none;
-}
-
 /* ==========================
    メディアクエリ（レスポンシブ対応）
    ========================== */
    @media screen and (max-width: 768px) {
     body {
-        min-width: 100%;
-        font-size: 14px; /* スマホ用フォントサイズを調整 */
+        font-size: 14px;
     }
 
     .banner {
         text-align: left; /* Change text alignment to left */
-        padding-top: 10px;
-        padding-bottom: 10px;
+        height: 44px;
     }
 
     .banner .menu {
@@ -659,59 +545,13 @@ a:hover.idol_link {
         padding-bottom: 0 !important;
     }
 
-    .container {
-        flex-direction: column;
-        align-items: center;
-        margin: 10px;
-        padding: 5px;
-        padding-top: 0px;
-    }
-
-    .filters {
-        width: 100%;
-        margin: 0px;
-        padding: 10px;
-        font-size: 14px; /* スマホ用フィルタセクションのフォントサイズを調整 */
-    }
-
-    .table-container {
-        width: 100%;
-        overflow-x: auto;
-        margin: 0px;
-        padding: 10px;
-        margin-top: 10px;
-    }
-
-    table {
-        width: 100%;
-    }
-
-    th, td {
-        font-size: 11px; /* スマホ用テーブルフォントサイズを調整 */
-        padding: 3px;
-    }
-
-    .possession-buttons {
-        right: 10px;
-        left: auto;
-        transform: none;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .possession-buttons button {
-        width: 100%;
-        padding: 10px;
-    }
-
     #scrollToTopBtn {
-        display: none;
         bottom: 10px;
         right: 10px;
         padding: 5px 10px;
     }
 
-    .popup, .export-popup, .import-popup, .settings-popup {
+    .popup {
         width: 90%;
         overflow-y: auto;
         padding-bottom: 3%;
@@ -720,7 +560,7 @@ a:hover.idol_link {
     .popup-header {
         position: sticky;
         top: 0;
-        padding: 10px; 
+        padding: 10px;
     }
 
     .popup-close {
@@ -728,56 +568,57 @@ a:hover.idol_link {
         bottom: 0;
     }
 
-    .search-bar-container {
-        width: 98%; /* Increase width for mobile */
-        margin: 0 auto 0 auto; /* Center align for mobile */
+    .menuu-container {
+        flex-direction: column;
+        padding: 5px;
+        margin-top: 60px;
     }
 
-    .yell_icon {
-        width: 30px;
-        height: auto;
+    .menuu {
+        order: 2;
     }
 
-    .idol_image {
-        width: 55px;
-        height: auto;
+    .sidebar {
+        order: 1;
+        margin-left: 0;
     }
 
-    /* 傾向・タイプ表示のコントロール */
-    .text {
-        display: none;
-    }
-    .icon {
-        display: inline;
-        width: 28px;
-        height: auto;
+    .birthday {
+        font-size: 20px;
     }
 
-    #phone-hidden {
-        display: none;
+    .birthday-countdown {
+        font-size: 14px;
     }
 
-    #pc-hidden {
-        display: block;
-        padding: 0px; /* スマートフォン用のpaddingを追加 */
-        margin-left: 5px; /* スマートフォン用のmarginを追加 */
-        margin-right: auto;
+    .birthday-today {
+        font-size: 15px;
     }
 
-    #pc-hidden .birthday {
-        font-size: 20px; /* スマホ用フォントサイズを調整 */
+    .item {
+        padding: 10px;
     }
 
-    #pc-hidden .item {
-        padding: 10px; /* スマホ用paddingを調整 */
-    }
-
-    #pc-hidden .news ,#pc-hidden .event {
-        margin-left: 0px;
+    .news {
         max-height: 180px;
     }
 
+    .event-name {
+        font-size: 12px;
+    }
 
+    .event-desc {
+        font-size: 11px;
+    }
+
+    .event-period {
+        font-size: 10px;
+    }
+
+    .event-badge {
+        font-size: 10px;
+        padding: 1px 6px;
+    }
 
     h1 {
         font-size: 2em; /* スマホ用見出しサイズを調整 */
@@ -789,10 +630,6 @@ a:hover.idol_link {
 
     h3 {
         font-size: 1.2em; /* スマホ用見出しサイズを調整 */
-    }
-
-    .filters button[type="button"] {
-        font-size: 13px; /* スマホ用ボタンのフォントサイズを調整 */
     }
 }
 

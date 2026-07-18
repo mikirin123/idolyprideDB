@@ -1,0 +1,27 @@
+# ホーム画面のメニューに表示するページの表示/非表示設定
+# 値は show（表示） / hide（非表示） のいずれかを指定してください
+# hide にしたページはメンテナンス中としてホームのメニューから消えます
+
+# --- コンテンツ ---
+idol_list=show
+stats_list=show
+idol_sep_list=show
+yell_sep_list=show
+exp_calculator=show
+skill_list=show
+compare=show
+timeline=show
+
+# --- データ ---
+exphoto_list=show
+colors=show
+birthdays=show
+interact-present=show
+chara_list=hide
+group_list=hide
+music_list=hide
+cd_list=hide
+
+# --- はちはじ'25 ---
+circle-list=show
+oshinagaki=show

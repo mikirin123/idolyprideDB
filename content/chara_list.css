@@ -1,0 +1,76 @@
+@import url('../tokens.css');
+
+body {
+    font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    padding: 20px var(--space-page-x) 30px;
+}
+
+.toc {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.toc-buttons {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 12px 10px;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 0;
+}
+@media (max-width: 900px) {
+    .toc-buttons { grid-template-columns: repeat(5, 1fr); max-width: 450px; }
+}
+
+.toc-btn-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    transition: transform 0.15s;
+}
+.toc-btn-wrap:hover { transform: translateY(-4px) scale(1.07); }
+.toc-btn-wrap img.toc-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid #3200FF;
+    background: #fff;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+.toc-btn-wrap:hover img.toc-icon {
+    box-shadow: 0 4px 12px rgba(50,0,255,0.18);
+    border: 2.5px solid #0000FF;
+}
+.toc-label {
+    font-size: 13px;
+    margin-top: 4px;
+    color: #3200FF;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    letter-spacing: 0.02em;
+}
+
+@media screen and (max-width: 768px) {
+    .container { padding: 16px var(--space-page-x-mobile) 20px; }
+    .toc-buttons { grid-template-columns: repeat(5, 1fr) !important; }
+    .toc-btn-wrap img.toc-icon { width: 44px; height: 44px; }
+    .toc-label { font-size: 11px; }
+}

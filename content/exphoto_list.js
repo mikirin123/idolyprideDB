@@ -1,12 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const bannerTitle = document.querySelector('.banner_title');
-    bannerTitle.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
     // スクロールトップボタンの追加
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     window.addEventListener('scroll', function() {
@@ -44,15 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // 目次クリック時にスムーズスクロール
     document.querySelectorAll('.toc-btn-wrap').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
-            const href = btn.getAttribute('onclick');
-            if (href && href.startsWith("location.href='#char-")) {
+            const href = btn.getAttribute('href');
+            if (href && href.startsWith('#char-')) {
                 e.preventDefault();
-                const id = href.match(/#char-\d+/);
-                if (id) {
-                    const target = document.querySelector(id[0]);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
         });

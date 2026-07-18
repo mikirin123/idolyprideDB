@@ -1,10 +1,11 @@
+@import url('../tokens.css');
+
 /* 全体のスタイル */
 body {
     font-family: 'M PLUS 1p', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    min-width: 1200px;
     color: #333;
     line-height: 1.6;
 }
@@ -33,22 +34,34 @@ h2::before {
     background-color: #3200FF;
     color: white;
     text-align: left;
-    padding: 15px 30px;
+    padding: 0 var(--space-page-x);
+    height: 56px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
     font-size: 18px;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-sm);
 }
 
 .banner_title {
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
 }
 
 .banner_title_phone {
     display: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 75%;
 }
 
 .back-button {
@@ -60,7 +73,7 @@ h2::before {
     color: #3200FF;
     padding: 8px 12px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     border: 1px solid #3200FF;
     font-size: 14px;
     transition: background-color 0.3s, color 0.3s;
@@ -82,23 +95,23 @@ h2::before {
     padding: 12px 15px;
     cursor: pointer;
     display: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
     transition: background-color 0.3s;
 }
 
 .content {
-    margin-top: 80px; /* バナーの高さ分のマージン */
     padding: 20px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
     margin-left: auto;
     margin-right: auto;
     width: auto;
 }
 
 .container {
+    margin-top: 76px;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
@@ -152,8 +165,8 @@ a:hover {
     margin-top: 20px; /* バナーの高さ分のマージン */
     padding: 20px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
 
 img {
@@ -183,7 +196,7 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     position: relative;
     cursor: pointer;
     font-size: 16px; /* テキストサイズ */
@@ -201,7 +214,7 @@ img {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 2px 5px;
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
     font-size: 12px;
     white-space: nowrap;
     display: none;
@@ -221,7 +234,7 @@ img {
     background-color: #3200FF;
     color: white;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -236,13 +249,12 @@ img {
 @media (max-width: 768px) {
     body {
         min-width: 100%;
-        font-size: 14px; /* スマホ用フォントサイズ */
+    font-size: 14px; /* スマホ用フォントサイズ */
     }
 
     .banner {
         text-align: left;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        height: 44px;
     }
 
     .back-button {
@@ -250,10 +262,9 @@ img {
     }
 
     #scrollToTopBtn {
-        display: none;
-        bottom: 10px;
-        right: 10px;
-        padding: 5px 10px;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 10px;
     }
 
     .banner_title {
@@ -266,17 +277,17 @@ img {
 
     .container {
         width: 100%;
-        padding: 0 10px; /* スマホ用の余白を追加 */
+        margin-top: 60px;
+    padding: 0 10px; /* スマホ用の余白を追加 */
     }
 
     .content {
-        margin-top: 60px; /* バナーの高さ分のマージンを調整 */
         padding: 15px;
     }
 
     .table-wrapper {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
     }
 
     table {
@@ -286,7 +297,7 @@ img {
     .color-box {
         width: 60px; /* スマホ用にサイズを調整 */
         height: 60px;
-        font-size: 12px; /* テキストサイズを調整 */
+    font-size: 12px; /* テキストサイズを調整 */
     }
 
     .color-box:hover::after {
