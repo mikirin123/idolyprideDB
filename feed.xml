@@ -6,9 +6,15 @@
     <description>IDOLY PRIDE データベース M の更新情報</description>
     <language>ja</language>
     <item>
-      <title>2026年7月14日(火) の更新</title>
+      <title>2026年7月19日(日) の更新</title>
+      <description>2026/7/19までの登場アイドルの能力詳細を追加しました</description>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 +0900</pubDate>
+      <link>https://mikirin123.github.io/idolyprideDB/</link>
+    </item>
+    <item>
+      <title>2026年7月19日(日) の更新</title>
       <description>以下のページを追加しました：スキル一覧、アイドル比較、リリース履歴</description>
-      <pubDate>Tue, 14 Jul 2026 00:00:00 +0900</pubDate>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 +0900</pubDate>
       <link>https://mikirin123.github.io/idolyprideDB/</link>
     </item>
     <item>
@@ -18,63 +24,9 @@
       <link>https://mikirin123.github.io/idolyprideDB/</link>
     </item>
     <item>
-      <title>2025年9月17日(水) の更新</title>
-      <description>以下のページを追加しました：陽光照らす君の髪色 一ノ瀬怜</description>
-      <pubDate>Wed, 17 Sep 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年9月13日(土) の更新</title>
-      <description>以下のページを追加しました：wonderful day for すず 成宮すず</description>
-      <pubDate>Sat, 13 Sep 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年9月5日(金) の更新</title>
-      <description>7/9~9/5までの登場アイドルを追加しました</description>
-      <pubDate>Fri, 05 Sep 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年7月8日(火) の更新</title>
-      <description>以下のページを追加しました：振り返る夏色 長瀬麻奈、星すくう指先 長瀬琴乃</description>
-      <pubDate>Tue, 08 Jul 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年7月7日(月) の更新</title>
-      <description>以下のページを追加しました：wonderful day for 芽衣 早坂芽衣、会いたかったよお父さん kana</description>
-      <pubDate>Mon, 07 Jul 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年6月29日(日) の更新</title>
-      <description>以下のページを追加しました：紡ぎ合う憧れの時間 白石千紗、銀河彩るハッピースマイル 奥山すみれ、みんなで巡る全国ツアー！ 小美山愛</description>
-      <pubDate>Sun, 29 Jun 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年6月25日(水) の更新</title>
-      <description>以下のページを追加しました：鼓動高鳴るSunshine 川咲さくら、天越える感謝の想い 天動瑠依</description>
-      <pubDate>Wed, 25 Jun 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年6月24日(火) の更新</title>
-      <description>以下のページを追加しました：踏切り越しの遠い記憶 長瀬麻奈</description>
-      <pubDate>Tue, 24 Jun 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
       <title>2025年6月24日(火) の更新</title>
       <description>以下のページを更新しました：プレゼント交流Pt上昇量一覧</description>
       <pubDate>Tue, 24 Jun 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年6月22日(日) の更新</title>
-      <description>以下のページを仮追加しました：踏切り越しの遠い記憶 長瀬麻奈、鼓動高鳴るSunshine 川咲さくら、天越える感謝の想い 天動瑠依、みんなで巡る全国ツアー！ 小美山愛、紡ぎ合う憧れの時間 白石千紗、銀河彩るハッピースマイル 奥山すみれ</description>
-      <pubDate>Sun, 22 Jun 2025 00:00:00 +0900</pubDate>
       <link>https://mikirin123.github.io/idolyprideDB/</link>
     </item>
     <item>
@@ -84,45 +36,15 @@
       <link>https://mikirin123.github.io/idolyprideDB/</link>
     </item>
     <item>
-      <title>2025年6月19日(木) の更新</title>
-      <description>以下のアイドルの能力詳細を追加しました：誕生日トラベル・葵 井川葵</description>
-      <pubDate>Thu, 19 Jun 2025 00:00:00 +0900</pubDate>
+      <title>2025年4月20日(日) の更新</title>
+      <description>以下のページを追加しました：レスピ計算機、メンバーカラー一覧、誕生日リスト、プレゼント交流Pt上昇量一覧、エール別リスト、アイドル別リスト</description>
+      <pubDate>Sun, 20 Apr 2025 00:00:00 +0900</pubDate>
       <link>https://mikirin123.github.io/idolyprideDB/</link>
     </item>
     <item>
-      <title>2025年6月11日(水) の更新</title>
-      <description>以下のアイドルの能力詳細を追加しました：誕生日トラベル・fran fran</description>
-      <pubDate>Wed, 11 Jun 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年6月6日(金) の更新</title>
-      <description>以下のアイドルの能力詳細を追加しました：絆広がる二人の明日 鈴村優</description>
-      <pubDate>Fri, 06 Jun 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年5月27日(火) の更新</title>
-      <description>以下のアイドルの能力詳細を追加しました：花香る二人の未来 一ノ瀬怜、空響く祝福の鐘 伊吹渚</description>
-      <pubDate>Tue, 27 May 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年5月18日(日) の更新</title>
-      <description>以下のアイドルの能力詳細を追加しました：ホイールオブマッハ miho</description>
-      <pubDate>Sun, 18 May 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年5月10日(土) の更新</title>
-      <description>以下のアイドルの能力詳細を追加しました：lonely rainy day 赤崎こころ</description>
-      <pubDate>Sat, 10 May 2025 00:00:00 +0900</pubDate>
-      <link>https://mikirin123.github.io/idolyprideDB/</link>
-    </item>
-    <item>
-      <title>2025年5月5日(月) の更新</title>
-      <description>以下のアイドルの能力詳細を追加しました：誕生日トラベル・すみれ 奥山すみれ</description>
-      <pubDate>Mon, 05 May 2025 00:00:00 +0900</pubDate>
+      <title>2025年1月18日(土) の更新</title>
+      <description>リリース時までの登場アイドルの能力詳細を追加しました</description>
+      <pubDate>Sat, 18 Jan 2025 00:00:00 +0900</pubDate>
       <link>https://mikirin123.github.io/idolyprideDB/</link>
     </item>
   </channel>

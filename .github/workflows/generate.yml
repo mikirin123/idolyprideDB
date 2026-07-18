@@ -5,6 +5,9 @@ on:
     # 毎日 日本時間 0:00 (UTC 15:00)
     - cron: '0 15 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    # Googleフォーム回答時にApps Scriptから送られるイベントで即時実行する
+    types: [google_form_submitted]
 
 permissions:
   contents: write

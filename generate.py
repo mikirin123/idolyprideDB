@@ -542,6 +542,7 @@ if __name__ == "__main__":
         "generate_group_info.py",
         "generate_music_list.py",
         "generate_cd_list.py",
+        "generate_sitemap.py",
     ]
 
     # 各スクリプトが個別にキャラCSVをネットワーク取得すると13回分の無駄な
