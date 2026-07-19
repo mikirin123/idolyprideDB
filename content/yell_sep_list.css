@@ -325,7 +325,7 @@ img {
 
     .container {
         width: 100%;
-    padding: 0 10px; /* スマホ用の余白を追加 */
+    padding: 0; /* エールカテゴリ側の内側余白(20px)に統一するため0に（idol_sep_listと統一） */
     }
 
     .table-wrapper {

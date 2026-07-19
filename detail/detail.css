@@ -13,6 +13,8 @@
 @media (max-width: 768px) {
     .data-incomplete-notice {
         margin-top: 48px;
+        margin-left: var(--space-page-x-mobile);
+        margin-right: var(--space-page-x-mobile);
     }
 }
 
@@ -315,7 +317,7 @@ a:hover.idol_link {
 
     .container {
         flex-direction: column;
-        padding: 0px;
+        padding: 0 var(--space-page-x-mobile);
         padding-top: 16px;
     }
 
@@ -343,7 +345,7 @@ a:hover.idol_link {
     }
 
     th, td {
-        padding: 6px;
+        padding: 8px 6px;
     font-size: 0.8em;
     }
 

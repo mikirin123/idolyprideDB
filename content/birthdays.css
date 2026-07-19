@@ -247,14 +247,14 @@ img {
     }
     .container {
         margin-top: 60px;
-        padding: 0 10px;
+        padding: 0 var(--space-page-x-mobile);
     }
     .content {
     padding: 15px;
     }
     th, td {
         font-size: 12px;
-    padding: 5px;
+    padding: 7px 5px;
     }
     .icon {
         width: 40px;

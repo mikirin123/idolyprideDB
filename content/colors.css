@@ -278,7 +278,7 @@ img {
     .container {
         width: 100%;
         margin-top: 60px;
-    padding: 0 10px; /* スマホ用の余白を追加 */
+    padding: 0 var(--space-page-x-mobile); /* スマホ用の余白を追加 */
     }
 
     .content {

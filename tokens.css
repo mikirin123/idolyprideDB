@@ -20,8 +20,10 @@
 
     /* 余白 */
     --space-page-x: 30px;
-    --space-page-x-mobile: 10px;
+    --space-page-x-mobile: 12px;
     --gap-md: 20px;
+    /* モバイルでのリスト・カード項目間の余白（タップ/スクロールしやすさ確保） */
+    --gap-mobile: 14px;
 }
 
 /* 各ページ共通のフッター(最終更新日時) */

@@ -84,7 +84,8 @@ body {
 
 @media screen and (max-width: 768px) {
     .container { padding: 16px var(--space-page-x-mobile) 20px; }
-    .cd-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .cd-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--gap-mobile); }
     .cd-body { padding: 10px 12px; }
     .cd-name { font-size: 14px; }
+    .cd-tracklist li { padding: 5px 0; }
 }

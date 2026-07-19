@@ -144,6 +144,10 @@ html {
 
 /* モバイル共通 */
 @media (max-width: 768px) {
+    .filter-status {
+        margin: 8px var(--space-page-x-mobile) 0;
+    }
+
     .banner {
         padding: 0 15px;
         height: 44px;

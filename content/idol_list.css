@@ -470,8 +470,8 @@ tr.data-incomplete a.idol_link::after {
     .container {
         flex-direction: column;
     align-items: center;
-    margin: 10px;
-    padding: 5px;
+    margin: 0;
+    padding: var(--space-page-x-mobile);
     padding-top: 0px;
     }
 
@@ -496,7 +496,7 @@ tr.data-incomplete a.idol_link::after {
 
     th, td {
         font-size: 11px; /* スマホ用テーブルフォントサイズを調整 */
-        padding: 3px;
+        padding: 6px 4px; /* タップしやすいよう縦方向の余白を確保 */
     }
 
     .possession-buttons {
@@ -521,7 +521,7 @@ tr.data-incomplete a.idol_link::after {
     .search-bar-container {
         width: 98%;
         margin: 0 auto;
-        padding: 8px 10px 12px;
+        padding: 8px var(--space-page-x-mobile) 12px;
     }
 
     .yell_icon {

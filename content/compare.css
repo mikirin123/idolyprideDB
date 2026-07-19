@@ -264,10 +264,10 @@ h2::before {
     .banner_title { display: none; }
     .banner_title_phone { display: block; }
     .back-button { display: none; }
-    .selector-container { padding: 16px 12px; }
+    .selector-container { padding: 16px var(--space-page-x-mobile); }
     .card-selectors { gap: 12px; }
     .card-selector { min-width: 100%; }
-    .compare-result { padding: 12px; }
+    .compare-result { padding: var(--space-page-x-mobile); }
     .compare-table th,
     .compare-table td { font-size: 12px; padding: 7px 8px; min-width: 90px; }
     .compare-table th:first-child,

@@ -578,8 +578,9 @@ ul {
 
     .menuu-container {
         flex-direction: column;
-        padding: 5px;
+        padding: var(--space-page-x-mobile);
         margin-top: 60px;
+        gap: var(--gap-mobile);
     }
 
     .menuu {
@@ -604,7 +605,11 @@ ul {
     }
 
     .item {
-        padding: 10px;
+        padding: 12px;
+    }
+
+    .menuu-grid {
+        gap: var(--gap-mobile);
     }
 
     .news {

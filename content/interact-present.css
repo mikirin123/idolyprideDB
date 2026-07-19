@@ -250,7 +250,7 @@ img {
 
     th, td {
         font-size: 12px;
-    padding: 4px;
+    padding: 7px 4px;
     text-align: center; /* アイコンを中央揃え */
         vertical-align: middle; /* 垂直方向も中央揃え */
     }
@@ -280,6 +280,6 @@ img {
     }
 
     .content {
-        padding: 10px;
+        padding: var(--space-page-x-mobile);
     }
 }

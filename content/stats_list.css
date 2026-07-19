@@ -97,7 +97,7 @@ body {
 .stats-filter-reset:hover { background: #e2e2f0; }
 
 @media (max-width: 768px) {
-    .stats-toolbar { padding: 8px 10px; }
+    .stats-toolbar { padding: 8px var(--space-page-x-mobile); }
     .stats-filter { padding: 10px 12px; gap: 8px; border-radius: var(--radius-lg); }
     .stats-filter select { font-size: 12px; }
 }
@@ -469,7 +469,7 @@ tr.data-incomplete a.idol_link::after {
     }
 
     .stats_list-sidebar-container {
-        padding: 0 10px 10px;
+        padding: 0 var(--space-page-x-mobile) 10px;
         gap: 10px;
     }
 

@@ -11,7 +11,7 @@ body {
 .container {
     max-width: 720px;
     margin: 0 auto;
-    padding: 20px var(--space-page-x-mobile) 30px;
+    padding: 20px var(--space-page-x) 30px;
 }
 
 .char-profile-card {
@@ -131,7 +131,7 @@ body {
     padding: 0;
 }
 .song-list li {
-    padding: 6px 0;
+    padding: 8px 0;
     border-bottom: 1px dashed #eee;
     font-size: 14px;
 }
@@ -143,10 +143,12 @@ body {
 .song-list a:hover { text-decoration: underline; }
 
 @media screen and (max-width: 768px) {
-    .container { padding: 16px 10px 20px; }
+    .container { padding: 16px var(--space-page-x-mobile) 20px; }
     .char-profile-card, .char-section { padding: 14px; }
     .profile-table th { width: 90px; font-size: 12px; }
     .profile-table td { font-size: 12px; }
     .idol-item { width: 76px; }
     .idol-item img { width: 58px; aspect-ratio: 16 / 9; }
+    .idol-list { gap: var(--gap-mobile); }
+    .song-list li { padding: 10px 0; }
 }
