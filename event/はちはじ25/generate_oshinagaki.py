@@ -1,9 +1,13 @@
 import csv
 import html as html_lib
+import os
 import re
 import json
 from datetime import datetime
 
+# 実行時のカレントディレクトリに関わらず、常にこのスクリプトと同じ
+# フォルダ(event/はちはじ25/)でCSVを読み書きするための基準パス
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 WEEKDAYS_JA = ['月', '火', '水', '木', '金', '土', '日']
 
@@ -26,7 +30,7 @@ def extract_tweet_id(url):
 
 def read_csv(path):
     try:
-        with open(path, encoding='utf-8', newline='') as f:
+        with open(os.path.join(SCRIPT_DIR, path), encoding='utf-8', newline='') as f:
             return [row for row in csv.DictReader(f)]
     except FileNotFoundError:
         return []
@@ -114,7 +118,7 @@ html_content = f"""<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="2025年に開催されるIDOLY PRIDEオンリーイベント『八景から始まる物語』stage3、通称『はちはじ3』の参加サークルのおしながき一覧ページです。 ">
-    <title>八景から始まる物語 stage3 おしながき・告知ツイート一覧</title>
+    <title>八景から始まる物語 stage3 おしながき・告知まとめ</title>
     <link rel="stylesheet" href="circle-list.css">
     <link rel="shortcut icon" href="../../image/icon.ico">
     <link rel="icon" type="image/png" sizes="180x180" href="../../image/icon.png">
@@ -128,8 +132,8 @@ html_content = f"""<!DOCTYPE html>
 <body>
     <header>
         <div class="banner">
-            <div class="banner_title" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知ツイート一覧</div>
-            <div class="banner_title_phone" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知ツイート一覧</div>
+            <div class="banner_title" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知まとめ</div>
+            <div class="banner_title_phone" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知まとめ</div>
             <a href="javascript:history.back()" class="back-button">戻る</a>
         </div>
     </header>
@@ -187,9 +191,7 @@ html_content += """
                 ※ツイートが表示されない場合は、Twitter側の埋め込み制限や非公開設定等の可能性があります。
             </p>
         </div>
-        <div class="circlelist-link-group">
-            <a href="../../index.html" class="circle-link-btn" style="font-size:16px;">サイトメインページに移動</a>
-        </div>
+
     </main>
     <script>
         window.ALL_TWEET_ITEMS = """ + json.dumps(all_items, ensure_ascii=False).replace('<', '\\u003c') + """;
@@ -201,7 +203,7 @@ html_content += """
 </html>
 """
 
-with open("oshinagaki.html", "w", encoding="utf-8") as file:
+with open(os.path.join(SCRIPT_DIR, "oshinagaki.html"), "w", encoding="utf-8") as file:
     file.write(html_content)
 
-print("HTMLファイルが生成されました: おしながき・告知ツイート一覧")
+print("HTMLファイルが生成されました: おしながき・告知まとめ")

@@ -1,9 +1,13 @@
 import csv
 import html as html_lib
+import os
 import re
 from collections import defaultdict
 from datetime import datetime
 
+# 実行時のカレントディレクトリに関わらず、常にこのスクリプトと同じ
+# フォルダ(event/はちはじ25/)でCSVを読み書きするための基準パス
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 WEEKDAYS_JA = ['月', '火', '水', '木', '金', '土', '日']
 
@@ -22,7 +26,7 @@ def esc_rich(value):
 
 def read_csv(path):
     try:
-        with open(path, encoding='utf-8', newline='') as f:
+        with open(os.path.join(SCRIPT_DIR, path), encoding='utf-8', newline='') as f:
             return [row for row in csv.DictReader(f)]
     except FileNotFoundError:
         return []
@@ -239,7 +243,7 @@ html_content = f"""<!DOCTYPE html>
             <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated} はちはじ3お疲れ様でした！</div>
             {toc_html}
             <div class="circlelist-link-group">
-                <a href="oshinagaki.html" class="circle-link-btn" style="font-size:16px;">おしながき・告知ツイート一覧はこちら</a>
+                <a href="oshinagaki.html" class="circle-link-btn" style="font-size:16px;">おしながき・告知まとめはこちら</a>
                 <a href="https://kiyoshimo.wixsite.com/idolypride/%E8%A4%87%E8%A3%BD-%E3%82%B5%E3%83%BC%E3%82%AF%E3%83%AB%E9%85%8D%E7%BD%AE" class="circle-link-btn" style="font-size:16px;">サークルカット・配置図(公式ページ)はこちら</a>
                 <a href="https://forms.gle/DtRN6apeZxKTmWFQ8" class="circle-link-btn" style="font-size:16px;">サークル様問い合わせ</a>
             </div>
@@ -251,9 +255,6 @@ html_content = f"""<!DOCTYPE html>
             </div>
             {tables_html}
         </div>
-        <div class="circlelist-link-group">
-            <a href="../../index.html" class="circle-link-btn" style="font-size:16px;">サイトメインページに移動</a>
-        </div>
     </main>
     <button id="scrollToTopBtn">ページ上部へ</button>
     <footer class="site-footer">最終更新: {footer_updated}</footer>
@@ -261,7 +262,7 @@ html_content = f"""<!DOCTYPE html>
 </html>
 """
 
-with open("circle-list.html", "w", encoding="utf-8") as file:
+with open(os.path.join(SCRIPT_DIR, "circle-list.html"), "w", encoding="utf-8") as file:
     file.write(html_content)
 
 print("HTMLファイルが生成されました: サークル一覧ページ")

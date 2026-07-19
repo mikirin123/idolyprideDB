@@ -381,7 +381,7 @@ NAV_SECTIONS = [
         ("exphoto_list", "content/exphoto_list.html", "fa-solid fa-camera", "専用フォト"),
         ("colors", "content/colors.html", "fa-solid fa-palette", "メンバーカラー"),
         ("birthdays", "content/birthdays.html", "fa-solid fa-cake-candles", "キャラ誕生日"),
-        ("interact-present", "content/interact-present.html", "fa-solid fa-gift", "プレゼント交流Pt上昇量"),
+        ("interact-present", "content/interact-present.html", "fa-solid fa-gift", "交流プレゼント一覧"),
         ("chara_list", "content/chara_list.html", "fa-solid fa-id-card", "キャラ情報"),
         ("group_list", "content/group_list.html", "fa-solid fa-people-group", "グループ情報"),
         ("music_list", "content/music_list.html", "fa-solid fa-music", "楽曲情報"),
@@ -399,7 +399,7 @@ OFFICIAL_NAV_SECTION = ("公式コンテンツ", [
 EVENT_NAV_SECTIONS = [
     ("はちはじ'25", [
         ("circle-list", "event/はちはじ25/circle-list.html", "fa-solid fa-table-list", "サークル一覧"),
-        ("oshinagaki", "event/はちはじ25/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知ツイート一覧"),
+        ("oshinagaki", "event/はちはじ25/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知まとめ"),
     ]),
 ]
 
