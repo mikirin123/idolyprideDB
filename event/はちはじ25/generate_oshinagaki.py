@@ -117,8 +117,8 @@ html_content = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="2025年に開催されるIDOLY PRIDEオンリーイベント『八景から始まる物語』stage3、通称『はちはじ3』の参加サークルのおしながき一覧ページです。 ">
-    <title>八景から始まる物語 stage3 おしながき・告知まとめ</title>
+    <meta name="description" content="2025年に開催されるIDOLY PRIDEオンリーイベント『八景から始まる物語』stage3、通称『はちはじ3』の参加サークルのおしながき・告知まとめページです。 ">
+    <title>八景から始まる物語 stage3 おしながき・告知</title>
     <link rel="stylesheet" href="circle-list.css">
     <link rel="shortcut icon" href="../../image/icon.ico">
     <link rel="icon" type="image/png" sizes="180x180" href="../../image/icon.png">
@@ -132,8 +132,8 @@ html_content = f"""<!DOCTYPE html>
 <body>
     <header>
         <div class="banner">
-            <div class="banner_title" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知まとめ</div>
-            <div class="banner_title_phone" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知まとめ</div>
+            <div class="banner_title" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知</div>
+            <div class="banner_title_phone" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知</div>
             <a href="javascript:history.back()" class="back-button">戻る</a>
         </div>
     </header>
@@ -206,4 +206,4 @@ html_content += """
 with open(os.path.join(SCRIPT_DIR, "oshinagaki.html"), "w", encoding="utf-8") as file:
     file.write(html_content)
 
-print("HTMLファイルが生成されました: おしながき・告知まとめ")
+print("HTMLファイルが生成されました: おしながき・告知ページ")

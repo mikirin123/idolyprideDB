@@ -208,31 +208,33 @@ function saveTimelineScreenshot() {
     btn.disabled = true;
     btn.textContent = '画像を生成中...';
 
+    // html2canvasの非同期処理が終わってからwindow.openすると「ユーザー操作起因」と
+    // 認識されずスマホブラウザにブロックされるため、クリック直後・同期的にタブを開いておく
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const newTab = isMobile ? window.open('', '_blank') : null;
+    if (newTab) newTab.document.write('画像を生成中です…しばらくお待ちください。');
+
     html2canvas(container, { backgroundColor: '#f0f0f0', useCORS: true, scale: 2 }).then(canvas => {
-        shareOrDownloadCanvas(canvas, 'release_timeline.png');
+        finishImageSave(canvas, 'release_timeline.png', newTab);
     }).catch(err => {
         console.error('スクリーンショットの生成に失敗しました', err);
         alert('画像の生成に失敗しました。');
+        if (newTab) newTab.close();
     }).finally(() => {
         btn.disabled = false;
         btn.textContent = originalLabel;
     });
 }
 
-// スマホでは <a download> が機能しない/信頼できないため、
-// 対応端末では共有シート経由で保存、それ以外は新しいタブで開いて長押し保存してもらう
-function shareOrDownloadCanvas(canvas, filename) {
+function finishImageSave(canvas, filename, preOpenedTab) {
     canvas.toBlob(blob => {
-        if (!blob) return;
-        const file = new File([blob], filename, { type: 'image/png' });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            navigator.share({ files: [file] }).catch(() => {});
+        if (!blob) {
+            if (preOpenedTab) preOpenedTab.close();
             return;
         }
         const url = URL.createObjectURL(blob);
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        if (isMobile) {
-            window.open(url, '_blank');
+        if (preOpenedTab) {
+            preOpenedTab.location.href = url;
         } else {
             const link = document.createElement('a');
             link.download = filename;

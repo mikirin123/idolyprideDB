@@ -128,7 +128,7 @@ def load_update_rows():
     return sorted(csv.DictReader(io.StringIO(content)), key=lambda r: r['日付'], reverse=True)
 
 
-def row_to_update_html(row):
+def row_to_update_html(row, link_prefix=''):
     dt = parse_flexible_date(row['日付'])
     date_ja = format_date_ja(dt)
     description = esc(row['説明'])
@@ -141,7 +141,8 @@ def row_to_update_html(row):
             parts = item.strip().split('|', 1)
             if len(parts) == 2:
                 text, entry_url = parts
-                link_parts.append(f'・<a href="{esc(entry_url.strip())}">{esc(text.strip())}</a>')
+                href = resolve_link(esc(entry_url.strip()), link_prefix)
+                link_parts.append(f'・<a href="{href}">{esc(text.strip())}</a>')
         html += f'<p>{description}<br>{"<br>".join(link_parts)}</p>\n'
     else:
         html += f'<p>{description}</p>\n'
@@ -229,14 +230,23 @@ def load_events_rows():
     return ongoing
 
 
-def format_event_rich_text(raw):
+def resolve_link(url, link_prefix):
+    """CSVのリンクはリポジトリルート(index.html)基準の相対パスで書かれているため、
+    1階層下のページ(content/配下)から使う場合はlink_prefixで補正する。
+    http(s)・#・/始まりの絶対パスはそのまま扱う。"""
+    if link_prefix and not re.match(r'^(https?:)?//|^[/#]', url):
+        return link_prefix + url
+    return url
+
+
+def format_event_rich_text(raw, link_prefix=''):
     """CSVセル内の実改行に加えて、文字列「<br>」を書いても改行になるようにする。"""
     normalized = raw.replace('\r\n', '\n').replace('\r', '\n')
     escaped = esc_rich(normalized).replace('\n', '<br>')
 
     def repl(m):
         text, entry_url = m.group(1), m.group(2)
-        return f'<a href="{entry_url}" target="_blank" rel="noopener noreferrer">{text}</a>'
+        return f'<a href="{resolve_link(entry_url, link_prefix)}" target="_blank" rel="noopener noreferrer">{text}</a>'
 
     return EVENT_LINK_RE.sub(repl, escaped)
 
@@ -257,7 +267,7 @@ def event_urgency_class(end_dt, now):
     return None
 
 
-def generate_events_html(ongoing):
+def generate_events_html(ongoing, link_prefix=''):
     if not ongoing:
         return '<li class="event-empty event-li">現在開催中のイベントはありません</li>\n'
 
@@ -268,7 +278,7 @@ def generate_events_html(ongoing):
         css_class = EVENT_CATEGORY_CLASS.get(category, 'other')
         description = row.get('説明', '').strip()
         event_desc_html = (
-            f'<div class="event-desc">{format_event_rich_text(description)}</div>'
+            f'<div class="event-desc">{format_event_rich_text(description, link_prefix)}</div>'
             if description else ''
         )
         urgency_class = event_urgency_class(end_dt, now)
@@ -279,7 +289,7 @@ def generate_events_html(ongoing):
             f'<span class="event-badge event-badge-{css_class}">{esc(category)}</span>'
             f'<span class="event-period">{format_event_period(start_dt, end_dt)}</span>'
             '</div>'
-            f'<div class="event-name">{format_event_rich_text(row.get("イベント名", ""))}</div>'
+            f'<div class="event-name">{format_event_rich_text(row.get("イベント名", ""), link_prefix)}</div>'
             f'{event_desc_html}'
             '</li>\n'
         )
@@ -333,6 +343,53 @@ def generate_admin_posts_html(rows):
     return html
 
 
+def _news_list_page_html(title, list_html):
+    return f'''<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IDOLY PRIDE データベース Mの{title}一覧です。">
+    <meta name="keywords" content="IDOLY PRIDE, {title}, データベース">
+    <title>{title} - IDOLY PRIDE データベース M</title>
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="news_list.css">
+    <link rel="shortcut icon" href="../image/icon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="../image/icon.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
+    <link rel="mask-icon" href="../image/icon.svg">
+</head>
+<body>
+    <div class="banner">
+        <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - {title}</div>
+        <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">{title}</div>
+        <a href="javascript:history.back()" class="back-button">戻る</a>
+    </div>
+    <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span>{title}</nav>
+    <div class="container">
+        <ul class="news-list">
+{list_html}        </ul>
+    </div>
+    <button id="scrollToTopBtn">ページ上部へ</button>
+    <script src="news_list.js"></script>
+</body>
+</html>'''
+
+
+def generate_events_list_page(events_rows):
+    """サイドバー「開催中のイベント」の全件を、高さ制限なしで一覧できるページ。
+    content/配下に置くため、CSV中のルート相対リンクは ../ 補正が必要。"""
+    events_html = generate_events_html(events_rows, link_prefix='../')
+    write_page('content/events_list.html', _news_list_page_html('開催中のイベント', events_html))
+
+
+def generate_updates_list_page(update_rows):
+    """サイドバー「更新情報」の全件を、件数制限なしで一覧できるページ。
+    content/配下に置くため、CSV中のルート相対リンクは ../ 補正が必要。"""
+    update_html = ''.join(row_to_update_html(r, link_prefix='../') for r in update_rows)
+    write_page('content/updates_list.html', _news_list_page_html('更新情報', update_html))
+
+
 def generate_rss(rows):
     site_url = load_setting('SITE_URL') or ''
     items = ''
@@ -381,7 +438,7 @@ NAV_SECTIONS = [
         ("exphoto_list", "content/exphoto_list.html", "fa-solid fa-camera", "専用フォト"),
         ("colors", "content/colors.html", "fa-solid fa-palette", "メンバーカラー"),
         ("birthdays", "content/birthdays.html", "fa-solid fa-cake-candles", "キャラ誕生日"),
-        ("interact-present", "content/interact-present.html", "fa-solid fa-gift", "交流プレゼント一覧"),
+        ("interact-present", "content/interact-present.html", "fa-solid fa-gift", "交流プレゼント"),
         ("chara_list", "content/chara_list.html", "fa-solid fa-id-card", "キャラ情報"),
         ("group_list", "content/group_list.html", "fa-solid fa-people-group", "グループ情報"),
         ("music_list", "content/music_list.html", "fa-solid fa-music", "楽曲情報"),
@@ -398,8 +455,8 @@ OFFICIAL_NAV_SECTION = ("公式コンテンツ", [
 
 EVENT_NAV_SECTIONS = [
     ("はちはじ'25", [
-        ("circle-list", "event/はちはじ25/circle-list.html", "fa-solid fa-table-list", "サークル一覧"),
-        ("oshinagaki", "event/はちはじ25/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知まとめ"),
+        ("circle-list", "event/はちはじ25/circle-list.html", "fa-solid fa-table-list", "サークル"),
+        ("oshinagaki", "event/はちはじ25/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知"),
     ]),
 ]
 
@@ -509,12 +566,12 @@ def generate_html(update_rows, admin_posts, events_rows):
                 <span class="birthday"><img src="image/circle_icon/{closest_person["name"]}.webp" class="circle_icon" alt="{closest_person["name"]}"> {birthday_line}</span>
             </div>
             <div class="news events-news">
-                <h2 class="news-head">開催中のイベント</h2>
+                <h2 class="news-head"><a href="content/events_list.html" class="news-head-link">開催中のイベント <i class="fa-solid fa-angle-right"></i></a></h2>
                 <ul>
 {events_html}</ul>
             </div>
             <div class="news">
-                <h2 class="news-head">更新情報</h2>
+                <h2 class="news-head"><a href="content/updates_list.html" class="news-head-link">更新情報 <i class="fa-solid fa-angle-right"></i></a></h2>
                 <ul>
 {update_html}</ul>
             </div>
@@ -538,6 +595,8 @@ if __name__ == "__main__":
     admin_posts = load_admin_posts()
     events_rows = load_events_rows()
     generate_html(update_rows, admin_posts, events_rows)
+    generate_events_list_page(events_rows)
+    generate_updates_list_page(update_rows)
     generate_rss(update_rows)
     print("HTMLファイルが生成されました: index.html")
     print("RSSフィードが生成されました: feed.xml")

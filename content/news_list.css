@@ -1,0 +1,111 @@
+@import url('../tokens.css');
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px var(--space-page-x) 30px;
+}
+
+.news-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.news-list a {
+    color: #3200FF;
+    text-decoration: none;
+}
+.news-list a:hover {
+    text-decoration: underline;
+}
+
+/* 更新情報: 日付行・説明文 (イベント一覧側のliは除外) */
+.news-list li:not(.event-li) {
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+    padding: 14px 16px 0;
+}
+.news-list p {
+    margin: 0;
+    padding: 6px 16px 12px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.news-list hr {
+    margin: 0 16px;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+/* 開催中のイベント: カード */
+.event-item {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f5f5f5;
+}
+.event-item:last-child { border-bottom: none; }
+.event-item-soon { background-color: #fffbdd; }
+.event-item-urgent { background-color: #ffe3e3; }
+
+.event-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.event-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+.event-badge-regular { background-color: #888; }
+.event-badge-gacha { background-color: #ff6b9d; }
+.event-badge-event { background-color: #3200FF; }
+.event-badge-mission { background-color: #4caf50; }
+.event-badge-job { background-color: #FFA900; }
+.event-badge-other { background-color: #607d8b; }
+
+.event-period {
+    font-size: 12px;
+    color: #999;
+    white-space: nowrap;
+}
+
+.event-name {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    text-align: left;
+}
+
+.event-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #777;
+    text-align: left;
+    margin-top: 2px;
+}
+
+.event-empty {
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    padding: 24px 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 16px var(--space-page-x-mobile) 20px;
+    }
+}

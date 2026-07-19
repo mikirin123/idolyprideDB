@@ -23,25 +23,29 @@ function copyColorCode(colorCode, characterName) {
 
 function saveTableAsImage() {
     const table = document.getElementById('color_table');
+    // html2canvasの非同期処理が終わってからwindow.openすると「ユーザー操作起因」と
+    // 認識されずスマホブラウザにブロックされるため、クリック直後・同期的にタブを開いておく
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const newTab = isMobile ? window.open('', '_blank') : null;
+    if (newTab) newTab.document.write('画像を生成中です…しばらくお待ちください。');
+
     html2canvas(table)
-        .then(canvas => shareOrDownloadCanvas(canvas, 'idol_color.png'))
-        .catch(err => console.error('画像の生成に失敗しました:', err));
+        .then(canvas => finishImageSave(canvas, 'idol_color.png', newTab))
+        .catch(err => {
+            console.error('画像の生成に失敗しました:', err);
+            if (newTab) newTab.close();
+        });
 }
 
-// スマホでは <a download> が機能しない/信頼できないため、
-// 対応端末では共有シート経由で保存、それ以外は新しいタブで開いて長押し保存してもらう
-function shareOrDownloadCanvas(canvas, filename) {
+function finishImageSave(canvas, filename, preOpenedTab) {
     canvas.toBlob(blob => {
-        if (!blob) return;
-        const file = new File([blob], filename, { type: 'image/png' });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            navigator.share({ files: [file] }).catch(() => {});
+        if (!blob) {
+            if (preOpenedTab) preOpenedTab.close();
             return;
         }
         const url = URL.createObjectURL(blob);
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        if (isMobile) {
-            window.open(url, '_blank');
+        if (preOpenedTab) {
+            preOpenedTab.location.href = url;
         } else {
             const link = document.createElement('a');
             link.download = filename;

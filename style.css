@@ -411,6 +411,23 @@ ul {
     display: none;
 }
 
+.news-head a.news-head-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    color: inherit;
+    text-decoration: none;
+}
+.news-head a.news-head-link:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+.news-head-link i {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
 .news a {
     text-decoration: none;
     color: #3200FF;
@@ -546,11 +563,8 @@ ul {
 
     .banner .menu {
         right: var(--space-page-x-mobile);
-    }
-
-    .menu {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+        padding: 6px 12px; /* 横paddingが大きいとボタン自体が幅広になり、右端から離れて見えるため縮小 */
+        font-size: 16px;
     }
 
     /* ボタンの位置(right)に合わせないと、開いたメニューがボタンからずれて表示される */

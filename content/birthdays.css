@@ -57,6 +57,26 @@ h2::before {
     max-width: 75%;
 }
 
+.back-button {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #3200FF;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    border: 1px solid #3200FF;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #3200FF;
+    color: white;
+}
+
 /* スクロールトップボタン */
 #scrollToTopBtn {
     position: fixed;
@@ -240,6 +260,9 @@ img {
     .banner {
         padding: 0 15px;
         height: 44px;
+    }
+    .back-button {
+        display: none;
     }
     .breadcrumb { margin-top: 48px; font-size: 11px; padding: 6px 12px; }
 
