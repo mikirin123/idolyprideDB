@@ -57,26 +57,6 @@ h2::before {
     max-width: 75%;
 }
 
-.back-button {
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: white;
-    color: #3200FF;
-    padding: 8px 12px;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    border: 1px solid #3200FF;
-    font-size: 14px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.back-button:hover {
-    background-color: #3200FF;
-    color: white;
-}
-
 /* スクロールトップボタン */
 #scrollToTopBtn {
     position: fixed;
@@ -266,9 +246,24 @@ img {
     .container {
         margin-top: 14px;
         padding: 0 var(--space-page-x-mobile);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     .content {
     padding: 15px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    }
+
+    /* スマホ用の狭いテーブルに切り替え、ページ全体ではなく一覧部分だけを横スクロールさせる */
+    .phone { display: block; }
+    .pc { display: none; }
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
     }
     th, td {
         font-size: 12px;

@@ -545,12 +545,17 @@ ul {
     }
 
     .banner .menu {
-        right: 10px;
+        right: var(--space-page-x-mobile);
     }
 
     .menu {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
+    }
+
+    /* ボタンの位置(right)に合わせないと、開いたメニューがボタンからずれて表示される */
+    .menu-content {
+        right: var(--space-page-x-mobile);
     }
 
     #scrollToTopBtn {
