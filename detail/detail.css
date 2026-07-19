@@ -177,6 +177,13 @@ th {
     text-align: right;
 }
 
+/* テーブル内に組み込んだ注記行（テーブルの外側に出さないことで、その隙間に自動広告が挿入されるのを防ぐ） */
+.live-skill-table tr.table_details-row td.table_details {
+    border: none;
+    padding: 6px 0 0;
+    background: transparent;
+}
+
 
 /* 個人詳細 */
 .personal-details-table {

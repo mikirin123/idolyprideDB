@@ -141,8 +141,8 @@ def generate_detail_pages(characters, profiles):
                                 <tr><td class="skill-details">{esc_rich(character[19])}</td></tr>
                                 <tr class="awakening"><th>{esc(character[20])}</th></tr>
                                 <tr class="awakening"><td class="skill-details">{esc_rich(character[21])}</td></tr>
+                                <tr class="table_details-row"><td class="table_details">Lv200/スキルLv最大時の数値です。</td></tr>
                             </table>
-                            <div class="table_details">Lv200/スキルLv最大時の数値です。</div>
                         </div>
                         <div class="else-idols-phone"><h2>他アイドル</h2><table>{elseidols}</table></div>
                         <div class="personal-details-phone">{personal_details_table}</div>

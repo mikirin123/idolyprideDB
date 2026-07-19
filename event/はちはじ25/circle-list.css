@@ -21,9 +21,28 @@ body {
     }
 }
 
+/* --- パンくずナビ --- */
+.breadcrumb {
+    font-size: 12px;
+    color: #888;
+    padding: 8px 16px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    margin-top: 60px;
+}
+.breadcrumb a {
+    color: #3200FF;
+    text-decoration: none;
+}
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 4px; color: #bbb; }
+@media (max-width: 768px) {
+    .breadcrumb { margin-top: 48px; font-size: 11px; padding: 6px 12px; }
+}
+
 /* --- コンテナ --- */
 .container {
-    margin: 76px auto 0 auto;
+    margin: 20px auto 0 auto;
     width: fit-content;
     background: #fff;
     padding: 20px;
@@ -33,7 +52,7 @@ body {
 @media (max-width: 768px) {
     .container {
         padding: 6px var(--space-page-x-mobile) 10px;
-    margin: 60px 0 0 0;
+    margin: 12px 0 0 0;
     width: 100vw;
     box-sizing: border-box;
     border-radius: 0;

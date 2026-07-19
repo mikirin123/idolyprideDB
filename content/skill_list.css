@@ -288,7 +288,56 @@ tr.data-incomplete a.idol_link::after {
     .search-mode { justify-content: flex-start; }
     .container { flex-direction: column; padding: 0 var(--space-page-x-mobile) 20px; gap: 10px; }
     .filters { width: 100%; box-sizing: border-box; }
-    .table-container { width: 100%; box-sizing: border-box; padding: 10px; }
-    .idol-cell { width: auto; }
-    .idol_icon { width: 36px; }
+    .table-container { width: 100%; box-sizing: border-box; padding: 10px; overflow-x: visible; }
+
+    /* テーブルをカード形式に変更：1段目=アイドル・種別・スキル名、2段目=効果 */
+    #skill-table thead { display: none; }
+    #skill-table, #skill-table tbody { display: block; width: 100%; }
+    #skill-table tr {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 10px;
+        row-gap: 6px;
+        padding: 12px 8px;
+        border-bottom: 1px solid #eee;
+    }
+    #skill-table td {
+        border-bottom: none;
+        padding: 0;
+        background-color: transparent !important;
+    }
+    #skill-table tr:nth-child(even) { background-color: #f7f8fc; }
+    #skill-table tr:hover { background-color: #f0edff; }
+
+    .idol-cell {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        width: auto;
+        text-align: left;
+    }
+    .idol_icon { width: 32px; margin: 0; }
+    a.idol_link { display: inline; font-size: 12px; }
+
+    .type-cell { white-space: nowrap; }
+
+    .skill-name-cell {
+        white-space: normal;
+        font-size: 13px;
+    }
+
+    .skill-effect-cell {
+        flex: 1 1 100%;
+        width: 100%;
+        padding-top: 6px;
+        border-top: 1px dashed #eee;
+    }
+
+    #skill-table tr.card-group-first {
+        border-top: 2px solid #bbb;
+    }
+    .card-group-first td {
+        border-top: none;
+    }
 }

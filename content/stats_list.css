@@ -474,11 +474,11 @@ tr.data-incomplete a.idol_link::after {
     }
 
     .stats_list-table th {
-        padding: 5px 1px;
+        padding: 6px 5px;
     }
 
     .stats_list-table td {
-        padding: 8px 1px;
+        padding: 8px 6px;
     }
 
     .stats_list-container {
@@ -514,8 +514,29 @@ tr.data-incomplete a.idol_link::after {
         display: none;
     }
 
+    .stats_list-table td.idol_names {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 8px;
+        white-space: normal;
+    }
+
     .idol_names img {
-        display: none; /* アイコンを非表示 */
+        display: block; /* 1段目: 画像 */
+        width: 44px;
+        height: 44px;
+        object-fit: cover;
+        border-radius: var(--radius-sm);
+        margin: 0;
+    }
+
+    .idol_names a.idol_link {
+        display: block; /* 2段目: 文（アイドル名） */
+        font-size: 11px;
+        line-height: 1.3;
+        white-space: normal;
     }
 
     .hidden {
