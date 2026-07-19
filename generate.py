@@ -284,7 +284,8 @@ def generate_events_html(ongoing, link_prefix=''):
         urgency_class = event_urgency_class(end_dt, now)
         li_class = 'event-item event-li' + (f' {urgency_class}' if urgency_class else '')
         html += (
-            f'<li class="{li_class}">'
+            f'<li class="{li_class}" data-category="{css_class}" '
+            f'data-end="{end_dt.strftime("%Y-%m-%dT%H:%M:%S+09:00")}">'
             '<div class="event-item-header">'
             f'<span class="event-badge event-badge-{css_class}">{esc(category)}</span>'
             f'<span class="event-period">{format_event_period(start_dt, end_dt)}</span>'
@@ -343,7 +344,7 @@ def generate_admin_posts_html(rows):
     return html
 
 
-def _news_list_page_html(title, list_html):
+def _news_list_page_html(title, list_html, extra_top_html='', extra_bottom_html='', extra_script=''):
     return f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -367,20 +368,56 @@ def _news_list_page_html(title, list_html):
     </div>
     <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span>{title}</nav>
     <div class="container">
-        <ul class="news-list">
+{extra_top_html}        <ul class="news-list">
 {list_html}        </ul>
-    </div>
+{extra_bottom_html}    </div>
     <button id="scrollToTopBtn">ページ上部へ</button>
     <script src="news_list.js"></script>
-</body>
+{extra_script}</body>
 </html>'''
+
+
+EVENT_FILTER_BAR_HTML = '''        <div class="event-filter-bar">
+            <div class="event-filter-group">
+                <span class="event-filter-label">区分</span>
+                <label><input type="checkbox" class="event-cat-filter" value="event"> イベント</label>
+                <label><input type="checkbox" class="event-cat-filter" value="gacha"> ガチャ</label>
+                <label><input type="checkbox" class="event-cat-filter" value="job"> お仕事キャンペーン</label>
+                <label><input type="checkbox" class="event-cat-filter" value="mission"> ミッション</label>
+                <label><input type="checkbox" class="event-cat-filter" value="other"> その他</label>
+                <label><input type="checkbox" class="event-cat-filter" value="regular"> 定期</label>
+            </div>
+            <div class="event-filter-group">
+                <label class="event-filter-select">期限
+                    <select id="event-deadline-filter">
+                        <option value="">すべて</option>
+                        <option value="today">本日中に終了</option>
+                        <option value="3days">3日以内に終了</option>
+                        <option value="7days">1週間以内に終了</option>
+                        <option value="later">それ以降</option>
+                    </select>
+                </label>
+                <button type="button" id="event-filter-reset" class="event-filter-reset">リセット</button>
+            </div>
+        </div>
+'''
+
+EVENT_EMPTY_FILTERED_HTML = '''        <p class="event-empty-filtered" id="event-empty-filtered" style="display:none">条件に一致するイベントはありません</p>
+'''
 
 
 def generate_events_list_page(events_rows):
     """サイドバー「開催中のイベント」の全件を、高さ制限なしで一覧できるページ。
-    content/配下に置くため、CSV中のルート相対リンクは ../ 補正が必要。"""
+    content/配下に置くため、CSV中のルート相対リンクは ../ 補正が必要。
+    区分・期限で絞り込めるフィルタバーも合わせて出力する。"""
     events_html = generate_events_html(events_rows, link_prefix='../')
-    write_page('content/events_list.html', _news_list_page_html('開催中のイベント', events_html))
+    page_html = _news_list_page_html(
+        '開催中のイベント', events_html,
+        extra_top_html=EVENT_FILTER_BAR_HTML,
+        extra_bottom_html=EVENT_EMPTY_FILTERED_HTML,
+        extra_script='    <script src="events_filter.js"></script>\n',
+    )
+    write_page('content/events_list.html', page_html)
 
 
 def generate_updates_list_page(update_rows):

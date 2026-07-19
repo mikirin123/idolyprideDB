@@ -21,22 +21,47 @@
     </div>
     <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span>開催中のイベント</nav>
     <div class="container">
+        <div class="event-filter-bar">
+            <div class="event-filter-group">
+                <span class="event-filter-label">区分</span>
+                <label><input type="checkbox" class="event-cat-filter" value="event"> イベント</label>
+                <label><input type="checkbox" class="event-cat-filter" value="gacha"> ガチャ</label>
+                <label><input type="checkbox" class="event-cat-filter" value="job"> お仕事キャンペーン</label>
+                <label><input type="checkbox" class="event-cat-filter" value="mission"> ミッション</label>
+                <label><input type="checkbox" class="event-cat-filter" value="other"> その他</label>
+                <label><input type="checkbox" class="event-cat-filter" value="regular"> 定期</label>
+            </div>
+            <div class="event-filter-group">
+                <label class="event-filter-select">期限
+                    <select id="event-deadline-filter">
+                        <option value="">すべて</option>
+                        <option value="today">本日中に終了</option>
+                        <option value="3days">3日以内に終了</option>
+                        <option value="7days">1週間以内に終了</option>
+                        <option value="later">それ以降</option>
+                    </select>
+                </label>
+                <button type="button" id="event-filter-reset" class="event-filter-reset">リセット</button>
+            </div>
+        </div>
         <ul class="news-list">
-<li class="event-item event-li event-item-urgent"><div class="event-item-header"><span class="event-badge event-badge-event">イベント</span><span class="event-period">7/8(水) 12:00 ～ 7/20(月) 11:59</span></div><div class="event-name">マルチリンクス「PRIDE貫く頂点への道標」</div><div class="event-desc">・<a href="../detail/兵藤雫%20水際のクイズマスター.html" target="_blank" rel="noopener noreferrer">水際のクイズマスター 兵藤雫</a></div></li>
-<li class="event-item event-li event-item-urgent"><div class="event-item-header"><span class="event-badge event-badge-event">イベント</span><span class="event-period">7/20(月) 00:00 ～ 7/20(月) 23:59</span></div><div class="event-name">アイプラの日</div><div class="event-desc">マーケット商品が全て50%OFF！</div></li>
-<li class="event-item event-li"><div class="event-item-header"><span class="event-badge event-badge-gacha">ガチャ</span><span class="event-period">7/8(水) 12:00 ～ 7/24(金) 11:59</span></div><div class="event-name">弾ける笑顔と波打ち際ガチャ</div><div class="event-desc">・<a href="../detail/川咲さくら%20魚魚っと！サマーバレー.html" target="_blank" rel="noopener noreferrer">魚魚っと！サマーバレー 川咲さくら</a><br>・<a href="../detail/白石千紗%20常夏ウォータービーム.html" target="_blank" rel="noopener noreferrer">常夏ウォータービーム 白石千紗</a></div></li>
-<li class="event-item event-li"><div class="event-item-header"><span class="event-badge event-badge-gacha">ガチャ</span><span class="event-period">7/18(土) 12:00 ～ 7/31(金) 11:59</span></div><div class="event-name">君と味わう夏景色スタンプガチャ</div><div class="event-desc"><a href="../detail/長瀬琴乃%20夏晴れと甘いご褒美.html" target="_blank" rel="noopener noreferrer">夏晴れと甘いご褒美 長瀬琴乃</a></div></li>
-<li class="event-item event-li"><div class="event-item-header"><span class="event-badge event-badge-job">お仕事キャンペーン</span><span class="event-period">7/16(木) 00:00 ～ 7/23(木) 23:59</span></div><div class="event-name">サマーお仕事キャンペーン</div><div class="event-desc">プロモーションのレスピと自主トレのMEXPが２倍</div></li>
-<li class="event-item event-li"><div class="event-item-header"><span class="event-badge event-badge-mission">ミッション</span><span class="event-period">7/18(土) 12:00 ～ 7/30(木) 23:59</span></div><div class="event-name">アイドル活動ミッション</div><div class="event-desc">「君と味わう夏景色スタンプガチャ」のガチャチケットが手に入る</div></li>
-<li class="event-item event-li"><div class="event-item-header"><span class="event-badge event-badge-other">その他</span><span class="event-period">7/8(水) 12:00 ～ 7/24(金) 23:59</span></div><div class="event-name">スペシャルデイリーライブ</div><div class="event-desc">スキルパウダーを獲得できる</div></li>
-<li class="event-item event-li event-item-urgent"><div class="event-item-header"><span class="event-badge event-badge-regular">定期</span><span class="event-period">7/8(水) 12:00 ～ 7/20(月) 11:59</span></div><div class="event-name">フォトアルバム</div><div class="event-desc">対象イベント:「PRIDE貫く頂点への道標」</div></li>
-<li class="event-item event-li event-item-soon"><div class="event-item-header"><span class="event-badge event-badge-regular">定期</span><span class="event-period">7/15(水) 00:00 ～ 7/21(火) 23:59</span></div><div class="event-name">ユニオンライブ シーズン61</div></li>
-<li class="event-item event-li"><div class="event-item-header"><span class="event-badge event-badge-regular">定期</span><span class="event-period">7/16(木) 00:00 ～ 7/24(金) 23:59</span></div><div class="event-name">VENUSバトル シーズン174</div></li>
-<li class="event-item event-li"><div class="event-item-header"><span class="event-badge event-badge-regular">定期</span><span class="event-period">7/15(水) 12:00 ～ 8/15(土) 11:59</span></div><div class="event-name">イメージトレーニング</div></li>
+<li class="event-item event-li event-item-urgent" data-category="event" data-end="2026-07-20T11:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-event">イベント</span><span class="event-period">7/8(水) 12:00 ～ 7/20(月) 11:59</span></div><div class="event-name">マルチリンクス「PRIDE貫く頂点への道標」</div><div class="event-desc">・<a href="../detail/兵藤雫%20水際のクイズマスター.html" target="_blank" rel="noopener noreferrer">水際のクイズマスター 兵藤雫</a></div></li>
+<li class="event-item event-li event-item-urgent" data-category="event" data-end="2026-07-20T23:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-event">イベント</span><span class="event-period">7/20(月) 00:00 ～ 7/20(月) 23:59</span></div><div class="event-name">アイプラの日</div><div class="event-desc">マーケット商品が全て50%OFF！</div></li>
+<li class="event-item event-li" data-category="gacha" data-end="2026-07-24T11:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-gacha">ガチャ</span><span class="event-period">7/8(水) 12:00 ～ 7/24(金) 11:59</span></div><div class="event-name">弾ける笑顔と波打ち際ガチャ</div><div class="event-desc">・<a href="../detail/川咲さくら%20魚魚っと！サマーバレー.html" target="_blank" rel="noopener noreferrer">魚魚っと！サマーバレー 川咲さくら</a><br>・<a href="../detail/白石千紗%20常夏ウォータービーム.html" target="_blank" rel="noopener noreferrer">常夏ウォータービーム 白石千紗</a></div></li>
+<li class="event-item event-li" data-category="gacha" data-end="2026-07-31T11:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-gacha">ガチャ</span><span class="event-period">7/18(土) 12:00 ～ 7/31(金) 11:59</span></div><div class="event-name">君と味わう夏景色スタンプガチャ</div><div class="event-desc"><a href="../detail/長瀬琴乃%20夏晴れと甘いご褒美.html" target="_blank" rel="noopener noreferrer">夏晴れと甘いご褒美 長瀬琴乃</a></div></li>
+<li class="event-item event-li" data-category="job" data-end="2026-07-23T23:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-job">お仕事キャンペーン</span><span class="event-period">7/16(木) 00:00 ～ 7/23(木) 23:59</span></div><div class="event-name">サマーお仕事キャンペーン</div><div class="event-desc">プロモーションのレスピと自主トレのMEXPが２倍</div></li>
+<li class="event-item event-li" data-category="mission" data-end="2026-07-30T23:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-mission">ミッション</span><span class="event-period">7/18(土) 12:00 ～ 7/30(木) 23:59</span></div><div class="event-name">アイドル活動ミッション</div><div class="event-desc">「君と味わう夏景色スタンプガチャ」のガチャチケットが手に入る</div></li>
+<li class="event-item event-li" data-category="other" data-end="2026-07-24T23:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-other">その他</span><span class="event-period">7/8(水) 12:00 ～ 7/24(金) 23:59</span></div><div class="event-name">スペシャルデイリーライブ</div><div class="event-desc">スキルパウダーを獲得できる</div></li>
+<li class="event-item event-li event-item-urgent" data-category="regular" data-end="2026-07-20T11:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-regular">定期</span><span class="event-period">7/8(水) 12:00 ～ 7/20(月) 11:59</span></div><div class="event-name">フォトアルバム</div><div class="event-desc">対象イベント:「PRIDE貫く頂点への道標」</div></li>
+<li class="event-item event-li event-item-soon" data-category="regular" data-end="2026-07-21T23:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-regular">定期</span><span class="event-period">7/15(水) 00:00 ～ 7/21(火) 23:59</span></div><div class="event-name">ユニオンライブ シーズン61</div></li>
+<li class="event-item event-li" data-category="regular" data-end="2026-07-24T23:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-regular">定期</span><span class="event-period">7/16(木) 00:00 ～ 7/24(金) 23:59</span></div><div class="event-name">VENUSバトル シーズン174</div></li>
+<li class="event-item event-li" data-category="regular" data-end="2026-08-15T11:59:00+09:00"><div class="event-item-header"><span class="event-badge event-badge-regular">定期</span><span class="event-period">7/15(水) 12:00 ～ 8/15(土) 11:59</span></div><div class="event-name">イメージトレーニング</div></li>
         </ul>
+        <p class="event-empty-filtered" id="event-empty-filtered" style="display:none">条件に一致するイベントはありません</p>
     </div>
     <button id="scrollToTopBtn">ページ上部へ</button>
     <script src="news_list.js"></script>
-<footer class="site-footer">最終更新: 2026/7/20(月) 02:38</footer>
+    <script src="events_filter.js"></script>
+<footer class="site-footer">最終更新: 2026/7/20(月) 02:53</footer>
 </body>
 </html>
