@@ -183,7 +183,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 popup.style.display = 'block';
                 popupOverlay.style.display = 'block';
             } else if (menuName === 'このサイトについて') {
-                popupContent.innerHTML = '● 作成者<br>miki<br><br>● 推薦環境<br>chrome(最新版)<br>Safari (Mac・iOS最新版)<br>Firefox (最新版)<br><br>改善要望・不具合報告は<br><a href="https://x.com/miki_aipr" class="about_link">twitter</a>または<a href="https://forms.gle/gM8HjG6Hzq4YxCmh9" class="about_link">Googleフォーム</a>までお願いします。';
+                popupContent.innerHTML =
+                    '● データ<br>' +
+                    '掲載データはゲーム内・SNS等の公式情報をもとにしていますが、手作業のため誤りや反映漏れが含まれる場合があります。<br><br>' +
+                    '● 作成者<br><a href="https://x.com/miki_aipr" class="about_link">ミキ</a><br><br>改善要望・不具合報告は<br><a href="https://x.com/miki_aipr" class="about_link">twitter</a>または<a href="https://forms.gle/gM8HjG6Hzq4YxCmh9" class="about_link">Googleフォーム</a>までお願いします。';
                 popup.style.display = 'block';
                 popupOverlay.style.display = 'block';
             } 
