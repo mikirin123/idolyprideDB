@@ -254,9 +254,14 @@ h2::before {
     background: #ffffff;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
+    overflow: hidden; /* .news-head/.news-scrollを角丸の内側にクリップする */
+}
+
+/* 見出し(.news-head)はスクロール領域の外に置き、タイトル部分でのスワイプが
+   ページ全体のスクロールとして扱われるようにする(誤スクロール防止) */
+.news-scroll {
     overflow-y: auto;
-    display: grid;
-    max-height: 250px;
+    max-height: 210px;
 }
 
 .menuu {
@@ -402,9 +407,6 @@ ul {
     border-top-left-radius: var(--radius-lg);
     font-weight: bold;
     margin: 0;
-    position: sticky;
-    top: 0;
-    z-index: 1;
 }
 
 .news-head::before {
@@ -449,7 +451,7 @@ ul {
     align-items: center;
 }
 
-.admin-posts-news {
+.admin-posts-news .news-scroll {
     max-height: 560px;
 }
 
@@ -631,7 +633,7 @@ ul {
         gap: var(--gap-mobile);
     }
 
-    .news {
+    .news-scroll {
         max-height: 180px;
     }
 

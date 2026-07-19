@@ -40,12 +40,18 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           JOB_STATUS: ${{ job.status }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
           if [ "$JOB_STATUS" = "success" ]; then
             STATUS="✅ 成功"
           else
             STATUS="❌ 失敗"
           fi
+          if [ "$EVENT_NAME" = "repository_dispatch" ]; then
+            MESSAGE="📝 Googleフォームの回答を受けてサイトを更新しました: ${STATUS}"
+          else
+            MESSAGE="generate.py 定期実行が完了しました: ${STATUS}"
+          fi
           curl -sf -X POST -H "Content-Type: application/json" \
-            -d "{\"content\": \"generate.py 定期実行が完了しました: ${STATUS}\\n実行結果: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            -d "{\"content\": \"${MESSAGE}\\n実行結果: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
             "$DISCORD_WEBHOOK_URL"

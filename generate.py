@@ -567,18 +567,24 @@ def generate_html(update_rows, admin_posts, events_rows):
             </div>
             <div class="news events-news">
                 <h2 class="news-head"><a href="content/events_list.html" class="news-head-link">開催中のイベント <i class="fa-solid fa-angle-right"></i></a></h2>
+                <div class="news-scroll">
                 <ul>
 {events_html}</ul>
+                </div>
             </div>
             <div class="news">
                 <h2 class="news-head"><a href="content/updates_list.html" class="news-head-link">更新情報 <i class="fa-solid fa-angle-right"></i></a></h2>
+                <div class="news-scroll">
                 <ul>
 {update_html}</ul>
+                </div>
             </div>
             <div class="news admin-posts-news"{admin_posts_display}>
                 <h2 class="news-head">管理者の投稿</h2>
+                <div class="news-scroll">
                 <ul>
 {admin_posts_html}</ul>
+                </div>
             </div>
         </aside>
     </div>
