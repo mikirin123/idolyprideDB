@@ -330,6 +330,14 @@ ul {
     border-bottom: none;
 }
 
+.event-item-soon {
+    background-color: #fffbdd;
+}
+
+.event-item-urgent {
+    background-color: #ffe3e3;
+}
+
 .event-item-header {
     display: flex;
     align-items: center;

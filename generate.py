@@ -1,11 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import subprocess
 import csv
 import io
 import re
 import urllib.request
 import os
-from utils import write_page, esc, esc_rich
+from utils import write_page, esc, esc_rich, now_jst
 
 birthdays = [
     {"name": "長瀬琴乃", "birthday": "12-25"},
@@ -31,7 +31,7 @@ birthdays = [
     {"name": "長瀬麻奈", "birthday": "10-09"},
 ]
 
-today = datetime.today()
+today = now_jst()
 today_date = today.date()
 
 closest_person = None
@@ -212,7 +212,7 @@ def load_events_rows():
     except Exception:
         return []
 
-    now = datetime.now()
+    now = now_jst()
     ongoing = []
     for row in csv.DictReader(io.StringIO(content)):
         try:
@@ -247,10 +247,21 @@ def format_event_period(start_dt, end_dt):
     return f"{fmt(start_dt)} ～ {fmt(end_dt)}"
 
 
+def event_urgency_class(end_dt, now):
+    """終了まで1日以内なら赤、3日以内なら黄色の背景クラスを返す(該当なしはNone)。"""
+    remaining = end_dt - now
+    if remaining <= timedelta(days=1):
+        return 'event-item-urgent'
+    if remaining <= timedelta(days=3):
+        return 'event-item-soon'
+    return None
+
+
 def generate_events_html(ongoing):
     if not ongoing:
         return '<li class="event-empty event-li">現在開催中のイベントはありません</li>\n'
 
+    now = now_jst()
     html = ''
     for row, start_dt, end_dt in ongoing:
         category = row.get('イベント区分', '').strip()
@@ -260,8 +271,10 @@ def generate_events_html(ongoing):
             f'<div class="event-desc">{format_event_rich_text(description)}</div>'
             if description else ''
         )
+        urgency_class = event_urgency_class(end_dt, now)
+        li_class = 'event-item event-li' + (f' {urgency_class}' if urgency_class else '')
         html += (
-            '<li class="event-item event-li">'
+            f'<li class="{li_class}">'
             '<div class="event-item-header">'
             f'<span class="event-badge event-badge-{css_class}">{esc(category)}</span>'
             f'<span class="event-period">{format_event_period(start_dt, end_dt)}</span>'

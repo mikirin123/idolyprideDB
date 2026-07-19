@@ -1,9 +1,19 @@
 import hashlib
 import html
 import os
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 WEEKDAYS_JA = ['月', '火', '水', '木', '金', '土', '日']
+# 日本時間はDSTが無い固定UTC+9のため、tzdataへの依存を避けて固定オフセットで表す
+# (WindowsのPython標準環境にはzoneinfo用のtzdataが同梱されていないため)
+JST = timezone(timedelta(hours=9))
+
+
+def now_jst():
+    """実行環境のタイムゾーンに関わらず日本時間の現在時刻を返す(naive datetime)。
+    GitHub ActionsのランナーはUTCで動作するため、datetime.now()をそのまま使うと
+    9時間ずれてしまう。"""
+    return datetime.now(JST).replace(tzinfo=None)
 
 # キャラプロフィール(data/profiles.json)が未登録のときのフォールバック値。
 # generate_detail.py と generate_char_info.py の両方で使うため共通化している。
@@ -66,7 +76,7 @@ def _get_last_updated(path, content):
             lines = f.read().splitlines()
         if len(lines) == 2 and lines[0] == new_hash:
             return datetime.fromisoformat(lines[1])
-    now = datetime.now()
+    now = now_jst()
     with open(meta_path, 'w', encoding='utf-8') as f:
         f.write(f'{new_hash}\n{now.isoformat()}')
     return now
