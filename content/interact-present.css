@@ -233,6 +233,8 @@ img {
     .breadcrumb { margin-top: 48px; font-size: 11px; padding: 6px 12px; }
 
     .container {
+        width: 100%;
+        box-sizing: border-box;
         margin-top: 14px;
     }
 
@@ -262,7 +264,11 @@ img {
     }
 
     table {
+        display: block;
         width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     margin-top: 5px;
     }
 

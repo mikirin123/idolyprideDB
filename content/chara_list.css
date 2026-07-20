@@ -71,6 +71,7 @@ body {
 @media screen and (max-width: 768px) {
     .container { padding: 16px var(--space-page-x-mobile) 20px; }
     .toc-buttons { grid-template-columns: repeat(5, 1fr) !important; }
+    .toc-btn-wrap { width: 100%; max-width: 60px; }
     .toc-btn-wrap img.toc-icon { width: 44px; height: 44px; }
     .toc-label { font-size: 11px; }
 }
