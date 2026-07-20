@@ -565,17 +565,23 @@ ul {
     .banner {
         text-align: left; /* Change text alignment to left */
         height: 44px;
+        padding: 0 var(--space-page-x-mobile); /* デスクトップ用の30pxのままだとサイト名の表示幅が無駄に狭くなるため縮小 */
     }
 
     .banner .menu {
-        right: var(--space-page-x-mobile);
-        padding: 6px 12px; /* 横paddingが大きいとボタン自体が幅広になり、右端から離れて見えるため縮小 */
+        right: 8px; /* サイト名により多くの幅を残すため、端ぎりぎりまで寄せる */
+        padding: 6px 10px; /* 横paddingが大きいとボタン自体が幅広になり、右端から離れて見えるため縮小 */
         font-size: 16px;
     }
 
     /* ボタンの位置(right)に合わせないと、開いたメニューがボタンからずれて表示される */
     .menu-content {
-        right: var(--space-page-x-mobile);
+        right: 8px;
+    }
+
+    /* メニューボタンの実際の位置に合わせて、途切れずに収まる幅まで広げる */
+    .banner_title {
+        max-width: calc(100% - 50px);
     }
 
     #scrollToTopBtn {
