@@ -156,9 +156,7 @@
 }
 .tl-card img {
     width: 76px;
-    height: 43px;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
+    aspect-ratio: 500 / 281;
     margin-bottom: 5px;
 }
 .tl-card-name {
@@ -202,7 +200,7 @@
     .tl-group { padding-left: 12px; }
     .tl-cards { gap: var(--gap-mobile); }
     .tl-card { width: 76px; }
-    .tl-card img { width: 62px; height: 35px; }
+    .tl-card img { width: 62px; }
     .tl-toolbar { padding: 8px var(--space-page-x-mobile); }
     .tl-search-row { gap: 8px; }
     .tl-filter-row { gap: 4px 10px; }

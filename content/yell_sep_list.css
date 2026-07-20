@@ -226,7 +226,7 @@ img {
 
 .idol-item img {
     width: 100%;
-    border-radius: var(--radius-lg);
+    aspect-ratio: 500 / 281;
     margin-bottom: 5px; /* 余白を減らす */
 }
 

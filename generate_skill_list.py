@@ -45,7 +45,7 @@ def generate_html():
             rows_html += f'''            <tr{row_class} data-char="{esc(char_name)}" data-card="{esc(card_name)}" data-slot="{slot}" data-skill-type="{esc(skill_type)}" data-ct="{ct_data}" data-trend="{esc(trend)}" data-type="{esc(char_type)}">
                 <td class="idol-cell">
                     <img src="{esc(icon_path)}" class="idol_icon" alt="{esc(card_name)} {esc(char_name)}" loading="lazy" onerror="this.style.display='none'">
-                    <a href="{esc(detail_path)}" class="idol_link">{esc(card_name)}<br>{esc(char_name)}</a>
+                    <a href="{esc(detail_path)}" class="idol_link">{esc(card_name)} <br>{esc(char_name)}</a>
                 </td>
                 <td class="type-cell"><span class="badge badge-{esc(skill_type.lower())}">{esc(skill_type)}</span></td>
                 <td class="skill-name-cell">{esc(name)}</td>

@@ -612,9 +612,18 @@ ul {
         order: 2;
     }
 
+    /* sidebar自体をflexアイテムにせず子要素を直接menuu-containerのflexアイテムにすることで、
+       管理者の投稿(admin-posts-news)だけをはちはじ'25(.menuu)より下に個別配置できるようにする */
     .sidebar {
+        display: contents;
+    }
+
+    .sidebar > .news {
         order: 1;
-        margin-left: 0;
+    }
+
+    .sidebar > .news.admin-posts-news {
+        order: 3;
     }
 
     .birthday {

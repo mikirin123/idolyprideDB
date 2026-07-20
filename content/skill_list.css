@@ -194,7 +194,6 @@ tr:hover td { background-color: #f0edff; }
     width: 76px;
     aspect-ratio: 500 / 281;
     margin: 0 auto 4px;
-    border-radius: var(--radius-sm);
 }
 a.idol_link {
     display: block;
@@ -290,7 +289,7 @@ tr.data-incomplete a.idol_link::after {
     .filters { width: 100%; box-sizing: border-box; }
     .table-container { width: 100%; box-sizing: border-box; padding: 10px; overflow-x: visible; }
 
-    /* テーブルをカード形式に変更：1段目=アイドル・種別・スキル名、2段目=効果 */
+    /* テーブルをカード形式に変更：1段目=アイドル、2段目=種別・スキル名、3段目=効果 */
     #skill-table thead { display: none; }
     #skill-table, #skill-table tbody { display: block; width: 100%; }
     #skill-table tr {
@@ -310,15 +309,29 @@ tr.data-incomplete a.idol_link::after {
     #skill-table tr:nth-child(even) { background-color: #f7f8fc; }
     #skill-table tr:hover { background-color: #f0edff; }
 
+    /* カード単位表示(グループ化)はJSでrowspan+アイドル列非表示によって実現しているが、
+       これはtable表示専用の仕組みでflexカード表示には適用できず、
+       グループ2件目以降のカードにアイドル画像・名前が表示されなくなってしまう。
+       スマホのカード表示では常にアイドル列を表示する。 */
     .idol-cell {
-        display: flex;
+        display: flex !important;
+        flex: 1 1 100%;
+        width: 100%;
         align-items: center;
         gap: 6px;
-        width: auto;
         text-align: left;
     }
     .idol_icon { width: 32px; margin: 0; }
-    a.idol_link { display: inline; font-size: 12px; }
+    a.idol_link {
+        display: block;
+        flex: 1;
+        min-width: 0;
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    a.idol_link br { display: none; }
 
     .type-cell { white-space: nowrap; }
 

@@ -245,18 +245,14 @@ th.sortable.sorted-asc::after {
 .stats_list-sidebar ul img {
     vertical-align: middle;
     width: 56px;
-    height: 32px;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
+    aspect-ratio: 500 / 281;
     flex-shrink: 0;
 }
 
 .idol_names img {
     vertical-align: middle;
     width: 64px;
-    height: 36px;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
+    aspect-ratio: 500 / 281;
     margin-right: 10px;
 }
 
@@ -511,8 +507,7 @@ tr.data-incomplete a.idol_link::after {
     .idol_names img {
         display: block; /* 1段目: 画像 */
         width: 84px;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
+        aspect-ratio: 500 / 281;
         margin: 0;
     }
 
