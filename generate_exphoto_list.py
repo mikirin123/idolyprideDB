@@ -1,4 +1,4 @@
-from utils import write_page, esc, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, IN_ARTICLE_AD_HTML
+from utils import write_page, esc, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML
 import csv
 from collections import defaultdict
 
@@ -122,7 +122,6 @@ def generate_html():
                             <a href="https://docs.google.com/spreadsheets/d/1ok0qeXNhI9E3IDgaspBD4HZ9Uys0V5Q1o8jcx23PV80/edit?usp=sharing">Googleスプレッドシート</a>
                             <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTWzfcWHUhgen2ncfEAcHc0vIIp-4FumHf7TJz4ELl1QYzPDMS7UN7Dwgg66yrImLlgC8xrJW5VEhWl/pubhtml?widget=true&amp;chrome=false" style="width: 100%; height: 350px;"></iframe>                </div>
             <hr>
-            {IN_ARTICLE_AD_HTML}
             {tables_html}
         </div>
     </main>

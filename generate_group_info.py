@@ -2,7 +2,7 @@ import csv
 import os
 from utils import (
     write_page, esc,
-    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, IN_ARTICLE_AD_HTML,
+    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML,
 )
 
 
@@ -151,7 +151,6 @@ def generate_html():
             <h2 class="mokuji">メンバー</h2>
             <div class="idol-list">{members_html}</div>
         </div>
-        {IN_ARTICLE_AD_HTML}
         <div class="char-section">
             <h2 class="mokuji">楽曲</h2>
             <ul class="song-list">{songs_html}</ul>

@@ -4,7 +4,7 @@ from urllib.parse import quote
 from db import load_characters
 from utils import (
     write_page, esc, esc_rich, DEFAULT_PROFILE,
-    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, IN_ARTICLE_AD_HTML,
+    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML,
 )
 
 def load_profiles():
@@ -168,9 +168,6 @@ def generate_detail_pages(characters, profiles):
                         </div>
                         <div class="else-idols-phone"><h2>他アイドル</h2><table>{elseidols}</table></div>
                         <div class="personal-details-phone">{personal_details_table}</div>
-                    </div>
-                    <div class="right-container-2">
-                        {IN_ARTICLE_AD_HTML}
                     </div>
                 </div>
             </div>

@@ -169,10 +169,3 @@ html {
         font-size: 12px;
     }
 }
-
-/* 記事内広告(in-article) */
-.in-article-ad {
-    margin: 24px auto;
-    max-width: 100%;
-    min-height: 100px;
-}

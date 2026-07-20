@@ -3,7 +3,7 @@ import json
 import os
 from utils import (
     write_page, esc, DEFAULT_PROFILE,
-    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, IN_ARTICLE_AD_HTML,
+    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML,
 )
 from db import load_characters
 
@@ -259,7 +259,6 @@ def generate_html():
             <h2 class="mokuji">アイドル一覧</h2>
             <div class="idol-list">{cards_html}</div>
         </div>
-        {IN_ARTICLE_AD_HTML}
         <div class="char-section">
             <h2 class="mokuji">歌唱曲</h2>
             <ul class="song-list">{songs_html}</ul>
