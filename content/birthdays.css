@@ -132,9 +132,7 @@ table {
     margin-top: 20px;
     width: 0;
     white-space: nowrap;
-    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    overflow: hidden; /* ボーダー内に収める */
 }
 th {
     background-color: #3200FF; /* ヘッダーの背景色を濃く */
@@ -260,6 +258,12 @@ img {
     .banner {
         padding: 0 15px;
         height: 44px;
+    }
+    .banner_title {
+        display: none;
+    }
+    .banner_title_phone {
+        display: block;
     }
     .back-button {
         display: none;

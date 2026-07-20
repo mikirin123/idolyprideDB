@@ -188,14 +188,7 @@ th.sortable.sorted-asc::after {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 14px;
-    border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.5);
-    border-top: 3px solid transparent;
 }
-.stats-stat-group.stat-vo { border-top-color: #FF469D; }
-.stats-stat-group.stat-da { border-top-color: #3ABAFF; }
-.stats-stat-group.stat-vi { border-top-color: #FFA900; }
 
 .stats-card {
     background: #fff;
@@ -489,7 +482,10 @@ tr.data-incomplete a.idol_link::after {
     }
 
     .stats_list-table-card {
-        border-radius: var(--radius-lg);
+        width: 100%;
+        overflow-x: auto; /* 表自体を横スクロールさせる */
+        -webkit-overflow-scrolling: touch;
+        border-radius: 0;
     }
     .stats_list-table tr:first-child th:first-child,
     .stats_list-table tr:first-child th:last-child,
@@ -499,8 +495,8 @@ tr.data-incomplete a.idol_link::after {
     }
 
     .stats_list-table {
-        width: fit-content;
-        overflow: visible; /* はみ出た場合はページ全体を横スクロール（stickyヘッダーを壊さないため） */
+        width: max-content;
+        min-width: 100%; /* 内容が狭い時はカード幅まで広げ、広い時ははみ出して横スクロール */
     margin: 0px;
     padding: 0px;
     }
@@ -509,26 +505,33 @@ tr.data-incomplete a.idol_link::after {
         display: none; /* サイドバーを非表示 */
     }
 
-    .stats_list-table th:nth-child(6), /* パワー列のヘッダー */
-    .stats_list-table td:nth-child(6) /* パワー列のデータ */ {
+    .stats_list-table th.pwr, /* パワー列のヘッダー */
+    .stats_list-table td.pwr /* パワー列のデータ */ {
         display: none;
+    }
+
+    .stats_list-table th:first-child,
+    .stats_list-table td:first-child {
+        width: auto; /* PC用の34%指定を無効化し、内容の幅にまかせる */
+    }
+
+    .stats_list-table th:first-child {
+        text-align: center; /* PC用の左寄せ指定を無効化し、見出しを中央寄せにする */
     }
 
     .stats_list-table td.idol_names {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 4px;
-        padding: 8px;
-        white-space: normal;
+        padding: 8px 12px;
     }
 
     .idol_names img {
         display: block; /* 1段目: 画像 */
-        width: 44px;
-        height: 44px;
+        width: 84px;
+        aspect-ratio: 16 / 9;
         object-fit: cover;
-        border-radius: var(--radius-sm);
         margin: 0;
     }
 
@@ -536,7 +539,8 @@ tr.data-incomplete a.idol_link::after {
         display: block; /* 2段目: 文（アイドル名） */
         font-size: 11px;
         line-height: 1.3;
-        white-space: normal;
+        white-space: nowrap; /* できるだけ一列で表示する */
+        text-align: center;
     }
 
     .hidden {
