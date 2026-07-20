@@ -1,12 +1,18 @@
 import hashlib
 import html
+import json
 import os
 from datetime import datetime, timedelta, timezone
+from urllib.parse import quote
 
 WEEKDAYS_JA = ['月', '火', '水', '木', '金', '土', '日']
 # 日本時間はDSTが無い固定UTC+9のため、tzdataへの依存を避けて固定オフセットで表す
 # (WindowsのPython標準環境にはzoneinfo用のtzdataが同梱されていないため)
 JST = timezone(timedelta(hours=9))
+
+SITE_NAME = 'IDOLY PRIDE データベース M'
+# サイト全体で使うOGP用の代表画像(favicon兼用)
+OG_IMAGE_PATH = 'image/icon.png'
 
 
 def now_jst():
@@ -14,6 +20,92 @@ def now_jst():
     GitHub ActionsのランナーはUTCで動作するため、datetime.now()をそのまま使うと
     9時間ずれてしまう。"""
     return datetime.now(JST).replace(tzinfo=None)
+
+
+def load_setting(key):
+    """gitignore/setting.txt から `key=value` 形式の設定値を読む。
+    generate.py・generate_sitemap.py・utils.py(本ファイル)で共通利用する。"""
+    with open('gitignore/setting.txt', 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith(f'{key}='):
+                val = line.split('=', 1)[1].strip()
+                return val if val else None
+    return None
+
+
+def _site_url():
+    url = load_setting('SITE_URL') or ''
+    if url and not url.endswith('/'):
+        url += '/'
+    return url
+
+
+SITE_URL = _site_url()
+
+
+def seo_meta_html(page_url, title, description):
+    """canonical・OGP・Twitter CardのHTMLブロックを返す。
+    page_url はサイトルート基準の相対パス(例: 'content/idol_list.html'、トップページは'')。
+    ファイル名にスペースを含むページがあるため、sitemap.xmlと同様にURLエンコードする。"""
+    canonical = SITE_URL + quote(page_url, safe='/')
+    og_image = SITE_URL + OG_IMAGE_PATH
+    title_esc = esc(title)
+    description_esc = esc(description)
+    return f'''<link rel="canonical" href="{canonical}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{title_esc}">
+    <meta property="og:description" content="{description_esc}">
+    <meta property="og:url" content="{canonical}">
+    <meta property="og:site_name" content="{esc(SITE_NAME)}">
+    <meta property="og:image" content="{og_image}">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{title_esc}">
+    <meta name="twitter:description" content="{description_esc}">
+    <meta name="twitter:image" content="{og_image}">'''
+
+
+# Google Fonts / Font AwesomeはCSS内の@importではなくHTML側でpreconnectしてから
+# 読み込むことで、フォント取得の開始を早めレンダリングブロックを軽減する
+FONT_PRECONNECT_HTML = (
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+    '    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+    "    <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap\">"
+)
+FA_PRECONNECT_HTML = '<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>'
+
+# 記事内広告(in-article)。テキスト・データ量の多い詳細/プロフィール系ページにのみ
+# 挿入する(検索・フィルタ操作が中心の一覧/ツール系ページには置かない)。
+IN_ARTICLE_AD_HTML = '''<div class="in-article-ad">
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-9647262951514669"
+         data-ad-slot="8576527386"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>'''
+
+
+def breadcrumb_jsonld(items):
+    """パンくずのBreadcrumbList構造化データ(JSON-LD)を返す。
+    items: [(name, url), ...] urlはサイトルート基準の相対パス。"""
+    element_list = [
+        {
+            "@type": "ListItem",
+            "position": i,
+            "name": name,
+            "item": SITE_URL + quote(url, safe='/'),
+        }
+        for i, (name, url) in enumerate(items, 1)
+    ]
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": element_list,
+    }
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
 
 # キャラプロフィール(data/profiles.json)が未登録のときのフォールバック値。
 # generate_detail.py と generate_char_info.py の両方で使うため共通化している。

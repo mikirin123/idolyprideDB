@@ -138,7 +138,6 @@ body {
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     max-height: fit-content;
 }
@@ -266,12 +265,14 @@ th {
 
 .af_image {
     width: 90%;
+    aspect-ratio: 500 / 281;
     background-color: black;
     padding: 30px 0px;
 }
 
 .bf_image {
     width: 65%;
+    aspect-ratio: 400 / 711;
     margin-top: 20px;
     background-color: black;
     padding: 0px 30px;

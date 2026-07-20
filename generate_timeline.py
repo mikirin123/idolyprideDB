@@ -1,4 +1,4 @@
-from utils import write_page, build_char_options_html, esc
+from utils import write_page, build_char_options_html, esc, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, FA_PRECONNECT_HTML
 import os
 from db import load_characters
 from collections import defaultdict
@@ -95,14 +95,25 @@ def generate_html():
             <div class="tl-cards">{''.join(card_html(c) for c in undated)}</div>
         </div>'''
 
+    page_description = "IDOLY PRIDEのカードリリース履歴です。実装日ごとにカードを確認できます。"
+    page_title = "リリース履歴 - IDOLY PRIDE データベース M"
+    seo_html = seo_meta_html('content/timeline.html', page_title, page_description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('リリース履歴', 'content/timeline.html'),
+    ])
+
     html_content = f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDEのカードリリース履歴です。実装日ごとにカードを確認できます。">
+    <meta name="description" content="{page_description}">
     <meta name="keywords" content="IDOLY PRIDE, リリース履歴, 実装日, データベース">
-    <title>リリース履歴 - IDOLY PRIDE データベース M</title>
+    <title>{page_title}</title>
+    {seo_html}
+    {FONT_PRECONNECT_HTML}
+    {FA_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="timeline.css">
     <link rel="shortcut icon" href="../image/icon.ico">
@@ -112,6 +123,7 @@ def generate_html():
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9647262951514669" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-9647262951514669">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    {breadcrumb_html}
 </head>
 <body>
     <div class="banner">

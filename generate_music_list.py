@@ -1,5 +1,5 @@
 import csv
-from utils import write_page, esc
+from utils import write_page, esc, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, FA_PRECONNECT_HTML
 
 
 def load_songs():
@@ -62,14 +62,25 @@ def generate_html():
                 <td class="mv-cell">{youtube_html}</td>
             </tr>\n'''
 
+    page_description = "IDOLY PRIDEの楽曲一覧です。グループや歌唱メンバー、作詞作曲編曲でキーワード検索できます。"
+    page_title = "楽曲情報 - IDOLY PRIDE データベース M"
+    seo_html = seo_meta_html('content/music_list.html', page_title, page_description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('楽曲情報', 'content/music_list.html'),
+    ])
+
     html_content = f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDEの楽曲一覧です。グループや歌唱メンバー、作詞作曲編曲でキーワード検索できます。">
+    <meta name="description" content="{page_description}">
     <meta name="keywords" content="IDOLY PRIDE, 楽曲情報, 曲一覧, データベース">
-    <title>楽曲情報 - IDOLY PRIDE データベース M</title>
+    <title>{page_title}</title>
+    {seo_html}
+    {FONT_PRECONNECT_HTML}
+    {FA_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="music_list.css">
     <link rel="shortcut icon" href="../image/icon.ico">
@@ -77,6 +88,7 @@ def generate_html():
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
     <link rel="mask-icon" href="../image/icon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    {breadcrumb_html}
 </head>
 <body>
     <div class="banner">

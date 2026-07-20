@@ -129,7 +129,6 @@ h3 { margin: 10px 0 6px; font-size: 15px; }
     flex: 1;
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     overflow-x: auto;
 }

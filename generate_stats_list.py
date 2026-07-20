@@ -1,4 +1,4 @@
-from utils import write_page, build_char_options_html, esc
+from utils import write_page, build_char_options_html, esc, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML
 import os
 from db import load_characters
 
@@ -22,15 +22,24 @@ def generate_html():
         )
 
         # HTML生成
-        html_content = '''
+        page_description = "IDOLY PRIDEのステータスランキングを確認できます。各アイドルのVo., Da., Vi., St., PWR.を比較して表示します。"
+        page_title = "ステータスランキング - IDOLY PRIDE データベース M"
+        seo_html = seo_meta_html('content/stats_list.html', page_title, page_description)
+        breadcrumb_html = breadcrumb_jsonld([
+            ('IDOLY PRIDE データベース M', ''),
+            ('ステータスランキング', 'content/stats_list.html'),
+        ])
+        html_content = f'''
         <!DOCTYPE html>
         <html lang="ja">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta name="description" content="IDOLY PRIDEのステータスランキングを確認できます。各アイドルのVo., Da., Vi., St., PWR.を比較して表示します。">
+            <meta name="description" content="{page_description}">
             <meta name="keywords" content="IDOLY PRIDE, ステータスランキング, Vo., Da., Vi., St., PWR.">
-            <title>ステータスランキング - IDOLY PRIDE データベース M</title>
+            <title>{page_title}</title>
+            {seo_html}
+            {FONT_PRECONNECT_HTML}
             <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="stats_list.css">
             <script src="stats_list.js"></script>
@@ -40,6 +49,7 @@ def generate_html():
             <link rel="mask-icon" href="../image/icon.svg">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9647262951514669" crossorigin="anonymous"></script>
             <meta name="google-adsense-account" content="ca-pub-9647262951514669">
+            {breadcrumb_html}
         </head>
         <body>
             <div class="banner">

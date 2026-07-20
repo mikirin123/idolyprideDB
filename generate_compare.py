@@ -1,4 +1,4 @@
-from utils import write_page
+from utils import write_page, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML
 import os
 import json
 from db import load_characters
@@ -41,14 +41,24 @@ def generate_html():
     # <script> タグが途中で閉じられないようにエスケープする
     cards_json = json.dumps(cards, ensure_ascii=False).replace('<', '\\u003c')
 
+    page_description = "IDOLY PRIDEのアイドル比較ページです。最大5枚のカードを並べてステータス・スキルを比較できます。"
+    page_title = "アイドル比較 - IDOLY PRIDE データベース M"
+    seo_html = seo_meta_html('content/compare.html', page_title, page_description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('アイドル比較', 'content/compare.html'),
+    ])
+
     html_content = f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDEのアイドル比較ページです。最大5枚のカードを並べてステータス・スキルを比較できます。">
+    <meta name="description" content="{page_description}">
     <meta name="keywords" content="IDOLY PRIDE, アイドル比較, ステータス, スキル, データベース">
-    <title>アイドル比較 - IDOLY PRIDE データベース M</title>
+    <title>{page_title}</title>
+    {seo_html}
+    {FONT_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="compare.css">
     <link rel="shortcut icon" href="../image/icon.ico">
@@ -57,6 +67,7 @@ def generate_html():
     <link rel="mask-icon" href="../image/icon.svg">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9647262951514669" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-9647262951514669">
+    {breadcrumb_html}
 </head>
 <body>
     <div class="banner">

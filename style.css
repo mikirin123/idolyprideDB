@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
+/* Google Fontsはレンダリングブロックを避けるためHTML側で
+   preconnect + <link>読み込みに変更済み(utils.pyのFONT_PRECONNECT_HTML)。
+   ここでは同一originのtokens.cssのみ@importする。 */
 @import url('tokens.css');
 
 /* ==========================
@@ -507,6 +509,7 @@ ul {
 
 .circle_icon {
     width:50px;
+    aspect-ratio: 1 / 1;
     vertical-align: middle; /* アイコンを中央揃え */
 }
 

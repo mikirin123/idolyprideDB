@@ -98,7 +98,10 @@ function cardMatches(card, f, favorites) {
 
     if (f.charFilter && d.char !== f.charFilter) return false;
     if (f.obtainFilter && d.obtain !== f.obtainFilter) return false;
-    if (f.supportFilter && d.support !== f.supportFilter) return false;
+    if (f.supportFilter) {
+        const noSupport = f.supportFilter === 'なし' && !d.support;
+        if (!noSupport && d.support !== f.supportFilter) return false;
+    }
     if (f.rarity.length && !f.rarity.includes(d.rarity)) return false;
     if (f.trend.length && !f.trend.includes(d.trend)) return false;
     if (f.type.length && !f.type.includes(d.type)) return false;
@@ -261,7 +264,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadedFromUrl = loadTlFromUrlParams();
     if (!loadedFromUrl) restoreTlFiltersFromStorage();
 
-    document.getElementById('tl-search-bar').addEventListener('input', applyTlFilters);
+    let tlSearchDebounceTimer;
+    document.getElementById('tl-search-bar').addEventListener('input', function() {
+        clearTimeout(tlSearchDebounceTimer);
+        tlSearchDebounceTimer = setTimeout(applyTlFilters, 150);
+    });
     document.querySelectorAll('input[name="tl-search-mode"]').forEach(radio => {
         radio.addEventListener('change', applyTlFilters);
     });

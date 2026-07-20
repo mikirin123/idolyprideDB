@@ -1,8 +1,8 @@
 from pathlib import Path
 from urllib.parse import quote, urlparse
 
-from generate import NAV_SECTIONS, EVENT_NAV_SECTIONS, load_page_visibility, load_setting
-from utils import write_if_changed, write_page
+from generate import NAV_SECTIONS, EVENT_NAV_SECTIONS, load_page_visibility
+from utils import write_if_changed, write_page, load_setting
 
 ROOT = Path(__file__).resolve().parent
 
@@ -61,6 +61,15 @@ def generate_sitemap_xml(urls, base_url):
     write_if_changed('sitemap.xml', xml)
 
 
+def generate_robots_txt(base_url):
+    content = (
+        'User-agent: *\n'
+        'Allow: /\n'
+        f'Sitemap: {base_url}sitemap.xml\n'
+    )
+    write_if_changed('robots.txt', content)
+
+
 def generate_sitemap_html(root_path):
     """人間向けの簡易サイトマップページ。detail/character/groupの大量ページは
     含めず、NAV_SECTIONS・EVENT_NAV_SECTIONSの主要ページだけを一覧表示する。"""
@@ -108,4 +117,5 @@ if __name__ == "__main__":
     urls = build_urls()
     generate_sitemap_xml(urls, site_url)
     generate_sitemap_html(root_path)
+    generate_robots_txt(site_url)
     print(f"サイトマップを生成しました: sitemap.xml ({len(urls)}件) / sitemap.html")

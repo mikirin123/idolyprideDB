@@ -159,6 +159,8 @@ h2::before {
 .compare-result {
     padding: 20px var(--space-page-x);
     overflow-x: auto;
+    background-color: #fff;
+    box-shadow: 0 4px 14px rgba(50, 0, 255, 0.08);
 }
 
 .hint {
@@ -171,10 +173,6 @@ h2::before {
 .compare-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 14px rgba(50, 0, 255, 0.08);
-    overflow: hidden;
 }
 .compare-table th,
 .compare-table td {

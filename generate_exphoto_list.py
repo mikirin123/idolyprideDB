@@ -1,4 +1,4 @@
-from utils import write_page, esc
+from utils import write_page, esc, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, IN_ARTICLE_AD_HTML
 import csv
 from collections import defaultdict
 
@@ -76,14 +76,24 @@ def generate_html():
     </section>
     """
 
+    page_description = "IDOLY PRIDEの専用フォト一覧です。各キャラクターのスキル詳細や発動条件、効果を確認できます。"
+    page_title = "専用フォト - IDOLY PRIDE データベース M"
+    seo_html = seo_meta_html('content/exphoto_list.html', page_title, page_description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('専用フォト', 'content/exphoto_list.html'),
+    ])
+
     html_content = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDEの専用フォト一覧です。各キャラクターのスキル詳細や発動条件、効果を確認できます。">
+    <meta name="description" content="{page_description}">
     <meta name="keywords" content="IDOLY PRIDE,専用フォト,スキル,発動条件,効果">
-    <title>専用フォト - IDOLY PRIDE データベース M</title>
+    <title>{page_title}</title>
+    {seo_html}
+    {FONT_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="exphoto_list.css">
     <script src="exphoto_list.js"></script>
@@ -91,6 +101,7 @@ def generate_html():
     <link rel="icon" type="image/png" sizes="180x180" href="../image/icon.png">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
     <link rel="mask-icon" href="../image/icon.svg">
+    {breadcrumb_html}
 </head>
 <body>
     <header>
@@ -112,6 +123,7 @@ def generate_html():
                             <a href="https://docs.google.com/spreadsheets/d/1ok0qeXNhI9E3IDgaspBD4HZ9Uys0V5Q1o8jcx23PV80/edit?usp=sharing">Googleスプレッドシート</a>
                             <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTWzfcWHUhgen2ncfEAcHc0vIIp-4FumHf7TJz4ELl1QYzPDMS7UN7Dwgg66yrImLlgC8xrJW5VEhWl/pubhtml?widget=true&amp;chrome=false" style="width: 100%; height: 350px;"></iframe>                </div>
             <hr>
+            {IN_ARTICLE_AD_HTML}
             {tables_html}
         </div>
     </main>

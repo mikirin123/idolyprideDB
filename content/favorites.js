@@ -5,10 +5,12 @@ function toggleFav(btn) {
         favs = favs.filter(k => k !== key);
         btn.textContent = '☆';
         btn.classList.remove('fav-active');
+        btn.setAttribute('aria-pressed', 'false');
     } else {
         favs.push(key);
         btn.textContent = '★';
         btn.classList.add('fav-active');
+        btn.setAttribute('aria-pressed', 'true');
     }
     localStorage.setItem('favorites', JSON.stringify(favs));
 }
@@ -19,6 +21,7 @@ function initFavs() {
         if (favs.has(btn.dataset.key)) {
             btn.textContent = '★';
             btn.classList.add('fav-active');
+            btn.setAttribute('aria-pressed', 'true');
         }
     });
 }

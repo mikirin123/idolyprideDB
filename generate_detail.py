@@ -2,7 +2,10 @@ import os
 import json
 from urllib.parse import quote
 from db import load_characters
-from utils import write_page, esc, esc_rich, DEFAULT_PROFILE
+from utils import (
+    write_page, esc, esc_rich, DEFAULT_PROFILE,
+    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, IN_ARTICLE_AD_HTML,
+)
 
 def load_profiles():
     with open('data/profiles.json', 'r', encoding='utf-8') as f:
@@ -70,15 +73,34 @@ def generate_detail_pages(characters, profiles):
 
         incomplete_notice = '<div class="data-incomplete-notice">⚠ このアイドルのデータは未入力の項目があります</div>' if character[0] == '★' else ''
 
+        detail_page_url = f'detail/{character[2]} {character[3]}.html'.replace('\n', '')
+        obtain_method = character[23].strip()
+        impl_date = character[24].strip()
+        detail_description = (
+            f'IDOLY PRIDE「{esc(character[3])} {esc(character[2])}」の詳細ページです。'
+            + (f'入手方法: {esc(obtain_method)}。' if obtain_method else '')
+            + (f'実装日: {esc(impl_date)}。' if impl_date else '')
+            + '基本情報、ステータス、ライブスキルなどの情報を掲載しています。'
+        )
+        detail_title = f'{character[3]} {character[2]} - IDOLY PRIDE データベース M'
+        detail_seo_html = seo_meta_html(detail_page_url, detail_title, detail_description)
+        detail_breadcrumb_html = breadcrumb_jsonld([
+            ('IDOLY PRIDE データベース M', ''),
+            ('アイドルリスト', 'content/idol_list.html'),
+            (character[2], detail_page_url),
+        ])
+
         detail_content = f'''
         <!DOCTYPE html>
         <html lang="ja">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta name="description" content="IDOLY PRIDE{character[3]} {character[2]}の詳細ページです。基本情報、ステータス、ライブスキルなどの情報を掲載しています。">
+            <meta name="description" content="{detail_description}">
             <meta name="keywords" content="IDOLY PRIDE, アイドル, {character[3]}, {character[2]}, データベース">
-            <title>{character[3]} {character[2]} - IDOLY PRIDE データベース M</title>
+            <title>{detail_title}</title>
+            {detail_seo_html}
+            {FONT_PRECONNECT_HTML}
             <link rel="stylesheet" href="../common.css">
             <link rel="stylesheet" href="detail.css">
             <link rel="shortcut icon" href="../image/icon.ico">
@@ -88,12 +110,13 @@ def generate_detail_pages(characters, profiles):
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9647262951514669" crossorigin="anonymous"></script>
             <meta name="google-adsense-account" content="ca-pub-9647262951514669">
             <script src="detail.js" defer></script>
+            {detail_breadcrumb_html}
         </head>
         <body>
             <div class="banner">
                 <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - アイドルリスト - {esc(character[3])} {esc(character[2])}</div>
                 <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">{esc(character[3])} {esc(character[2])}</div>
-                <button class="fav-btn" id="detail-fav-btn" data-key="{esc(character[2])} {esc(character[3])}">☆</button>
+                <button class="fav-btn" id="detail-fav-btn" data-key="{esc(character[2])} {esc(character[3])}" aria-label="お気に入りに登録" aria-pressed="false">☆</button>
                 <a href="javascript:history.back()" class="back-button">戻る</a>
             </div>
             {incomplete_notice}
@@ -123,9 +146,9 @@ def generate_detail_pages(characters, profiles):
                         </table>
                         <h2 class="mokuji"> ステータス</h2>
                         <table class="status-table">
-                            <tr><th><font color="#FF469D">ボーカル</font></th><td>{character[10]}(<b>{vocal_rank}位</b>/{total_idol})</td></tr>
-                            <tr><th><font color="#3ABAFF">ダンス</font></th><td>{character[11]}(<b>{dance_rank}位</b>/{total_idol})</td></tr>
-                            <tr><th><font color="#FFA900">ビジュアル</font></th><td>{character[12]}(<b>{visual_rank}位</b>/{total_idol})</td></tr>
+                            <tr><th><span class="t_vocal">ボーカル</span></th><td>{character[10]}(<b>{vocal_rank}位</b>/{total_idol})</td></tr>
+                            <tr><th><span class="t_dance">ダンス</span></th><td>{character[11]}(<b>{dance_rank}位</b>/{total_idol})</td></tr>
+                            <tr><th><span class="t_visual">ビジュアル</span></th><td>{character[12]}(<b>{visual_rank}位</b>/{total_idol})</td></tr>
                             <tr><th>スタミナ</th><td>{character[13]}(<b>{stamina_rank}位</b>/{total_idol})</td></tr>
                             <tr><th>パワー</th><td>{power_stat}(<b>{power_rank}位</b>/{total_idol})</td></tr>
                         </table>
@@ -148,6 +171,7 @@ def generate_detail_pages(characters, profiles):
                         <div class="personal-details-phone">{personal_details_table}</div>
                     </div>
                     <div class="right-container-2">
+                        {IN_ARTICLE_AD_HTML}
                     </div>
                 </div>
             </div>

@@ -158,7 +158,6 @@ h3 { margin: 10px 0 6px; font-size: 15px; }
 .table-container {
     flex: 1;
     background-color: #fff;
-    border-radius: var(--radius-lg);
     box-shadow: 0 4px 14px rgba(50, 0, 255, 0.08);
     padding: 20px;
     overflow-x: auto;
@@ -193,6 +192,7 @@ tr:hover td { background-color: #f0edff; }
 .idol_icon {
     display: block;
     width: 76px;
+    aspect-ratio: 500 / 281;
     margin: 0 auto 4px;
     border-radius: var(--radius-sm);
 }

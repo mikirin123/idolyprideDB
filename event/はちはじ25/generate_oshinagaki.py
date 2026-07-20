@@ -4,12 +4,31 @@ import os
 import re
 import json
 from datetime import datetime
+from urllib.parse import quote
 
 # 実行時のカレントディレクトリに関わらず、常にこのスクリプトと同じ
 # フォルダ(event/はちはじ25/)でCSVを読み書きするための基準パス
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+PAGE_URL = 'event/はちはじ25/oshinagaki.html'
 
 WEEKDAYS_JA = ['月', '火', '水', '木', '金', '土', '日']
+
+
+def _load_site_url():
+    try:
+        with open(os.path.join(REPO_ROOT, 'gitignore', 'setting.txt'), encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('SITE_URL='):
+                    url = line.split('=', 1)[1].strip()
+                    return url + ('' if url.endswith('/') else '/')
+    except FileNotFoundError:
+        pass
+    return ''
+
+
+SITE_URL = _load_site_url()
 
 
 def esc(value):
@@ -112,13 +131,30 @@ last_updated = datetime.now().strftime('%Y-%m-%d %H:%M')
 _now = datetime.now()
 footer_updated = f"{_now.year}/{_now.month}/{_now.day}({WEEKDAYS_JA[_now.weekday()]}) {_now.strftime('%H:%M')}"
 
+page_description = "2025年に開催されるIDOLY PRIDEオンリーイベント『八景から始まる物語』stage3、通称『はちはじ3』の参加サークルのおしながき・告知まとめページです。"
+page_title = "八景から始まる物語 stage3 おしながき・告知 - IDOLY PRIDE データベース M"
+canonical_url = SITE_URL + quote(PAGE_URL, safe='/')
+og_image = SITE_URL + 'image/icon.png'
+
 html_content = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="2025年に開催されるIDOLY PRIDEオンリーイベント『八景から始まる物語』stage3、通称『はちはじ3』の参加サークルのおしながき・告知まとめページです。 ">
-    <title>八景から始まる物語 stage3 おしながき・告知</title>
+    <meta name="description" content="{page_description}">
+    <meta name="keywords" content="IDOLY PRIDE, はちはじ3, 八景から始まる物語, おしながき, 告知">
+    <title>{page_title}</title>
+    <link rel="canonical" href="{canonical_url}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{page_title}">
+    <meta property="og:description" content="{page_description}">
+    <meta property="og:url" content="{canonical_url}">
+    <meta property="og:site_name" content="IDOLY PRIDE データベース M">
+    <meta property="og:image" content="{og_image}">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="circle-list.css">
     <link rel="shortcut icon" href="../../image/icon.ico">
     <link rel="icon" type="image/png" sizes="180x180" href="../../image/icon.png">

@@ -127,8 +127,6 @@ table {
     width: 0;
     white-space: nowrap;
     border: 1px solid #ccc; /* 外枠を追加 */
-    border-radius: var(--radius-lg);
-    overflow: hidden; /* 角丸を適用 */
 }
 th, td {
     padding: 10px;

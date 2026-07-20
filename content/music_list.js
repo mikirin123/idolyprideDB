@@ -44,7 +44,11 @@ function resetFilters() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('search-bar').addEventListener('input', applyFilters);
+    let searchDebounceTimer;
+    document.getElementById('search-bar').addEventListener('input', function() {
+        clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(applyFilters, 150);
+    });
     document.getElementById('filter-group').addEventListener('change', applyFilters);
     document.getElementById('filter-member').addEventListener('change', applyFilters);
 

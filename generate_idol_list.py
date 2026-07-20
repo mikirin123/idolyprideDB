@@ -1,4 +1,7 @@
-from utils import write_page, build_char_options_html, esc
+from utils import (
+    write_page, build_char_options_html, esc,
+    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, FA_PRECONNECT_HTML,
+)
 import os
 import json
 import pickle
@@ -9,15 +12,26 @@ def generate_html():
     characters = load_characters()
     char_options = build_char_options_html(characters)
 
-    html_content = '''
+    page_title = 'アイドルリスト - IDOLY PRIDE データベース M'
+    description = 'IDOLY PRIDEアイドルリストページです。アイドルの詳細情報を検索・フィルタリングできます。'
+    seo_html = seo_meta_html('content/idol_list.html', page_title, description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('アイドルリスト', 'content/idol_list.html'),
+    ])
+
+    html_content = f'''
     <!DOCTYPE html>
     <html lang="ja">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="IDOLY PRIDEアイドルリストページです。アイドルの詳細情報を検索・フィルタリングできます。">
+        <meta name="description" content="{description}">
         <meta name="keywords" content="IDOLY PRIDE, アイドルリスト, ゲームデータベース">
-        <title>アイドルリスト - IDOLY PRIDE データベース M</title>
+        <title>{page_title}</title>
+        {seo_html}
+        {FONT_PRECONNECT_HTML}
+        {FA_PRECONNECT_HTML}
         <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="idol_list.css">
         <link rel="shortcut icon" href="../image/icon.ico">
@@ -27,6 +41,7 @@ def generate_html():
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9647262951514669" crossorigin="anonymous"></script>
         <meta name="google-adsense-account" content="ca-pub-9647262951514669">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        {breadcrumb_html}
     </head>
     <body>
         <div class="banner">
@@ -98,9 +113,9 @@ def generate_html():
                     
                     <div>
                         <h3>傾向</h3>
-                        <label><input type="checkbox" name="trend" value="ボーカル"><font color="#FF469D">ボーカル</font></label>
-                        <label><input type="checkbox" name="trend" value="ダンス"><font color="#3ABAFF">ダンス</font></label>
-                        <label><input type="checkbox" name="trend" value="ビジュアル"><font color="#FFA900">ビジュアル</font></label>
+                        <label><input type="checkbox" name="trend" value="ボーカル"><span class="trend-vocal">ボーカル</span></label>
+                        <label><input type="checkbox" name="trend" value="ダンス"><span class="trend-dance">ダンス</span></label>
+                        <label><input type="checkbox" name="trend" value="ビジュアル"><span class="trend-visual">ビジュアル</span></label>
                     </div>
                     
                     <div>
@@ -146,9 +161,9 @@ def generate_html():
                         <h3>並び替え</h3>
                         <label><input type="radio" name="sort" value="id" id="sort-id" checked>実装順</label>
                         <br>
-                        <label><input type="radio" name="sort" value="ボーカル" ><font color="#FF469D">ボーカル</font></label>
-                        <label><input type="radio" name="sort" value="ダンス"><font color="#3ABAFF">ダンス</font></label>
-                        <label><input type="radio" name="sort" value="ビジュアル"><font color="#FFA900">ビジュアル</font></label>
+                        <label><input type="radio" name="sort" value="ボーカル" ><span class="trend-vocal">ボーカル</span></label>
+                        <label><input type="radio" name="sort" value="ダンス"><span class="trend-dance">ダンス</span></label>
+                        <label><input type="radio" name="sort" value="ビジュアル"><span class="trend-visual">ビジュアル</span></label>
                         <br>
                         <label><input type="radio" name="sort" value="スタミナ">スタミナ</label>
                         <div class="sort-order">
@@ -209,7 +224,7 @@ def generate_html():
             for i, item in enumerate(character)
         ]
         card_key = f'{character[2]} {character[3]}'
-        fav_cell = f'<td class="fav-cell"><button class="fav-btn" data-key="{esc(card_key)}">☆</button></td>'
+        fav_cell = f'<td class="fav-cell"><button class="fav-btn" data-key="{esc(card_key)}" aria-label="お気に入りに登録" aria-pressed="false">☆</button></td>'
         row_class = ' class="data-incomplete"' if character[0] == '★' else ''
         html_content += f'<tr data-cardkey="{esc(card_key)}" data-char="{esc(character[2])}" data-card="{esc(character[3])}" data-trend="{esc(character[5])}" data-type="{esc(character[6])}"{row_class}>' + fav_cell + ''.join(row_data) + '</tr>'
 

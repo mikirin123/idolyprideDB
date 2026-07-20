@@ -91,7 +91,7 @@ function initCombobox(slot) {
 
         const groups = {};
         ALL_CARDS.forEach(card => {
-            if (!q || card.char.includes(q) || card.card.includes(q)) {
+            if (!q || card.char.toLowerCase().includes(q) || card.card.toLowerCase().includes(q)) {
                 if (!groups[card.char]) groups[card.char] = [];
                 groups[card.char].push(card);
             }

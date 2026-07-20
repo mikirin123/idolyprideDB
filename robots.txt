@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mikirin123.github.io/idolyprideDB/sitemap.xml

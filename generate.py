@@ -5,7 +5,10 @@ import io
 import re
 import urllib.request
 import os
-from utils import write_page, esc, esc_rich, now_jst
+from utils import (
+    write_page, esc, esc_rich, now_jst, load_setting,
+    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, FA_PRECONNECT_HTML,
+)
 
 birthdays = [
     {"name": "長瀬琴乃", "birthday": "12-25"},
@@ -92,16 +95,6 @@ def format_date_ja(dt):
 def format_date_ja_no_year(dt):
     """開催中のイベント欄用の日付表示形式(年なし): m/d(曜日)"""
     return f"{dt.month}/{dt.day}({WEEKDAYS_JA[dt.weekday()]})"
-
-
-def load_setting(key):
-    with open('gitignore/setting.txt', 'r', encoding='utf-8') as f:
-        for line in f:
-            line = line.strip()
-            if line.startswith(f'{key}='):
-                val = line.split('=', 1)[1].strip()
-                return val if val else None
-    return None
 
 
 def fetch_csv_with_cache(url, cache_path):
@@ -344,21 +337,31 @@ def generate_admin_posts_html(rows):
     return html
 
 
-def _news_list_page_html(title, list_html, extra_top_html='', extra_bottom_html='', extra_script=''):
+def _news_list_page_html(title, list_html, page_url, extra_top_html='', extra_bottom_html='', extra_script=''):
+    description = f"IDOLY PRIDE データベース Mの{title}一覧です。"
+    page_title = f'{title} - IDOLY PRIDE データベース M'
+    seo_html = seo_meta_html(page_url, page_title, description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        (title, page_url),
+    ])
     return f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDE データベース Mの{title}一覧です。">
+    <meta name="description" content="{description}">
     <meta name="keywords" content="IDOLY PRIDE, {title}, データベース">
-    <title>{title} - IDOLY PRIDE データベース M</title>
+    <title>{page_title}</title>
+    {seo_html}
+    {FONT_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="news_list.css">
     <link rel="shortcut icon" href="../image/icon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="../image/icon.png">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
     <link rel="mask-icon" href="../image/icon.svg">
+    {breadcrumb_html}
 </head>
 <body>
     <div class="banner">
@@ -412,7 +415,7 @@ def generate_events_list_page(events_rows):
     区分・期限で絞り込めるフィルタバーも合わせて出力する。"""
     events_html = generate_events_html(events_rows, link_prefix='../')
     page_html = _news_list_page_html(
-        '開催中のイベント', events_html,
+        '開催中のイベント', events_html, 'content/events_list.html',
         extra_top_html=EVENT_FILTER_BAR_HTML,
         extra_bottom_html=EVENT_EMPTY_FILTERED_HTML,
         extra_script='    <script src="events_filter.js"></script>\n',
@@ -424,7 +427,7 @@ def generate_updates_list_page(update_rows):
     """サイドバー「更新情報」の全件を、件数制限なしで一覧できるページ。
     content/配下に置くため、CSV中のルート相対リンクは ../ 補正が必要。"""
     update_html = ''.join(row_to_update_html(r, link_prefix='../') for r in update_rows)
-    write_page('content/updates_list.html', _news_list_page_html('更新情報', update_html))
+    write_page('content/updates_list.html', _news_list_page_html('更新情報', update_html, 'content/updates_list.html'))
 
 
 def generate_rss(rows):
@@ -561,6 +564,9 @@ def generate_html(update_rows, admin_posts, events_rows):
         f"アイドルの誕生日や専用フォト、エール別リストなど、様々な情報を提供しています。"
     )
 
+    seo_html = seo_meta_html('', 'IDOLY PRIDE データベース M', description)
+    breadcrumb_html = breadcrumb_jsonld([('IDOLY PRIDE データベース M', '')])
+
     html_content = f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -569,6 +575,9 @@ def generate_html(update_rows, admin_posts, events_rows):
     <meta name="description" content="{description}">
     <meta name="keywords" content="IDOLYPRIDE,アイプラ,データベース,アイドル,誕生日,専用フォト,エール別リスト,ステータスランキング,レスピ計算機">
     <title>IDOLY PRIDE データベース M</title>
+    {seo_html}
+    {FONT_PRECONNECT_HTML}
+    {FA_PRECONNECT_HTML}
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="image/icon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="image/icon.png">
@@ -578,11 +587,12 @@ def generate_html(update_rows, admin_posts, events_rows):
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9647262951514669" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-9647262951514669">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    {breadcrumb_html}
 </head>
 <body>
     <div class="banner">
         <div class="banner_title">IDOLY PRIDE データベース M</div>
-        <button class="menu">︙</button>
+        <button class="menu" aria-label="メニューを開く">︙</button>
         <div class="menu-content">
             <a><i class="fa-solid fa-circle-question"></i> このサイトについて</a>
         </div>

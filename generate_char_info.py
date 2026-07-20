@@ -1,7 +1,10 @@
 import csv
 import json
 import os
-from utils import write_page, esc, DEFAULT_PROFILE
+from utils import (
+    write_page, esc, DEFAULT_PROFILE,
+    seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML, IN_ARTICLE_AD_HTML,
+)
 from db import load_characters
 
 PROFILE_FIELDS = [
@@ -131,20 +134,31 @@ def generate_html():
     </a>
     '''
 
+    chara_list_description = 'IDOLY PRIDEのキャラクター情報一覧です。プロフィール、所属グループ、歌唱曲を確認できます。'
+    chara_list_title = 'キャラ情報 - IDOLY PRIDE データベース M'
+    chara_list_seo_html = seo_meta_html('content/chara_list.html', chara_list_title, chara_list_description)
+    chara_list_breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('キャラ情報', 'content/chara_list.html'),
+    ])
+
     list_html = f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDEのキャラクター情報一覧です。プロフィール、所属グループ、歌唱曲を確認できます。">
+    <meta name="description" content="{chara_list_description}">
     <meta name="keywords" content="IDOLY PRIDE, キャラ情報, プロフィール, グループ, データベース">
-    <title>キャラ情報 - IDOLY PRIDE データベース M</title>
+    <title>{chara_list_title}</title>
+    {chara_list_seo_html}
+    {FONT_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="chara_list.css">
     <link rel="shortcut icon" href="../image/icon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="../image/icon.png">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
     <link rel="mask-icon" href="../image/icon.svg">
+    {chara_list_breadcrumb_html}
 </head>
 <body>
     <div class="banner">
@@ -188,20 +202,33 @@ def generate_html():
             for title, i in my_songs
         ) if my_songs else '<li>-</li>'
 
+        char_page_url = f'character/{name}.html'
+        char_description = f'IDOLY PRIDE {esc(name)}のキャラクター情報ページです。プロフィール、所属グループ、アイドル一覧、歌唱曲を掲載しています。'
+        char_title = f'{esc(name)} - IDOLY PRIDE データベース M'
+        char_seo_html = seo_meta_html(char_page_url, char_title, char_description)
+        char_breadcrumb_html = breadcrumb_jsonld([
+            ('IDOLY PRIDE データベース M', ''),
+            ('キャラ情報', 'content/chara_list.html'),
+            (name, char_page_url),
+        ])
+
         char_html = f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDE {esc(name)}のキャラクター情報ページです。プロフィール、所属グループ、アイドル一覧、歌唱曲を掲載しています。">
+    <meta name="description" content="{char_description}">
     <meta name="keywords" content="IDOLY PRIDE, キャラ情報, {esc(name)}, データベース">
-    <title>{esc(name)} - IDOLY PRIDE データベース M</title>
+    <title>{char_title}</title>
+    {char_seo_html}
+    {FONT_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="character.css">
     <link rel="shortcut icon" href="../image/icon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="../image/icon.png">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
     <link rel="mask-icon" href="../image/icon.svg">
+    {char_breadcrumb_html}
 </head>
 <body>
     <div class="banner">
@@ -234,6 +261,7 @@ def generate_html():
             <h2 class="mokuji">アイドル一覧</h2>
             <div class="idol-list">{cards_html}</div>
         </div>
+        {IN_ARTICLE_AD_HTML}
         <div class="char-section">
             <h2 class="mokuji">歌唱曲</h2>
             <ul class="song-list">{songs_html}</ul>

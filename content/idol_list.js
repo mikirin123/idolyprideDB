@@ -225,10 +225,10 @@ function performSearchAndFilter() {
             character: cells[3].innerText,
             rarity: cells[5].innerText,
             obtain: cells[24].innerText,
-            trend: cells[6].getAttribute("value"),
-            type: cells[7].getAttribute("value"),
+            trend: cells[6].getAttribute("value") || '',
+            type: cells[7].getAttribute("value") || '',
             skill: cells[8].innerText,
-            support: cells[23].getAttribute("value"),
+            support: cells[23].getAttribute("value") || '',
             card_name: cells[4]?.innerText || '',
             costume: cells[9]?.innerText || '',
             live_skill1_name: cells[15]?.innerText || '',
@@ -260,7 +260,10 @@ function performSearchAndFilter() {
             if (filters.skill.includes('SP未所持') && character.skill.includes('SP')) matchesFilter = false;
             if (filters.skill.includes('AA') && !character.skill.includes('AA')) matchesFilter = false;
         }
-        if (filters.support && filters.support !== character.support) matchesFilter = false;
+        if (filters.support) {
+            const noSupport = filters.support === 'なし' && !character.support;
+            if (!noSupport && filters.support !== character.support) matchesFilter = false;
+        }
 
         if (favorites && !favorites.has(row.dataset.cardkey)) matchesFilter = false;
 
@@ -416,8 +419,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 検索バーの設定
     const searchBar = document.getElementById('search-bar');
     if (searchBar) {
+        let searchDebounceTimer;
         searchBar.addEventListener('input', function() {
-            performSearchAndFilter();
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(performSearchAndFilter, 150);
         });
     } else {
         console.error('検索バーが見つかりません');
@@ -485,10 +490,12 @@ function toggleFavorite(btn) {
         favorites = favorites.filter(k => k !== key);
         btn.textContent = '☆';
         btn.classList.remove('fav-active');
+        btn.setAttribute('aria-pressed', 'false');
     } else {
         favorites.push(key);
         btn.textContent = '★';
         btn.classList.add('fav-active');
+        btn.setAttribute('aria-pressed', 'true');
     }
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }
@@ -499,6 +506,7 @@ function initFavorites() {
         if (favorites.has(btn.dataset.key)) {
             btn.textContent = '★';
             btn.classList.add('fav-active');
+            btn.setAttribute('aria-pressed', 'true');
         }
     });
 }

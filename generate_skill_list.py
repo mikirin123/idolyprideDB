@@ -1,4 +1,4 @@
-from utils import write_page, esc, esc_rich
+from utils import write_page, esc, esc_rich, build_char_options_html, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML
 import os
 import re
 from db import load_characters
@@ -12,13 +12,6 @@ def detect_skill_type(name):
     """スキル名先頭の【】からスキル種別(SP/A/P)を取得する。"""
     m = re.match(r'^【(.+?)】', name or '')
     return m.group(1) if m else 'A'
-
-CHARACTER_NAMES = [
-    "長瀬琴乃", "伊吹渚", "白石沙季", "成宮すず", "早坂芽衣", "川咲さくら",
-    "兵藤雫", "白石千紗", "一ノ瀬怜", "佐伯遙子", "天動瑠依", "鈴村優",
-    "奥山すみれ", "神崎莉央", "井川葵", "小美山愛", "赤崎こころ",
-    "fran", "kana", "miho", "長瀬麻奈",
-]
 
 def generate_html():
     characters = load_characters()
@@ -59,20 +52,27 @@ def generate_html():
                 <td class="skill-effect-cell">{esc_rich(effect)}</td>
             </tr>\n'''
 
-    char_options = '\n'.join(
-        f'                    <option value="{n}">{n}</option>'
-        for n in CHARACTER_NAMES
-    )
+    char_options = build_char_options_html(characters)
 
+
+    page_description = "IDOLY PRIDEの全アイドルライブスキル一覧です。効果でキーワード検索できます。"
+    page_title = "スキル一覧 - IDOLY PRIDE データベース M"
+    seo_html = seo_meta_html('content/skill_list.html', page_title, page_description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('スキル一覧', 'content/skill_list.html'),
+    ])
 
     html_content = f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDEの全アイドルライブスキル一覧です。効果でキーワード検索できます。">
+    <meta name="description" content="{page_description}">
     <meta name="keywords" content="IDOLY PRIDE, スキル一覧, ライブスキル, データベース">
-    <title>スキル一覧 - IDOLY PRIDE データベース M</title>
+    <title>{page_title}</title>
+    {seo_html}
+    {FONT_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="skill_list.css">
     <link rel="shortcut icon" href="../image/icon.ico">
@@ -81,6 +81,7 @@ def generate_html():
     <link rel="mask-icon" href="../image/icon.svg">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9647262951514669" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-9647262951514669">
+    {breadcrumb_html}
 </head>
 <body>
     <div class="banner">

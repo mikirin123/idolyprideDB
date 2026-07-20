@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
+/* Google Fontsはレンダリングブロックを避けるためHTML側で
+   preconnect + <link>読み込みに変更済み(utils.pyのFONT_PRECONNECT_HTML)。
+   ここでは同一originのtokens.cssのみ@importする。 */
 @import url('tokens.css');
 
 /* ===== 共通スタイル ===== */
@@ -166,4 +168,11 @@ html {
         padding: 6px 10px;
         font-size: 12px;
     }
+}
+
+/* 記事内広告(in-article) */
+.in-article-ad {
+    margin: 24px auto;
+    max-width: 100%;
+    min-height: 100px;
 }

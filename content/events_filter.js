@@ -7,14 +7,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const resetBtn = document.getElementById('event-filter-reset');
     const emptyMsg = document.getElementById('event-empty-filtered');
 
-    const DAY_MS = 24 * 60 * 60 * 1000;
+    const JST_OFFSET_MS = 9 * 60 * 60 * 1000;
 
-    // イベントの終了日時までの残り時間から期限区分を判定する
+    // 現在時刻(JST)から daysAhead 日後の 0:00(JST)の Date を返す
+    function jstMidnightBoundary(daysAhead) {
+        const nowJst = new Date(Date.now() + JST_OFFSET_MS);
+        const boundaryUtcMs = Date.UTC(nowJst.getUTCFullYear(), nowJst.getUTCMonth(), nowJst.getUTCDate() + daysAhead);
+        return new Date(boundaryUtcMs - JST_OFFSET_MS);
+    }
+
+    // イベントの終了日時が暦日(JST)でどの期限区分に収まるかを判定する
     function deadlineBucket(endDt) {
-        const diff = endDt - new Date();
-        if (diff <= DAY_MS) return 'today';
-        if (diff <= 3 * DAY_MS) return '3days';
-        if (diff <= 7 * DAY_MS) return '7days';
+        if (endDt <= jstMidnightBoundary(1)) return 'today';
+        if (endDt <= jstMidnightBoundary(3)) return '3days';
+        if (endDt <= jstMidnightBoundary(7)) return '7days';
         return 'later';
     }
 

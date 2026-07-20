@@ -1,5 +1,5 @@
 import csv
-from utils import write_page, esc
+from utils import write_page, esc, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML
 
 
 def load_songs():
@@ -64,20 +64,31 @@ def generate_html():
                 </div>
             </div>\n'''
 
+    page_description = "IDOLY PRIDEのCD情報一覧です。収録楽曲やジャケット画像を確認できます。"
+    page_title = "CD情報 - IDOLY PRIDE データベース M"
+    seo_html = seo_meta_html('content/cd_list.html', page_title, page_description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('CD情報', 'content/cd_list.html'),
+    ])
+
     html_content = f'''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IDOLY PRIDEのCD情報一覧です。収録楽曲やジャケット画像を確認できます。">
+    <meta name="description" content="{page_description}">
     <meta name="keywords" content="IDOLY PRIDE, CD情報, ディスコグラフィー, データベース">
-    <title>CD情報 - IDOLY PRIDE データベース M</title>
+    <title>{page_title}</title>
+    {seo_html}
+    {FONT_PRECONNECT_HTML}
     <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="cd_list.css">
     <link rel="shortcut icon" href="../image/icon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="../image/icon.png">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
     <link rel="mask-icon" href="../image/icon.svg">
+    {breadcrumb_html}
 </head>
 <body>
     <div class="banner">

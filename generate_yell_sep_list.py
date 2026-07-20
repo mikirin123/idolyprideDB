@@ -1,4 +1,4 @@
-from utils import write_page, esc
+from utils import write_page, esc, seo_meta_html, breadcrumb_jsonld, FONT_PRECONNECT_HTML
 from db import load_characters
 
 # CSVからエール別アイドル情報を取得
@@ -39,7 +39,7 @@ def generate_idol_list_html(yell_dict, yell_order):
                         <span>{esc(card_name)}<br>{esc(char)}</span>
                         <p>{esc(obtain_method)}</p>
                     </a>
-                    <button class="idol-fav-btn" data-key="{esc(key)}" onclick="toggleFav(this)">☆</button>
+                    <button class="idol-fav-btn" data-key="{esc(key)}" onclick="toggleFav(this)" aria-label="お気に入りに登録" aria-pressed="false">☆</button>
                 </div>
                 """
             idol_list_html += "</div></div>"
@@ -59,14 +59,24 @@ def main():
     toc_html = generate_toc_html(yell_dict, yell_order)
     idol_list_html = generate_idol_list_html(yell_dict, yell_order)
 
+    page_description = "IDOLY PRIDEのエール別アイドルリストを確認できます。各エールごとにアイドルのカード名と入手方法を表示します。"
+    page_title = "エール別リスト - IDOLY PRIDE データベース M"
+    seo_html = seo_meta_html('content/yell_sep_list.html', page_title, page_description)
+    breadcrumb_html = breadcrumb_jsonld([
+        ('IDOLY PRIDE データベース M', ''),
+        ('エール別リスト', 'content/yell_sep_list.html'),
+    ])
+
     html_content = f"""<!DOCTYPE html>
     <html lang="ja">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="IDOLY PRIDEのエール別アイドルリストを確認できます。各エールごとにアイドルのカード名と入手方法を表示します。">
+        <meta name="description" content="{page_description}">
         <meta name="keywords" content="IDOLY PRIDE, エール別リスト, アイドル, カード名, 入手方法">
-        <title>エール別リスト - IDOLY PRIDE データベース M</title>
+        <title>{page_title}</title>
+        {seo_html}
+        {FONT_PRECONNECT_HTML}
         <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="yell_sep_list.css">
         <script src="favorites.js"></script>
@@ -75,6 +85,7 @@ def main():
         <link rel="icon" type="image/png" sizes="32x32" href="../image/icon.png">
         <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../image/icon.png">
         <link rel="mask-icon" href="../image/icon.svg">
+        {breadcrumb_html}
     </head>
     <body>
         <div class="banner">

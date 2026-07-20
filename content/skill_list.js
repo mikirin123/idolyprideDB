@@ -165,12 +165,21 @@ function resetFilters() {
     applyFilters();
 }
 
+function debounce(fn, delay) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), delay);
+    };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('search-bar').addEventListener('input', applyFilters);
+    const debouncedApplyFilters = debounce(applyFilters, 150);
+    document.getElementById('search-bar').addEventListener('input', debouncedApplyFilters);
     document.getElementById('mode-select').addEventListener('change', applyFilters);
     document.getElementById('filter-char').addEventListener('change', applyFilters);
-    document.getElementById('ct-min').addEventListener('input', applyFilters);
-    document.getElementById('ct-max').addEventListener('input', applyFilters);
+    document.getElementById('ct-min').addEventListener('input', debouncedApplyFilters);
+    document.getElementById('ct-max').addEventListener('input', debouncedApplyFilters);
     document.querySelectorAll('input[name="search-mode"]').forEach(r => r.addEventListener('change', applyFilters));
     document.querySelectorAll('.trend-filter, .type-filter, .skilltype-filter').forEach(cb => cb.addEventListener('change', applyFilters));
 

@@ -190,7 +190,6 @@ h3 {
     width: 75%;
     background-color: #fff;
     padding: 20px;
-    border-radius: var(--radius-lg);
     box-shadow: 0 4px 14px rgba(50, 0, 255, 0.08);
 }
 
@@ -373,11 +372,13 @@ tr.data-incomplete a.idol_link::after {
 .idol_image {
     width: 60px;
     height: auto;
+    aspect-ratio: 500 / 281;
 }
 
 .yell_icon {
     width: 50px;
     height: auto;
+    aspect-ratio: 1 / 1;
 }
 
 .trend-vocal {
