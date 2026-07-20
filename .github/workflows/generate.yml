@@ -48,9 +48,9 @@ jobs:
             STATUS="❌ 失敗"
           fi
           if [ "$EVENT_NAME" = "repository_dispatch" ]; then
-            MESSAGE="📝 Googleフォームの回答を受けてサイトを更新しました: ${STATUS}"
+            MESSAGE="📝 Googleフォームによる更新が完了しました\n${STATUS}"
           else
-            MESSAGE="generate.py 定期実行が完了しました: ${STATUS}"
+            MESSAGE="generate.py 定期更新が完了しました\n${STATUS}"
           fi
           curl -sf -X POST -H "Content-Type: application/json" \
             -d "{\"content\": \"${MESSAGE}\\n実行結果: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
