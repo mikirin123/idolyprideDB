@@ -55,7 +55,6 @@ def generate_html():
             <div class="banner">
                 <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - ステータスランキング</div>
                 <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">ステータスランキング</div>
-                <a href="javascript:history.back()" class="back-button">戻る</a>
             </div>
             <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span>ステータスランキング</nav>
             <div id="filter-status" class="filter-status" style="display:none">

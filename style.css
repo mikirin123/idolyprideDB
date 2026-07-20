@@ -57,7 +57,7 @@ h3 {
 
 .banner .menu {
     position: absolute;
-    right: 60px; /* Adjusted from 30px to 50px */
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
@@ -80,7 +80,7 @@ h3 {
 .menu-content {
     display: none;
     position: absolute;
-    right: 65px;
+    right: 25px;
     top: 85%;
     background-color: white;
     color: black;
@@ -569,14 +569,14 @@ ul {
     }
 
     .banner .menu {
-        right: 8px; /* サイト名により多くの幅を残すため、端ぎりぎりまで寄せる */
+        right: 4px; /* サイト名により多くの幅を残すため、端ぎりぎりまで寄せる */
         padding: 6px 10px; /* 横paddingが大きいとボタン自体が幅広になり、右端から離れて見えるため縮小 */
         font-size: 16px;
     }
 
     /* ボタンの位置(right)に合わせないと、開いたメニューがボタンからずれて表示される */
     .menu-content {
-        right: 8px;
+        right: 4px;
     }
 
     /* メニューボタンの実際の位置に合わせて、途切れずに収まる幅まで広げる */

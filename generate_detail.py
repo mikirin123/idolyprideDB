@@ -117,7 +117,6 @@ def generate_detail_pages(characters, profiles):
                 <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - アイドルリスト - {esc(character[3])} {esc(character[2])}</div>
                 <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">{esc(character[3])} {esc(character[2])}</div>
                 <button class="fav-btn" id="detail-fav-btn" data-key="{esc(character[2])} {esc(character[3])}" aria-label="お気に入りに登録" aria-pressed="false">☆</button>
-                <a href="javascript:history.back()" class="back-button">戻る</a>
             </div>
             {incomplete_notice}
             <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span><a href="../content/idol_list.html">アイドルリスト</a><span>›</span>{esc(character[2])}</nav>

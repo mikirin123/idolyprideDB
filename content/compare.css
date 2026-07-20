@@ -206,6 +206,14 @@ h2::before {
     font-weight: bold;
 }
 .compare-table thead th a:hover { text-decoration: underline; }
+.compare-table td.yell-cell { vertical-align: middle; }
+.yell-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.yell-icon { height: 32px; }
 .compare-incomplete-notice {
     margin-top: 4px;
     font-size: 11px;
@@ -270,5 +278,6 @@ h2::before {
     .compare-table td { font-size: 12px; padding: 7px 8px; min-width: 90px; }
     .compare-table th:first-child,
     .compare-table thead th:first-child { min-width: 70px; max-width: 100px; }
+    .yell-name { display: none; }
     #scrollToTopBtn { padding: 10px 16px; }
 }

@@ -367,7 +367,6 @@ def _news_list_page_html(title, list_html, page_url, extra_top_html='', extra_bo
     <div class="banner">
         <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - {title}</div>
         <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">{title}</div>
-        <a href="javascript:history.back()" class="back-button">戻る</a>
     </div>
     <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span>{title}</nav>
     <div class="container">

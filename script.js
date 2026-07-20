@@ -23,10 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // メニューの設定
     const menu = document.querySelector('.menu');
     menu.tagName = 'button'; // タグをbuttonに変更
-    menu.style.position = 'absolute';
-    menu.style.right = '60px';
-    menu.style.top = '50%';
-    menu.style.transform = 'translateY(-50%)';
     const menuContent = document.querySelector('.menu-content');
     const popup = document.querySelector('.popup');
     const popupHeader = document.querySelector('.popup-header');

@@ -170,7 +170,6 @@ html_content = f"""<!DOCTYPE html>
         <div class="banner">
             <div class="banner_title" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知</div>
             <div class="banner_title_phone" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知</div>
-            <a href="javascript:history.back()" class="back-button">戻る</a>
         </div>
     </header>
     <nav class="breadcrumb"><a href="../../index.html">トップ</a><span>›</span>おしながき・告知</nav>

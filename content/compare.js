@@ -195,15 +195,15 @@ function renderCompare() {
         ['傾向', c => `<span style="color:${trendColor(c.trend)};font-weight:bold">${esc(c.trend)}</span>`],
         ['タイプ', c => esc(c.type)],
         ['スキル構成', c => esc(c.skills_comp)],
-        ['エール', c => `<img src="../image/yell/${esc(c.yell)}.webp" style="height:32px" alt="" onerror="this.style.display='none'"> ${esc(c.yell)}`],
+        ['エール', c => `<span class="yell-content"><img src="../image/yell/${esc(c.yell)}.webp" class="yell-icon" alt="" onerror="this.style.display='none'"><span class="yell-name">${esc(c.yell)}</span></span>`, 'yell-cell'],
         ['入手方法', c => esc(c.obtain)],
         ['実装日', c => esc(c.release_date)],
     ];
 
     let infoHtml = '';
-    infoFields.forEach(([label, fn]) => {
+    infoFields.forEach(([label, fn, cellClass]) => {
         infoHtml += `<tr><th>${label}</th>`;
-        cards.forEach(c => { infoHtml += `<td>${fn(c)}</td>`; });
+        cards.forEach(c => { infoHtml += `<td${cellClass ? ` class="${cellClass}"` : ''}>${fn(c)}</td>`; });
         infoHtml += '</tr>';
     });
 

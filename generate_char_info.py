@@ -164,7 +164,6 @@ def generate_html():
     <div class="banner">
         <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - キャラ情報</div>
         <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">キャラ情報</div>
-        <a href="javascript:history.back()" class="back-button">戻る</a>
     </div>
     <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span>キャラ情報</nav>
     <div class="container">
@@ -234,7 +233,6 @@ def generate_html():
     <div class="banner">
         <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - キャラ情報 - {esc(name)}</div>
         <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">{esc(name)}</div>
-        <a href="javascript:history.back()" class="back-button">戻る</a>
     </div>
     <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span><a href="../content/chara_list.html">キャラ情報</a><span>›</span>{esc(name)}</nav>
     <div class="container">

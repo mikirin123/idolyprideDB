@@ -91,7 +91,6 @@ def main():
         <div class="banner">
             <div class="banner_title" onclick="location.href='../index.html'" style="cursor:pointer">IDOLY PRIDE データベース M - エール別リスト</div>
             <div class="banner_title_phone" onclick="location.href='../index.html'" style="cursor:pointer">エール別リスト</div>
-            <a href="javascript:history.back()" class="back-button">戻る</a>
         </div>
         <nav class="breadcrumb"><a href="../index.html">トップ</a><span>›</span>エール別リスト</nav>
         <div class="container">
