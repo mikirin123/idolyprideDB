@@ -273,6 +273,7 @@ html_content = f"""<!DOCTYPE html>
             <a href="javascript:history.back()" class="back-button">戻る</a>
         </div>
     </header>
+    <nav class="breadcrumb"><a href="../../index.html">トップ</a><span>›</span>はちはじ3 サークル</nav>
     <main>
         <div class="container">
             <div class="info-warning">非公式のページであり、情報は公式ページやTwitterからの引用になります。<br>情報の正確性は保証できませんので、必ず公式情報をご確認ください。</div>
