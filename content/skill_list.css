@@ -309,12 +309,11 @@ tr.data-incomplete a.idol_link::after {
     #skill-table tr:nth-child(even) { background-color: #f7f8fc; }
     #skill-table tr:hover { background-color: #f0edff; }
 
-    /* カード単位表示(グループ化)はJSでrowspan+アイドル列非表示によって実現しているが、
-       これはtable表示専用の仕組みでflexカード表示には適用できず、
-       グループ2件目以降のカードにアイドル画像・名前が表示されなくなってしまう。
-       スマホのカード表示では常にアイドル列を表示する。 */
+    /* カード単位表示(グループ化)ではJSが同じカードの2件目以降の行の
+       .idol-cellにdisplay:noneを付与する。1件目だけアイドル名を表示し、
+       2件目以降は種別・スキル名から始まるようにする。 */
     .idol-cell {
-        display: flex !important;
+        display: flex;
         flex: 1 1 100%;
         width: 100%;
         align-items: center;
