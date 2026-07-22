@@ -312,7 +312,7 @@ ul {
 .news p {
     margin: 0px 10px;
     padding: 10px;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5;
 }
 
@@ -654,6 +654,10 @@ ul {
 
     .news-scroll {
         max-height: 180px;
+    }
+
+    .news p {
+        font-size: 12px;
     }
 
     .event-name {

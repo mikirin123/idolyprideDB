@@ -118,7 +118,12 @@ def load_update_rows():
     if not url:
         raise ValueError("UPDATE_INFO_CSV_URL が gitignore/setting.txt に見つかりません")
     content = fetch_csv_with_cache(url, 'gitignore/cache_update_info.csv')
-    return sorted(csv.DictReader(io.StringIO(content)), key=lambda r: r['日付'], reverse=True)
+    rows = []
+    for row in csv.DictReader(io.StringIO(content)):
+        if not row['日付'].strip():
+            break
+        rows.append(row)
+    return sorted(rows, key=lambda r: r['日付'], reverse=True)
 
 
 def row_to_update_html(row, link_prefix=''):
