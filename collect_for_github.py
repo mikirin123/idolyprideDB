@@ -42,9 +42,10 @@ def should_skip_file(rel_file):
     if rel_file.name in EXCLUDE_FILES:
         return True
     if rel_file.parts[0] == 'gitignore':
-        # gitignore/ はCSV取得元URLなどを書いた setting.txt だけが必要
-        # (cache_*.csv や *.hash は実行時に再生成されるキャッシュ)
-        return rel_file.name != 'setting.txt'
+        # gitignore/ 配下は全てローカル専用(キャッシュ・ハッシュに加え、
+        # setting.txt はCSV取得元URLを含むためGitHub側にはコピーしない。
+        # Actions側では secrets から実行時に生成する)
+        return True
     return False
 
 
