@@ -24,18 +24,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Create gitignore/setting.txt from secrets
-        run: |
-          mkdir -p gitignore
-          cat > gitignore/setting.txt << EOF
-          CHARACTERS_CSV_URL=${{ secrets.CHARACTERS_CSV_URL }}
-          UPDATE_INFO_CSV_URL=${{ secrets.UPDATE_INFO_CSV_URL }}
-          ADMIN_POSTS_CSV_URL=${{ secrets.ADMIN_POSTS_CSV_URL }}
-          EVENTS_CSV_URL=${{ secrets.EVENTS_CSV_URL }}
-          SITE_URL=${{ secrets.SITE_URL }}
-          IMPL_DATE_LIMIT=${{ secrets.IMPL_DATE_LIMIT }}
-          EOF
-
       - name: Run generate.py
         run: python generate.py
 
