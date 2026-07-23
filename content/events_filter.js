@@ -16,12 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return new Date(boundaryUtcMs - JST_OFFSET_MS);
     }
 
-    // イベントの終了日時が暦日(JST)でどの期限区分に収まるかを判定する
-    function deadlineBucket(endDt) {
-        if (endDt <= jstMidnightBoundary(1)) return 'today';
-        if (endDt <= jstMidnightBoundary(3)) return '3days';
-        if (endDt <= jstMidnightBoundary(7)) return '7days';
-        return 'later';
+    // イベントの終了日時が指定の期限区分に該当するか判定する(「◯日以内」は累積)
+    function matchesDeadline(endDt, deadline) {
+        if (!deadline) return true;
+        if (deadline === 'today') return endDt <= jstMidnightBoundary(1);
+        if (deadline === '3days') return endDt <= jstMidnightBoundary(3);
+        if (deadline === '7days') return endDt <= jstMidnightBoundary(7);
+        if (deadline === 'later') return endDt > jstMidnightBoundary(7);
+        return true;
     }
 
     function applyFilters() {
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const endDt = new Date(item.dataset.end);
             let show = true;
             if (activeCats.length && !activeCats.includes(item.dataset.category)) show = false;
-            if (deadline && deadlineBucket(endDt) !== deadline) show = false;
+            if (!matchesDeadline(endDt, deadline)) show = false;
             item.style.display = show ? '' : 'none';
             if (show) visibleCount++;
         });
