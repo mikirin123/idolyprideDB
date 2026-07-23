@@ -407,6 +407,10 @@ EVENT_FILTER_BAR_HTML = '''        <div class="event-filter-bar">
                 <button type="button" id="event-filter-reset" class="event-filter-reset">リセット</button>
             </div>
         </div>
+        <div class="event-legend">
+            <span class="event-legend-item"><span class="event-legend-swatch event-item-urgent"></span>1日以内に終了</span>
+            <span class="event-legend-item"><span class="event-legend-swatch event-item-soon"></span>3日以内に終了</span>
+        </div>
 '''
 
 EVENT_EMPTY_FILTERED_HTML = '''        <p class="event-empty-filtered" id="event-empty-filtered" style="display:none">条件に一致するイベントはありません</p>
