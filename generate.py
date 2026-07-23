@@ -599,6 +599,7 @@ def generate_html(update_rows, admin_posts, events_rows):
         <button class="menu" aria-label="メニューを開く">︙</button>
         <div class="menu-content">
             <a><i class="fa-solid fa-circle-question"></i> このサイトについて</a>
+            <a><i class="fa-solid fa-heart"></i> サンクス</a>
         </div>
     </div>
     <div class="popup-overlay"></div>
