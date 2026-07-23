@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 popupOverlay.style.display = 'block';
             } else if (menuName === 'サンクス') {
                 popupContent.innerHTML =
-                    '7/19のデータ追加にご協力いただきました。<br>ありがとうございます!<br><br>' +
+                    '2026/7/19更新分のデータ収集にご協力いただきました。<br>ありがとうございます。<br><br>' +
                     '𝒮𝓊𝑔𝒶𝓇<br>' +
                     'チョコわたるしみ<br>' +
                     'RozeN<br><br><hr>';
