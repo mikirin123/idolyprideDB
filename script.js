@@ -56,11 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 popupOverlay.style.display = 'block';
             } else if (menuName === 'サンクス') {
                 popupContent.innerHTML =
-                    'データ更新にご協力いただいた方々です。ありがとうございます!<br><br>' +
+                    '7/19のデータ追加にご協力いただきました。<br>ありがとうございます!<br><br>' +
                     '𝒮𝓊𝑔𝒶𝓇<br>' +
                     'チョコわたるしみ<br>' +
-                    'RozeN<br><br>' +
-                    '(7/19のデータ追加にご協力いただきました)';
+                    'RozeN<br><br><hr>';
                 popup.style.display = 'block';
                 popupOverlay.style.display = 'block';
             }
