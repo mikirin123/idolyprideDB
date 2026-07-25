@@ -25,3 +25,7 @@ cd_list=hide
 # --- はちはじ'25 ---
 circle-list=show
 oshinagaki=show
+
+# --- コミケ108 ---
+circle-list-c108=hide
+oshinagaki-c108=hide

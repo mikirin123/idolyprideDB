@@ -131,7 +131,7 @@ last_updated = datetime.now().strftime('%Y-%m-%d %H:%M')
 _now = datetime.now()
 footer_updated = f"{_now.year}/{_now.month}/{_now.day}({WEEKDAYS_JA[_now.weekday()]}) {_now.strftime('%H:%M')}"
 
-page_description = "2025年に開催されるIDOLY PRIDEオンリーイベント『八景から始まる物語』stage3、通称『はちはじ3』の参加サークルのおしながき・告知まとめページです。"
+page_description = "2025年に開催されるIDOLY PRIDEオンリーイベント『八景から始まる物語』stage3、通称『はちはじ'25』の参加サークルのおしながき・告知まとめページです。"
 page_title = "八景から始まる物語 stage3 おしながき・告知 - IDOLY PRIDE データベース M"
 canonical_url = SITE_URL + quote(PAGE_URL, safe='/')
 og_image = SITE_URL + 'image/icon.png'
@@ -142,7 +142,7 @@ html_content = f"""<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{page_description}">
-    <meta name="keywords" content="IDOLY PRIDE, はちはじ3, 八景から始まる物語, おしながき, 告知">
+    <meta name="keywords" content="IDOLY PRIDE, はちはじ'25, 八景から始まる物語, おしながき, 告知">
     <title>{page_title}</title>
     <link rel="canonical" href="{canonical_url}">
     <meta property="og:type" content="website">
@@ -168,15 +168,15 @@ html_content = f"""<!DOCTYPE html>
 <body>
     <header>
         <div class="banner">
-            <div class="banner_title" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知</div>
-            <div class="banner_title_phone" onclick="location.href='../../index.html'" style="cursor:pointer">おしながき・告知</div>
+            <div class="banner_title" onclick="location.href='../../index.html'" style="cursor:pointer">はちはじ'25 おしながき・告知</div>
+            <div class="banner_title_phone" onclick="location.href='../../index.html'" style="cursor:pointer">はちはじ'25 おしながき・告知</div>
         </div>
     </header>
-    <nav class="breadcrumb"><a href="../../index.html">トップ</a><span>›</span>おしながき・告知</nav>
+    <nav class="breadcrumb"><a href="../../index.html">トップ</a><span>›</span>はちはじ'25 おしながき・告知</nav>
     <main>
         <div class="container">
             <div class="info-warning">非公式のページであり、情報は公式ページやTwitterからの引用になります。<br>情報の正確性は保証できませんので、必ず公式情報をご確認ください。</div>
-            <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated} はちはじ3お疲れ様でした！</div>
+            <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated} はちはじ'25お疲れ様でした！</div>
             {toc_html}
             <div class="circlelist-link-group">
                 <a href="circle-list.html" class="circle-link-btn" style="font-size:16px;">サークル一覧はこちら</a>

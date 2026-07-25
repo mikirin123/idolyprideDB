@@ -506,6 +506,10 @@ EVENT_NAV_SECTIONS = [
         ("circle-list", "event/はちはじ25/circle-list.html", "fa-solid fa-table-list", "サークル"),
         ("oshinagaki", "event/はちはじ25/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知"),
     ]),
+    ("コミケ108", [
+        ("circle-list-c108", "event/C108/circle-list.html", "fa-solid fa-table-list", "サークル"),
+        ("oshinagaki-c108", "event/C108/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知"),
+    ]),
 ]
 
 
