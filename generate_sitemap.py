@@ -3,7 +3,7 @@ from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote, urlparse
 
-from generate import NAV_SECTIONS, EVENT_NAV_SECTIONS, load_page_visibility
+from generate import NAV_SECTIONS, HACHIHAJI_NAV_SECTION, C108_NAV_SECTION, load_page_visibility
 from utils import write_if_changed, write_page, load_setting, now_jst, WEEKDAYS_JA
 
 ROOT = Path(__file__).resolve().parent
@@ -49,7 +49,7 @@ def build_urls():
     for href, priority, _label in HOME_EXTRA_PAGES:
         urls.append((href, priority))
 
-    for _title, items in NAV_SECTIONS + EVENT_NAV_SECTIONS:
+    for _title, items in [C108_NAV_SECTION] + NAV_SECTIONS + [HACHIHAJI_NAV_SECTION]:
         for key, href, _icon, _label in items:
             if key and not visibility.get(key, True):
                 continue
@@ -134,7 +134,7 @@ def generate_robots_txt(base_url):
 
 def generate_sitemap_html(root_path):
     """人間向けの簡易サイトマップページ。detail/character/groupの大量ページは
-    含めず、NAV_SECTIONS・EVENT_NAV_SECTIONSの主要ページだけを一覧表示する。"""
+    含めず、NAV_SECTIONS・HACHIHAJI_NAV_SECTION・C108_NAV_SECTIONの主要ページだけを一覧表示する。"""
     visibility = load_page_visibility()
 
     def render_section(title, items):
@@ -154,7 +154,8 @@ def generate_sitemap_html(root_path):
     home_extra_html = f'    <ul>\n{home_extra_rows}    </ul>\n' if home_extra_rows else ''
 
     sections_html = ''.join(
-        render_section(title, items) for title, items in EVENT_NAV_SECTIONS + NAV_SECTIONS
+        render_section(title, items)
+        for title, items in [C108_NAV_SECTION] + NAV_SECTIONS + [HACHIHAJI_NAV_SECTION]
     )
 
     def render(icon_href):

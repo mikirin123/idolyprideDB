@@ -1,5 +1,6 @@
 import csv
 import html as html_lib
+import json
 import os
 import re
 from datetime import datetime
@@ -29,6 +30,34 @@ def _load_site_url():
 
 SITE_URL = _load_site_url()
 
+# サイト全体の方針(utils.pyのFONT_PRECONNECT_HTML)に合わせて、
+# preconnectだけでなくGoogle Fonts本体のCSSも読み込む。
+FONT_PRECONNECT_HTML = (
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+    '    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+    '    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap">'
+)
+
+
+def breadcrumb_jsonld(items):
+    """パンくずのBreadcrumbList構造化データ(JSON-LD)。utils.pyのbreadcrumb_jsonldと同じ形式。
+    items: [(name, url), ...] urlはサイトルート基準の相対パス。"""
+    element_list = [
+        {
+            "@type": "ListItem",
+            "position": i,
+            "name": name,
+            "item": SITE_URL + quote(url, safe='/'),
+        }
+        for i, (name, url) in enumerate(items, 1)
+    ]
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": element_list,
+    }
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
 
 def esc(value):
     """CSV由来の文字列をHTMLに埋め込む前にエスケープする。"""
@@ -49,36 +78,81 @@ def read_csv(path):
     except FileNotFoundError:
         return []
 
-circles = read_csv('circle-list.csv')
-
-group_defs = [
-    ("day1", "1日目", lambda r: r.get('日程', '').strip() == '1日目'),
-    ("day2", "2日目", lambda r: r.get('日程', '').strip() == '2日目'),
-]
-
-grouped = {g[0]: [] for g in group_defs}
-for row in circles:
-    for key, label, cond in group_defs:
-        if cond(row):
-            grouped[key].append(row)
-            break
 
 def id_sort_key(r):
     try:
-        return int(re.sub(r"\D", "", r.get('id', '')) or 0)
+        return int(re.sub(r"\D", "", r.get('circle-id', '')) or 0)
     except ValueError:
         return 0
 
+
+def parse_sanka_names(sanka):
+    """参加者欄(例: 'みちゃん、大鋼 断@daimonzi_x')を個人名のリストに分割する。
+    末尾の@ユーザー名は表記ゆれとして取り除き、代表者名との突き合わせに使う。"""
+    if not sanka:
+        return []
+    names = []
+    for s in re.split(r'[、,\s]+', sanka):
+        s = s.strip()
+        if not s:
+            continue
+        m = re.match(r'^(.*?)@([A-Za-z0-9_]{1,15})$', s)
+        names.append(m.group(1) if m else s)
+    return names
+
+
+def sanka_to_html(s):
+    m = re.match(r'^(.*?)(@([A-Za-z0-9_]{1,15}))$', s)
+    if m:
+        disp = m.group(1) + m.group(2)
+        user = m.group(3)
+        return f'<a href="https://twitter.com/{esc(user)}" target="_blank" style="color:#3200FF;">{esc(disp)}</a>'
+    return esc(s)
+
+
+circles = [r for r in read_csv('circle-list.csv') if r.get('サークル名', '').strip()]
+
+# 合同誌CSVの読み込み・並び替え(サークル一覧の各行から合同誌バッジでリンクするため、先に読み込む)
+gohdo_circles = [r for r in read_csv("circle-list gohdo.csv") if r.get('内容', '').strip()]
+gohdo_sorted = sorted(gohdo_circles, key=id_sort_key)
+
+# 代表者名から本体CSVの行を逆引きするためのマップ(合同誌テーブルのサークル名・配置等を補うため)
+rep_to_circle = {}
+for r in circles:
+    rep = r.get('代表者', '').strip()
+    if rep and rep not in rep_to_circle:
+        rep_to_circle[rep] = r
+
+# 代表者名 → 合同誌テーブルの該当行アンカー、のマップ(合同誌バッジのリンク先を決めるため)
+name_to_gohdo_anchor = {}
+for idx, row in enumerate(gohdo_sorted):
+    for nm in parse_sanka_names(row.get('参加者', '').strip()):
+        name_to_gohdo_anchor.setdefault(nm.strip(), f'gohdo-{idx}')
+
+# 配置の先頭3文字でグルーピングする(circle-id順に現れた並びをそのままセクション順にする)
+circles_by_id = sorted(circles, key=id_sort_key)
+group_order = []
+grouped = {}
+for row in circles_by_id:
+    prefix = row.get('配置', '').strip()[:3]
+    if prefix not in grouped:
+        grouped[prefix] = []
+        group_order.append(prefix)
+    grouped[prefix].append(row)
+
+group_defs = [(f'place-{prefix}', prefix) for prefix in group_order]
+
 def make_table(rows, anchor, label):
     rows_sorted = sorted(rows, key=id_sort_key)
-    # サークル名ごとに複数フラグを集計
-    name_to_fukusu = {}
+    # サークル名ごとに合同誌バッジのリンク先を集計
+    name_to_gohdo_anchors = {}
     for r in rows_sorted:
         name = r.get('サークル名', '').strip()
-        if name not in name_to_fukusu:
-            name_to_fukusu[name] = False
-        if r.get('複数', '').strip() == '○':
-            name_to_fukusu[name] = True
+        if r.get('合同誌', '').strip() == '○':
+            anchor_id = name_to_gohdo_anchor.get(r.get('代表者', '').strip(), 'gohdo-area')
+            anchors = name_to_gohdo_anchors.setdefault(name, [])
+            if anchor_id not in anchors:
+                anchors.append(anchor_id)
     rowspans, i = [], 0
     while i < len(rows_sorted):
         name = rows_sorted[i].get('サークル名', '').strip()
@@ -103,35 +177,27 @@ def make_table(rows, anchor, label):
                 <th>配置</th>
                 <th>おしながき・告知</th>
                 <th>Twitter</th>
-                <th>Pixiv</th>
-                <th>BOOTH</th>
-                <th>メロブ</th>
             </tr>
         </thead>
         <tbody>
     """
     for idx, row in enumerate(rows_sorted):
         name = row.get('サークル名', '').strip()
-        joint = row.get('合同', '').strip()
-        fukusu = row.get('複数', '').strip()
-        # 複数フラグが1つでもあれば【複】を付与
         display_name = name
-        if name_to_fukusu.get(name):
-            display_name = f"【複】{display_name}"
-        if joint == "○":
-            display_name = f"【合】{display_name}"
-        tw_name = row.get('ネットネーム', '').strip()
+        content = row.get('内容', '').strip()
+        content_html = f'<br><span class="circle-content-note">{esc(content)}</span>' if content else ''
+        gohdo_badges = name_to_gohdo_anchors.get(name, [])
+        gohdo_badge_html = ('<br>' if gohdo_badges else '') + ''.join(
+            f'<a href="#{a}" class="circle-link-btn gohdo-badge-link">合同誌</a>'
+            for a in gohdo_badges
+        )
+        tw_name = row.get('代表者', '').strip()
         place = row.get('配置', '').strip()
+        place_display = place[3:]
         oshinagaki = row.get('おしながき・告知', '').strip()
         twitter = row.get('Twitter', '').strip()
-        pixiv = row.get('Pixiv', '').strip()
-        booth = row.get('BOOTH', '').strip()
-        melon = row.get('メロブ', '').strip()
         oshinagaki_link = f'<a href="{esc(oshinagaki)}" target="_blank" class="circle-link-btn">おしながき・告知</a>' if oshinagaki else ''
         twitter_link = f'<a href="{esc(twitter)}" target="_blank" class="circle-link-btn">Twitter</a>' if twitter else ''
-        pixiv_link = f'<a href="{esc(pixiv)}" target="_blank" class="circle-link-btn">Pixiv</a>' if pixiv else ''
-        booth_link = f'<a href="{esc(booth)}" target="_blank" class="circle-link-btn">BOOTH</a>' if booth else ''
-        melon_link = f'<a href="{esc(melon)}" target="_blank" class="circle-link-btn">メロブ</a>' if melon else ''
         tr_id = f' id="circle-{esc(place)}" class="circlelist-row-anchor"' if place else ''
         html += f"<tr{tr_id}>"
         copy_btn = f'''<button class="copy-info-btn" data-name="{esc(name)}" data-place="{esc(place)}" data-twitter="{esc(twitter)}">コピー</button>'''
@@ -139,12 +205,12 @@ def make_table(rows, anchor, label):
         html += f'<td>{copy_btn} {eval_btn}</td>'
         if idx in rowspan_map:
             span = rowspan_map[idx]
-            html += f'<td rowspan="{span}">{esc_rich(display_name)}</td>'
+            html += f'<td rowspan="{span}">{esc_rich(display_name)}{content_html}{gohdo_badge_html}</td>'
         elif idx > 0 and name == rows_sorted[idx-1].get('サークル名', '').strip():
             pass
         else:
-            html += f'<td>{esc_rich(display_name)}</td>'
-        html += f'<td>{esc(tw_name)}</td><td>{esc(place)}</td><td>{oshinagaki_link}</td><td>{twitter_link}</td><td>{pixiv_link}</td><td>{booth_link}</td><td>{melon_link}</td></tr>\n'
+            html += f'<td>{esc_rich(display_name)}{content_html}{gohdo_badge_html}</td>'
+        html += f'<td>{esc(tw_name)}</td><td>{esc(place_display)}</td><td>{oshinagaki_link}</td><td>{twitter_link}</td></tr>\n'
     html += """
         </tbody>
     </table>
@@ -153,18 +219,18 @@ def make_table(rows, anchor, label):
     """
     return html
 
-tables_html = "".join(make_table(grouped[key], key, label) for key, label, _ in group_defs if grouped[key])
+tables_html = "".join(make_table(grouped[label], anchor, label) for anchor, label in group_defs if grouped[label])
 
-# 合同CSVの読み込み・並び替え・HTML生成
-gohdo_circles = read_csv("circle-list gohdo.csv")
+def circle_ref_html(r):
+    """本体CSVの行から、サークル一覧側の該当行へリンクするサークル名セルを作る。"""
+    name = r.get('サークル名', '').strip()
+    place = r.get('配置', '').strip()
+    if place:
+        return f'<a href="#circle-{esc(place)}" style="color:#3200FF;text-decoration:underline;">{esc(name)}</a>'
+    return esc(name)
 
-def gohdo_sort_key(r):
-    day_order = {'1日目': 0, '2日目': 1}.get(r.get('日程', '').strip(), 99)
-    return (day_order, id_sort_key(r))
 
-gohdo_sorted = sorted(gohdo_circles, key=gohdo_sort_key)
-
-def make_gohdo_table(rows):
+def make_gohdo_table(rows, rep_to_circle):
     html = '<section id="gohdo-area" class="circlelist-section-anchor"><h3>合同誌</h3>'
     html += '<div class="circle-table-scroll">'
     html += """
@@ -180,28 +246,34 @@ def make_gohdo_table(rows):
         </thead>
         <tbody>
     """
-    for row in rows:
-        name = row.get('サークル名', '').strip()
+    for idx, row in enumerate(rows):
         content = row.get('内容', '').strip()
-        place = row.get('配置', '').strip()
         sanka = row.get('参加者', '').strip()
-        # 参加者をカンマ・読点・スペースで分割し、名前@ユーザー名はまとめてTwitterリンク化
+        # 参加者名から本体CSVの行を逆引きし、サークル名・配置・おしながき等を補う
+        matched_rows = []
+        seen = set()
+        for nm in parse_sanka_names(sanka):
+            r = rep_to_circle.get(nm.strip())
+            if r and r.get('サークル名', '').strip() not in seen:
+                seen.add(r.get('サークル名', '').strip())
+                matched_rows.append(r)
+        if matched_rows:
+            name_cell = '<br>'.join(circle_ref_html(r) for r in matched_rows)
+            place_cell = '<br>'.join(esc(r.get('配置', '').strip()[3:]) for r in matched_rows)
+            oshinagaki_list = [r.get('おしながき・告知', '').strip() for r in matched_rows if r.get('おしながき・告知', '').strip()]
+            oshinagaki_link = '<br>'.join(
+                f'<a href="{esc(o)}" target="_blank" class="circle-link-btn">おしながき・告知</a>' for o in oshinagaki_list
+            )
+        else:
+            name_cell = esc(content)
+            place_cell = ''
+            oshinagaki_link = ''
         if sanka:
-            import re
             sanka_list = [x.strip() for x in re.split(r'[、,\s]+', sanka) if x.strip()]
-            def sanka_to_html(s):
-                m = re.match(r'^(.*?)(@([A-Za-z0-9_]{1,15}))$', s)
-                if m:
-                    disp = m.group(1) + m.group(2)
-                    user = m.group(3)
-                    return f'<a href="https://twitter.com/{esc(user)}" target="_blank" style="color:#3200FF;">{esc(disp)}</a>'
-                return esc(s)
-            sanka_html = '<br>'.join([sanka_to_html(x) for x in sanka_list])
+            sanka_html = '<br>'.join(sanka_to_html(x) for x in sanka_list)
         else:
             sanka_html = ''
-        oshinagaki = row.get('おしながき・告知', '').strip()
-        oshinagaki_link = f'<a href="{esc(oshinagaki)}" target="_blank" class="circle-link-btn">おしながき・告知</a>' if oshinagaki else ''
-        html += f"<tr><td>{esc(name)}</td><td>{esc(content)}</td><td>{esc(place)}</td><td style='text-align:left;font-size:13px;'>{sanka_html}</td><td>{oshinagaki_link}</td></tr>\n"
+        html += f"<tr id=\"gohdo-{idx}\"><td>{name_cell}</td><td>{esc(content)}</td><td>{place_cell}</td><td style='text-align:left;font-size:13px;'>{sanka_html}</td><td>{oshinagaki_link}</td></tr>\n"
     html += """
         </tbody>
     </table>
@@ -212,15 +284,15 @@ def make_gohdo_table(rows):
 
 # 目次HTML生成
 toc_html = '<nav class="toc"><div class="toc-buttons">'
-for key, label, _ in group_defs:
-    if grouped[key]:
-        toc_html += f'<a class="toc-btn-wrap" href="#{key}-area"><span class="toc-label">{label}</span></a>'
+for anchor, label in group_defs:
+    if grouped[label]:
+        toc_html += f'<a class="toc-btn-wrap" href="#{anchor}-area"><span class="toc-label">{label}</span></a>'
 if gohdo_sorted:
     toc_html += '<a class="toc-btn-wrap" href="#gohdo-area"><span class="toc-label">合同誌</span></a>'
 toc_html += '</div></nav>'
 
 if gohdo_sorted:
-    tables_html += make_gohdo_table(gohdo_sorted)
+    tables_html += make_gohdo_table(gohdo_sorted, rep_to_circle)
 
 last_updated = datetime.now().strftime('%Y-%m-%d %H:%M')
 _now = datetime.now()
@@ -230,6 +302,10 @@ page_description = "コミックマーケット108(C108)に参加するIDOLY PRI
 page_title = "コミックマーケット108(C108) サークル - IDOLY PRIDE データベース M"
 canonical_url = SITE_URL + quote(PAGE_URL, safe='/')
 og_image = SITE_URL + 'image/icon.png'
+breadcrumb_html = breadcrumb_jsonld([
+    ('IDOLY PRIDE データベース M', ''),
+    ('コミケ108 サークル', PAGE_URL),
+])
 
 html_content = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -246,19 +322,24 @@ html_content = f"""<!DOCTYPE html>
     <meta property="og:url" content="{canonical_url}">
     <meta property="og:site_name" content="IDOLY PRIDE データベース M">
     <meta property="og:image" content="{og_image}">
+    <meta property="og:locale" content="ja_JP">
     <meta name="twitter:card" content="summary">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="twitter:title" content="{page_title}">
+    <meta name="twitter:description" content="{page_description}">
+    <meta name="twitter:image" content="{og_image}">
+    {FONT_PRECONNECT_HTML}
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="../../common.css">
     <link rel="stylesheet" href="circle-list.css">
     <script src="circle-list.js"></script>
     <link rel="shortcut icon" href="../../image/icon.ico">
-    <link rel="icon" type="image/png" sizes="180x180" href="../../image/icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../image/icon.png">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../image/icon.png">
     <link rel="mask-icon" href="../../image/icon.svg">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9647262951514669" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-9647262951514669">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    {breadcrumb_html}
 </head>
 <body>
     <header>
@@ -270,8 +351,8 @@ html_content = f"""<!DOCTYPE html>
     <nav class="breadcrumb"><a href="../../index.html">トップ</a><span>›</span>コミケ108 サークル</nav>
     <main>
         <div class="container">
-            <div class="info-warning">非公式のページであり、情報は公式ページやTwitterからの引用になります。<br>情報の正確性は保証できませんので、必ず公式情報をご確認ください。</div>
-            <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated}</div>
+            <div class="info-warning">情報は古くなっている場合や誤りを含んでいることがあります。<br>正確性は保証できませんので、必ず最新情報をご確認ください。<br><br>サークル名の下に記載している内容は、実際の活動内容と異なる場合があります。参考程度にご覧ください。<br>合同誌の情報は正確でない可能性が高く、把握し次第更新していきます。</div>
+            <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated} 次回更新: 2026-08-01予定</div>
             {toc_html}
             <div class="circlelist-link-group">
                 <a href="oshinagaki.html" class="circle-link-btn" style="font-size:16px;">おしながき・告知まとめはこちら</a>
@@ -280,14 +361,13 @@ html_content = f"""<!DOCTYPE html>
             <div class="info-text">
                 コピーを押すと、サークル情報をクリップボードにコピーできます。
                 <br>「-」を押すと、サークルの評価状態が切り替わります。
-                <br>合同サークルには、サークル名の先頭に【合】を付けています。
-                <br>複数の方が同じサークル名で個別に参加されている場合に【複】を付けています。
+                <br>合同誌に参加しているサークルには、「合同誌」バッジを表示しています(押すと合同誌の詳細に移動します)。
             </div>
             {tables_html}
         </div>
     </main>
     <button id="scrollToTopBtn">ページ上部へ</button>
-    <footer class="site-footer">最終更新: {footer_updated}</footer>
+    <footer class="site-footer">最終更新: {footer_updated} 次回更新: 2026-08-01予定</footer>
 </body>
 </html>
 """

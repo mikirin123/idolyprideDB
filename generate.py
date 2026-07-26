@@ -502,16 +502,15 @@ OFFICIAL_NAV_SECTION = ("公式コンテンツ", [
     (None, "https://www.youtube.com/c/IDOLYPRIDE", "fab fa-youtube", "YouTube"),
 ])
 
-EVENT_NAV_SECTIONS = [
-    ("はちはじ'25", [
-        ("circle-list", "event/はちはじ25/circle-list.html", "fa-solid fa-table-list", "サークル"),
-        ("oshinagaki", "event/はちはじ25/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知"),
-    ]),
-    ("コミケ108", [
-        ("circle-list-c108", "event/C108/circle-list.html", "fa-solid fa-table-list", "サークル"),
-        ("oshinagaki-c108", "event/C108/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知"),
-    ]),
-]
+HACHIHAJI_NAV_SECTION = ("はちはじ'25", [
+    ("circle-list", "event/はちはじ25/circle-list.html", "fa-solid fa-table-list", "サークル"),
+    ("oshinagaki", "event/はちはじ25/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知"),
+])
+
+C108_NAV_SECTION = ("コミケ108", [
+    ("circle-list-c108", "event/C108/circle-list.html", "fa-solid fa-table-list", "サークル"),
+    ("oshinagaki-c108", "event/C108/oshinagaki.html", "fa-solid fa-globe", "おしながき・告知"),
+])
 
 
 def load_page_visibility():
@@ -551,7 +550,7 @@ def build_nav_html(all_sections, visibility):
 
 def generate_html(update_rows, admin_posts, events_rows):
     visibility = load_page_visibility()
-    nav_html = build_nav_html(NAV_SECTIONS + [OFFICIAL_NAV_SECTION] + EVENT_NAV_SECTIONS, visibility)
+    nav_html = build_nav_html([C108_NAV_SECTION] + NAV_SECTIONS + [OFFICIAL_NAV_SECTION, HACHIHAJI_NAV_SECTION], visibility)
 
     latest_date_ja = ''
     if update_rows:

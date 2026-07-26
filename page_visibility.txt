@@ -28,5 +28,5 @@ circle-list=show
 oshinagaki=show
 
 # --- コミケ108 ---
-circle-list-c108=hide
-oshinagaki-c108=hide
+circle-list-c108=show
+oshinagaki-c108=show
