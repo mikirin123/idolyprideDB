@@ -487,6 +487,7 @@ NAV_SECTIONS = [
         ("colors", "content/colors.html", "fa-solid fa-palette", "メンバーカラー"),
         ("birthdays", "content/birthdays.html", "fa-solid fa-cake-candles", "キャラ誕生日"),
         ("interact-present", "content/interact-present.html", "fa-solid fa-gift", "交流プレゼント"),
+        ("exacc_list", "content/exacc_list.html", "fa-solid fa-gem", "専用アクセサリー"),
         ("chara_list", "content/chara_list.html", "fa-solid fa-id-card", "キャラ情報"),
         ("group_list", "content/group_list.html", "fa-solid fa-people-group", "グループ情報"),
         ("music_list", "content/music_list.html", "fa-solid fa-music", "楽曲情報"),

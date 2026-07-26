@@ -17,6 +17,7 @@ exphoto_list=show
 colors=show
 birthdays=show
 interact-present=show
+exacc_list=show
 chara_list=hide
 group_list=hide
 music_list=hide
