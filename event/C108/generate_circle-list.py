@@ -239,9 +239,7 @@ def make_gohdo_table(rows, rep_to_circle):
             <tr>
                 <th>サークル名</th>
                 <th>内容</th>
-                <th>配置</th>
                 <th>参加者</th>
-                <th>おしながき・告知</th>
             </tr>
         </thead>
         <tbody>
@@ -259,21 +257,14 @@ def make_gohdo_table(rows, rep_to_circle):
                 matched_rows.append(r)
         if matched_rows:
             name_cell = '<br>'.join(circle_ref_html(r) for r in matched_rows)
-            place_cell = '<br>'.join(esc(r.get('配置', '').strip()[3:]) for r in matched_rows)
-            oshinagaki_list = [r.get('おしながき・告知', '').strip() for r in matched_rows if r.get('おしながき・告知', '').strip()]
-            oshinagaki_link = '<br>'.join(
-                f'<a href="{esc(o)}" target="_blank" class="circle-link-btn">おしながき・告知</a>' for o in oshinagaki_list
-            )
         else:
             name_cell = esc(content)
-            place_cell = ''
-            oshinagaki_link = ''
         if sanka:
             sanka_list = [x.strip() for x in re.split(r'[、,\s]+', sanka) if x.strip()]
             sanka_html = '<br>'.join(sanka_to_html(x) for x in sanka_list)
         else:
             sanka_html = ''
-        html += f"<tr id=\"gohdo-{idx}\"><td>{name_cell}</td><td>{esc(content)}</td><td>{place_cell}</td><td style='text-align:left;font-size:13px;'>{sanka_html}</td><td>{oshinagaki_link}</td></tr>\n"
+        html += f"<tr id=\"gohdo-{idx}\"><td>{name_cell}</td><td>{esc(content)}</td><td style='text-align:left;font-size:13px;'>{sanka_html}</td></tr>\n"
     html += """
         </tbody>
     </table>
