@@ -74,6 +74,8 @@
 .event-badge-event { background-color: #3200FF; }
 .event-badge-mission { background-color: #4caf50; }
 .event-badge-job { background-color: #FFA900; }
+.event-badge-login { background-color: #e91e63; }
+.event-badge-shop { background-color: #00A9A5; }
 .event-badge-other { background-color: #607d8b; }
 
 .event-period {
