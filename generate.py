@@ -182,6 +182,8 @@ EVENT_CATEGORY_CLASS = {
     'イベント': 'event',
     'ミッション': 'mission',
     'お仕事キャンペーン': 'job',
+    'ログインボーナス': 'login',
+    'ショップ': 'shop',
     'その他': 'other',
 }
 
@@ -191,8 +193,9 @@ EVENT_CATEGORY_PRIORITY = [
     'ガチャ',
     'お仕事キャンペーン',
     'ミッション',
-    'その他',
     'ログインボーナス',
+    'ショップ',
+    'その他',
     '定期',
 ]
 EVENT_CATEGORY_ORDER = {name: i for i, name in enumerate(EVENT_CATEGORY_PRIORITY)}
@@ -391,6 +394,8 @@ EVENT_FILTER_BAR_HTML = '''        <div class="event-filter-bar">
                 <label><input type="checkbox" class="event-cat-filter" value="gacha"> ガチャ</label>
                 <label><input type="checkbox" class="event-cat-filter" value="job"> お仕事キャンペーン</label>
                 <label><input type="checkbox" class="event-cat-filter" value="mission"> ミッション</label>
+                <label><input type="checkbox" class="event-cat-filter" value="login"> ログインボーナス</label>
+                <label><input type="checkbox" class="event-cat-filter" value="shop"> ショップ</label>
                 <label><input type="checkbox" class="event-cat-filter" value="other"> その他</label>
                 <label><input type="checkbox" class="event-cat-filter" value="regular"> 定期</label>
             </div>
