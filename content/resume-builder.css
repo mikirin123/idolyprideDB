@@ -510,7 +510,7 @@ button:active {
     grid-auto-rows: 3.6cqw;
     align-content: flex-start;
     gap: 0.35cqw;
-    justify-content: center;
+    justify-content: space-between;
     background-color: #fff;
     padding: 0.6cqw;
     box-sizing: border-box;
@@ -669,8 +669,8 @@ button:active {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1cqw;
+    justify-content: center;
+    gap: 0.5cqw;
     padding: 0.5cqw 1cqw;
     background-color: #fff;
     box-sizing: border-box;
@@ -689,13 +689,13 @@ button:active {
 }
 
 .resume-id {
-    flex: 1;
+    flex: 0 1 auto;
     min-width: 0;
     font-size: clamp(6px, 1.3cqw, 10px);
     font-weight: bold;
     color: #3200FF;
     letter-spacing: 0.3px;
-    text-align: right;
+    text-align: left;
     word-break: break-all;
 }
 

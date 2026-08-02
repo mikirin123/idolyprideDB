@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const reader = new FileReader();
         reader.onload = function(ev) {
             resumeStage.style.backgroundImage = `url("${ev.target.result}")`;
-            resumeStage.style.backgroundSize = '26% auto';
+            resumeStage.style.backgroundSize = '28% auto';
             resumeStage.style.backgroundPosition = 'center';
             resumeStage.style.backgroundRepeat = 'no-repeat';
         };
