@@ -342,7 +342,7 @@ html_content = f"""<!DOCTYPE html>
     <main>
         <div class="container">
             <div class="info-warning">情報は古くなっている場合や誤りを含んでいることがあります。<br>正確性は保証できませんので、必ず最新情報をご確認ください。<br><br>サークル名の下に記載している内容は、実際の活動内容と異なる場合があります。参考程度にご覧ください。<br>合同誌の情報は正確でない可能性が高く、把握し次第更新していきます。</div>
-            <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated} 次回更新: 2026-08-01予定</div>
+            <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated} 次回更新: 2026-08-11予定</div>
             {toc_html}
             <div class="circlelist-link-group">
                 <a href="oshinagaki.html" class="circle-link-btn" style="font-size:16px;">おしながき・告知まとめはこちら</a>
