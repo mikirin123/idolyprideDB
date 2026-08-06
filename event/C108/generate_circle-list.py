@@ -87,27 +87,28 @@ def id_sort_key(r):
 
 
 def parse_sanka_names(sanka):
-    """参加者欄(例: 'みちゃん、大鋼 断@daimonzi_x')を個人名のリストに分割する。
-    末尾の@ユーザー名は表記ゆれとして取り除き、代表者名との突き合わせに使う。"""
+    """参加者欄(例: 'みちゃん|st_michan:PURIN|puririn778:')を個人名のリストに分割する。
+    '|'以降のTwitter IDは表記ゆれとして取り除き、代表者名との突き合わせに使う。"""
     if not sanka:
         return []
     names = []
-    for s in re.split(r'[、,\s]+', sanka):
+    for s in sanka.split(':'):
         s = s.strip()
         if not s:
             continue
-        m = re.match(r'^(.*?)@([A-Za-z0-9_]{1,15})$', s)
-        names.append(m.group(1) if m else s)
+        name, _, _uid = s.partition('|')
+        names.append(name.strip())
     return names
 
 
 def sanka_to_html(s):
-    m = re.match(r'^(.*?)(@([A-Za-z0-9_]{1,15}))$', s)
-    if m:
-        disp = m.group(1) + m.group(2)
-        user = m.group(3)
-        return f'<a href="https://twitter.com/{esc(user)}" target="_blank" style="color:#3200FF;">{esc(disp)}</a>'
-    return esc(s)
+    """参加者欄の1エントリ('名前|Twitter ID')をリンク付きHTMLに変換する。IDがなければ名前だけを表示する。"""
+    name, sep, uid = s.partition('|')
+    name = name.strip()
+    uid = uid.strip()
+    if sep and uid:
+        return f'<a href="https://twitter.com/{esc(uid)}" target="_blank" style="color:#3200FF;text-decoration:none;">{esc(name)}</a>'
+    return esc(name)
 
 
 circles = [r for r in read_csv('circle-list.csv') if r.get('サークル名', '').strip()]
@@ -116,12 +117,16 @@ circles = [r for r in read_csv('circle-list.csv') if r.get('サークル名', ''
 gohdo_circles = [r for r in read_csv("circle-list gohdo.csv") if r.get('内容', '').strip()]
 gohdo_sorted = sorted(gohdo_circles, key=id_sort_key)
 
-# 代表者名から本体CSVの行を逆引きするためのマップ(合同誌テーブルのサークル名・配置等を補うため)
-rep_to_circle = {}
+# circle-idから本体CSVの行を逆引きするためのマップ(合同誌テーブルのサークル名・配置等を補うため)
+circles_by_circle_id = {}
 for r in circles:
-    rep = r.get('代表者', '').strip()
-    if rep and rep not in rep_to_circle:
-        rep_to_circle[rep] = r
+    cid = r.get('circle-id', '').strip()
+    name = r.get('サークル名', '').strip()
+    if not cid or not name:
+        continue
+    rows = circles_by_circle_id.setdefault(cid, [])
+    if name not in [x.get('サークル名', '').strip() for x in rows]:
+        rows.append(r)
 
 # 代表者名 → 合同誌テーブルの該当行アンカー、のマップ(合同誌バッジのリンク先を決めるため)
 name_to_gohdo_anchor = {}
@@ -226,11 +231,11 @@ def circle_ref_html(r):
     name = r.get('サークル名', '').strip()
     place = r.get('配置', '').strip()
     if place:
-        return f'<a href="#circle-{esc(place)}" style="color:#3200FF;text-decoration:underline;">{esc(name)}</a>'
+        return f'<a href="#circle-{esc(place)}" style="color:#3200FF;text-decoration:none;">{esc(name)}</a>'
     return esc(name)
 
 
-def make_gohdo_table(rows, rep_to_circle):
+def make_gohdo_table(rows, circles_by_circle_id):
     html = '<section id="gohdo-area" class="circlelist-section-anchor"><h3>合同誌</h3>'
     html += '<div class="circle-table-scroll">'
     html += """
@@ -247,20 +252,14 @@ def make_gohdo_table(rows, rep_to_circle):
     for idx, row in enumerate(rows):
         content = row.get('内容', '').strip()
         sanka = row.get('参加者', '').strip()
-        # 参加者名から本体CSVの行を逆引きし、サークル名・配置・おしながき等を補う
-        matched_rows = []
-        seen = set()
-        for nm in parse_sanka_names(sanka):
-            r = rep_to_circle.get(nm.strip())
-            if r and r.get('サークル名', '').strip() not in seen:
-                seen.add(r.get('サークル名', '').strip())
-                matched_rows.append(r)
+        # circle-idから本体CSVの行を逆引きし、サークル名・配置・おしながき等を補う
+        matched_rows = circles_by_circle_id.get(row.get('circle-id', '').strip(), [])
         if matched_rows:
             name_cell = '<br>'.join(circle_ref_html(r) for r in matched_rows)
         else:
             name_cell = esc(content)
         if sanka:
-            sanka_list = [x.strip() for x in re.split(r'[、,\s]+', sanka) if x.strip()]
+            sanka_list = [x.strip() for x in sanka.split(':') if x.strip()]
             sanka_html = '<br>'.join(sanka_to_html(x) for x in sanka_list)
         else:
             sanka_html = ''
@@ -283,7 +282,7 @@ if gohdo_sorted:
 toc_html += '</div></nav>'
 
 if gohdo_sorted:
-    tables_html += make_gohdo_table(gohdo_sorted, rep_to_circle)
+    tables_html += make_gohdo_table(gohdo_sorted, circles_by_circle_id)
 
 last_updated = datetime.now().strftime('%Y-%m-%d %H:%M')
 _now = datetime.now()
