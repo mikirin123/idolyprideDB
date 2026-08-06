@@ -357,7 +357,7 @@ html_content = f"""<!DOCTYPE html>
         </div>
     </main>
     <button id="scrollToTopBtn">ページ上部へ</button>
-    <footer class="site-footer">最終更新: {footer_updated} 次回更新: 2026-08-01予定</footer>
+    <footer class="site-footer">最終更新: {footer_updated} 次回更新: 2026-08-11予定</footer>
 </body>
 </html>
 """
