@@ -240,7 +240,7 @@ html_content = f"""<!DOCTYPE html>
     <main>
         <div class="container">
             <div class="info-warning">情報は古くなっている場合や誤りを含んでいることがあります。<br>正確性は保証できませんので、必ず最新情報をご確認ください。</div>
-            <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated} 次回更新: 2026-08-11予定</div>
+            <div class="last-updated" style="font-size:13px;color:#666;margin-bottom:8px;">最終更新: {last_updated} 次回更新: 2026/8/14予定</div>
             {toc_html}
             <div class="circlelist-link-group">
                 <a href="circle-list.html" class="circle-link-btn" style="font-size:16px;">サークル一覧はこちら</a>
@@ -293,7 +293,7 @@ html_content += """
         window.ALL_TWEET_ITEMS = """ + json.dumps([{k: v for k, v in it.items() if k != '_sort'} for it in all_items], ensure_ascii=False).replace('<', '\\u003c') + """;
     </script>
     <script src="tweet_lazyload.js"></script>
-    <footer class="site-footer">最終更新: """ + footer_updated + """ 次回更新: 2026-08-11予定</footer>
+    <footer class="site-footer">最終更新: """ + footer_updated + """ 次回更新: 2026/8/14予定</footer>
 </body>
 </html>
 """
